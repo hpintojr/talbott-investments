@@ -1061,3 +1061,23 @@
 /* Closing section: lighter, neutral shade so the photo's color shows; darker only behind the text */
 .approachable .closing .section-art::after{background:radial-gradient(ellipse 60% 70% at 50% 50%,rgba(20,26,40,.62) 0%,rgba(20,26,40,.38) 55%,rgba(20,26,40,.18) 100%)}
 .approachable .closing :is(h2,p,.eyebrow){text-shadow:0 2px 14px rgba(0,0,0,.45)}
+
+/* Video placeholder (until real videos/thumbnails arrive) */
+.video-ph{position:relative;overflow:hidden;width:100%;aspect-ratio:16/9;border-radius:6px;background:radial-gradient(120% 120% at 75% 30%,#0b4a82 0%,#083965 40%,#232e4d 100%);color:#fff;isolation:isolate;cursor:pointer}
+.video-ph img{position:absolute!important;right:4%;bottom:0;left:auto!important;top:auto!important;height:92%!important;width:auto!important;max-width:none;aspect-ratio:auto!important;object-fit:contain;z-index:-1;opacity:.95}
+.video-ph::after{content:'';position:absolute;inset:0;z-index:-1;background:linear-gradient(90deg,#232e4dd9 0%,#232e4d66 45%,transparent 75%)}
+.video-ph-copy{position:absolute;left:6%;bottom:9%;max-width:52%;display:grid;gap:6px;text-align:left}
+.video-ph-copy span{font-size:.72rem;letter-spacing:.16em;text-transform:uppercase;color:#a9c3e3;font-weight:600}
+.video-ph-copy strong{font-size:clamp(1.05rem,2vw,1.6rem);font-weight:500;line-height:1.2;color:#fff}
+.video-ph-play{position:absolute;left:50%;top:50%;width:clamp(56px,7vw,84px);aspect-ratio:1;border-radius:50%;transform:translate(-50%,-50%);background:#ffffffeb;box-shadow:0 10px 30px #0006,0 0 0 10px #ffffff26;transition:transform .25s ease}
+.video-ph-play::before{content:'';position:absolute;left:54%;top:50%;transform:translate(-50%,-50%);border-style:solid;border-width:12px 0 12px 20px;border-color:transparent transparent transparent #083965}
+:is(a,.video-ph):hover .video-ph-play,.video-ph:hover .video-ph-play{transform:translate(-50%,-50%) scale(1.08)}
+@media (prefers-reduced-motion:reduce){.video-ph-play{transition:none}}
+
+/* Footer LinkedIn: match the nav button (solid sapphire, white "in") */
+.approachable-footer .footer-socials a.footer-linkedin{flex:0 0 44px;width:44px;height:44px;background:#083965;color:#fff;border:1px solid #083965}
+.approachable-footer .footer-socials a.footer-linkedin:hover{background:#0b4a82;border-color:#0b4a82}
+.approachable-footer .footer-socials a.footer-linkedin svg{width:24px;height:24px}
+/* video placeholder: keep cutout transparent, avoid overlap on small screens */
+.video-ph img{background:transparent!important}
+@media (max-width:560px){.video-ph-copy span{display:none}.video-ph-copy{max-width:45%;bottom:7%}.video-ph-play{left:38%}}

@@ -24,7 +24,11 @@ const panel = (label, title, summary, href = '', art = '', cta = 'Explore') => `
   <p class="eyebrow">${esc(label)}</p><h3>${href ? link(title, href, 'nav-link') : esc(title)}</h3>${summary ? `<p>${esc(summary)}</p>` : ''}${href ? link(cta + ' →', href, 'text-link') : ''}</article>`;
 const media = (url, label, poster = '') => url
   ? `<video class="template-video" controls playsinline preload="metadata" src="${esc(url)}"${poster ? ` poster="${esc(poster)}"` : ''} aria-label="${esc(label)}"></video>`
-  : `<div class="template-media"><span aria-hidden="true">▶</span><strong>${esc(label)}</strong><small>Video from the 23. Website folder goes here</small></div>`;
+  : videoPh(label);
+// Video-style placeholder: branded backdrop, Stephen cutout, centered play button. Swapped out once the real video or thumbnail is set.
+function videoPh(title, eyebrow = 'Video') {
+  return `<div class="video-ph" role="img" aria-label="${esc(title)} (video coming soon)"><img src="/images/stephen-predmore.webp" alt="" aria-hidden="true" loading="lazy"><div class="video-ph-copy"><span>${esc(eyebrow)}</span><strong>${esc(title)}</strong></div><span class="video-ph-play" aria-hidden="true"></span></div>`;
+}
 
 // GHL form / calendar embed. Renders a labeled slot until the embed ID is pasted into content/site.mjs.
 function heroLinework() {
@@ -76,7 +80,7 @@ function footer() {
   return `<footer class="section footer approachable-footer">
     <div class="approachable-footer-top"><div><a class="brand-logo footer-wordmark" href="/">${brand(true)}</a><address>${esc(site.location)}</address></div>
     <nav aria-label="Footer">${links.map(([l, h]) => link(l, h, 'nav-link')).join('')}
-      <div class="footer-socials"><a href="${esc(site.linkedinUrl)}" aria-label="LinkedIn"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M3 3h18v18H3z"/><path fill="var(--social-bg)" d="M6 10h2.4v8H6zm1.2-4A1.4 1.4 0 1 0 7.2 8.8 1.4 1.4 0 0 0 7.2 6zm3.3 4h2.3v1a2.8 2.8 0 0 1 2.4-1.2c2.5 0 3 1.6 3 3.7V18h-2.4v-4c0-1-.2-2-1.5-2s-1.5 1-1.5 2v4h-2.3z"/></svg></a></div>
+      <div class="footer-socials"><a class="footer-linkedin" href="${esc(site.linkedinUrl)}" aria-label="${esc(site.firm)} on LinkedIn"><svg aria-hidden="true" viewBox="0 0 24 24" fill="currentColor"><path d="M5.1 8.7h3.2V19H5.1zM6.7 3.6a1.9 1.9 0 1 1 0 3.8 1.9 1.9 0 0 1 0-3.8zM10.6 8.7h3.1v1.4h.1a3.4 3.4 0 0 1 3.1-1.7c3.3 0 3.9 2.2 3.9 5V19h-3.2v-5c0-1.2 0-2.8-1.7-2.8s-2 1.3-2 2.7V19h-3.3z"/></svg></a></div>
       ${link('LP Login', site.portalUrl || '/contact/', 'footer-portal')}</nav></div>
     <div class="footer-legal"><small>© 2026 ${esc(site.firm)}. All rights reserved.</small><nav aria-label="Legal">${legal.map(([l, h]) => link(l, h, 'nav-link')).join('')}</nav></div>
     <p class="disclosure"><strong>NO OFFER OF SECURITIES. DISCLOSURE OF INTERESTS.</strong> ${esc(site.firm)} and its representatives do not provide tax, legal, or accounting advice. This material has been prepared for informational purposes only, and is not intended to provide, and should not be relied on for, tax, legal, or accounting advice. Offerings are made only to accredited investors under Rule 506(c) through the applicable offering documents. You should consult your own tax, legal, and accounting advisors before engaging in any transaction.</p>
@@ -148,7 +152,7 @@ const home = `<main id="main">
     <div class="education-copy">${heading('Is Too Much of Your Wealth Tied to One Company?', 'Start Here')}
       <p>For many tech and engineering leaders, RSUs mean a large share of net worth rides on a single stock, with a tax bill that often arrives larger than expected. The Executive Investment Brief shows how multifamily can help diversify that risk and build passive income outside your employer.</p>
       ${link('Watch the Executive Investment Brief →', BRIEF)}</div>
-    <a class="education-poster" href="${BRIEF}" aria-label="Watch the Executive Investment Brief">${pic(A.briefThumbnail, 'Executive Investment Brief thumbnail')}</a>
+    <a class="education-poster" href="${BRIEF}" aria-label="Watch the Executive Investment Brief">${(A.briefThumbnail ? img(A.briefThumbnail, 'Executive Investment Brief thumbnail') : videoPh('The Executive Investment Brief', 'Watch on demand'))}</a>
   </section>
   <section class="section teal closing" id="contact"><span class="section-art"${cover(A.closingImage)} aria-hidden="true"></span>
     ${heading('Ready to Explore Multifamily Investing?')}<p style="margin-inline:auto">Start with a conversation about your goals, your timeline, and whether our approach is the right fit.</p>
@@ -214,7 +218,7 @@ pages['learn'] = ['Learn', subpage('Investor Education', 'Insights and Resources
 const replayCard = (r) => `<article class="template-panel replay-row"><div><p class="eyebrow">${esc(r.month)}</p><h3>${link(r.title, `/webinars/replay/${r.slug}/`, 'nav-link')}</h3><p>${esc(r.subtitle)}</p>${link('Watch Replay', `/webinars/replay/${r.slug}/`)}</div>${pic(r.flyer, r.title + ' flyer')}</article>`;
 pages['webinars'] = ['Webinars', subpage('Investor Briefings', 'Webinars and Events', 'Watch the Executive Investment Brief on demand, join Stephen’s next live webinar, or browse past recordings.',
   section('Choose a Briefing', grid([
-    panel('On Demand', 'The Executive Investment Brief', 'Reduce concentration risk, prepare for tax exposure, and build passive income through multifamily.', BRIEF, pic(A.briefThumbnail, 'Executive Investment Brief thumbnail')),
+    panel('On Demand', 'The Executive Investment Brief', 'Reduce concentration risk, prepare for tax exposure, and build passive income through multifamily.', BRIEF, (A.briefThumbnail ? img(A.briefThumbnail, 'Executive Investment Brief thumbnail') : videoPh('The Executive Investment Brief', 'Watch on demand'))),
     panel('Live Webinar', live.title, `${live.date} · ${live.time}`, '/webinars/register/', liveCardArt),
     panel('Replay Library', 'Past Recordings', 'Watch past webinars on your own schedule.', '#past-recordings', pic(webinars.replays[0]?.flyer, 'Replay library')),
   ], 'webinar-cards')) +

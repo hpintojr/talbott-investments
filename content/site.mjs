@@ -27,7 +27,7 @@ export const site = {
     heroImage: photo('photo-1545324418-cc1a3fa10c00'),
     helpImage: '/images/talbott-curves-1.webp',
     whyImage: photo('photo-1460317442991-0ec209397118'),
-    closingImage: '/images/talbott-curves-2.webp',
+    closingImage: photo('photo-1494526585095-c41746248156'),
     pageImage: photo('photo-1545324418-cc1a3fa10c00'),
   },
 

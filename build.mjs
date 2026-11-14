@@ -127,7 +127,7 @@ const home = `<main id="main">
   <section class="section split intro" id="about"><div class="intro-copy"><p class="eyebrow">About Talbott Investments</p>
     <p class="lead">Talbott Investments helps busy professionals build passive income through private multifamily real estate, with disciplined underwriting and transparent reporting.</p>
     ${link('Watch the Executive Investment Brief →', BRIEF)}</div>
-    <a class="intro-panel" href="${BRIEF}" style="background:#232e4d;color:#fff;text-decoration:none"><h2>How Real Estate Can Generate Tax Shielded Income</h2>${pic(A.headshotCutout, 'Stephen Predmore headshot')}</a>
+    <a class="intro-panel" href="${BRIEF}"><h2>How Real Estate Can Generate Tax Shielded Income</h2>${pic(A.headshotCutout, 'Stephen Predmore')}</a>
   </section>
   <section class="section teal help-section" id="how-we-help"><span class="section-art"${cover(A.helpImage)} aria-hidden="true"></span>
     <div class="help-heading">${heading('Passive Real Estate Investing, Without the Complexity', 'How We Help')}</div>

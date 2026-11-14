@@ -164,24 +164,26 @@
   position: relative;
   margin-top: 12%;
   aspect-ratio: 1.8;
-  background: #0b352c;
+  background: var(--ink);
   color: #fff;
+  text-decoration: none;
 }
 .intro-panel h2 {
   position: relative;
   z-index: 1;
-  width: 53%;
-  padding: 9% 0 0 8%;
+  width: 40%;
+  margin: 9% 0 0 8%;
   font-size: clamp(1.1rem, 2.35vw, 3rem);
   letter-spacing: -.025em;
   line-height: 1.18;
+  text-wrap: balance;
 }
 .intro-panel img {
   position: absolute;
-  right: 0;
+  right: 2.5%;
   bottom: 0;
-  width: 57%;
-  height: 124%;
+  width: 50%;
+  height: 111%;
   background: transparent;
   object-fit: contain;
   object-position: right bottom;
@@ -204,7 +206,7 @@
 }
 @media (max-width: 560px) {
   .approachable .intro::before { left: 46%; background-size: 11px 100%; }
-  .intro-panel h2 { font-size: clamp(1.05rem, 4.7vw, 1.55rem); }
+  .intro-panel h2 { font-size: clamp(.95rem, 4.7vw, 1.55rem); }
 }
 
 
@@ -1055,7 +1057,6 @@
 
 /* Stephen headshot (transparent cutout) */
 .template-split > img[src*="stephen-predmore"]{aspect-ratio:4/5;max-height:560px;width:100%;object-fit:contain;object-position:center bottom;background:radial-gradient(120% 90% at 50% 20%,#0b4a82 0%,#232e4d 75%);border-radius:6px}
-.intro-panel img[src*="stephen-predmore"]{height:96%;object-position:right bottom}
 
 /* Closing section: lighter, neutral shade so the photo's color shows; darker only behind the text */
 .approachable .closing .section-art::after{background:radial-gradient(ellipse 60% 70% at 50% 50%,rgba(20,26,40,.62) 0%,rgba(20,26,40,.38) 55%,rgba(20,26,40,.18) 100%)}

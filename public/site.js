@@ -1,0 +1,495 @@
+const menu = document.querySelector('.menu');
+if (menu) {
+  const nav = document.querySelector('#site-nav');
+  const setMenu = (open) => menu.setAttribute('aria-expanded', String(open));
+  menu.addEventListener('click', () => setMenu(menu.getAttribute('aria-expanded') === 'false'));
+  nav.addEventListener('click', (event) => {
+    if (event.target.closest('a')) setMenu(false);
+  });
+  document.addEventListener('keydown', (event) => {
+    if (event.key === 'Escape' && menu.getAttribute('aria-expanded') === 'true') {
+      setMenu(false);
+      menu.focus();
+    }
+  });
+}
+
+const reducedMotion = matchMedia('(prefers-reduced-motion: reduce)');
+const clamp = (value) => Math.max(0, Math.min(value, 1));
+const page = document.body;
+const theme = ['approachable', 'bold', 'institutional'].find((name) => page.classList.contains(name));
+
+for (const carousel of document.querySelectorAll('[data-carousel]')) {
+  const rail = carousel.querySelector('.rail');
+  const track = rail.querySelector('.track');
+  const slides = [...track.children];
+  if (slides.length < 2) continue;
+
+  const cloneSlide = (slide) => {
+    const clone = slide.cloneNode(true);
+    clone.inert = true;
+    clone.setAttribute('aria-hidden', 'true');
+    return clone;
+  };
+  track.prepend(cloneSlide(slides.at(-1)));
+  track.append(cloneSlide(slides[0]));
+  carousel.classList.add('is-looping');
+  let index = 1;
+  let animation;
+  let touch;
+  const status = carousel.querySelector('[data-slide-status]');
+  const dots = [...carousel.querySelectorAll('[data-review-index]')];
+  const activeIndex = () => (index - 1 + slides.length) % slides.length;
+  const position = () => 'translateX(-' + index * 100 + '%)';
+
+  const show = () => {
+    index = activeIndex() + 1;
+    track.style.transform = position();
+    slides.forEach((slide, i) => { slide.inert = i !== index - 1; });
+    dots.forEach((dot, i) => {
+      if (i === index - 1) dot.setAttribute('aria-current', 'true');
+      else dot.removeAttribute('aria-current');
+    });
+    status.textContent = (index) + ' of ' + slides.length + ': ' +
+      slides[index - 1].querySelector('h3').textContent;
+  };
+
+  const move = (step) => {
+    if (animation) {
+      animation.cancel();
+      animation = undefined;
+      show();
+    }
+    const from = position();
+    index += step;
+    if (reducedMotion.matches) {
+      show();
+      return;
+    }
+    animation = track.animate([{ transform: from }, { transform: position() }], {
+      duration: theme === 'approachable' ? 550 : 600,
+      easing: theme === 'approachable' ? 'cubic-bezier(0.22, 1, 0.36, 1)' : 'ease',
+      fill: 'forwards',
+    });
+    animation.onfinish = () => {
+      show();
+      animation.cancel();
+      animation = undefined;
+    };
+  };
+
+  for (const control of carousel.querySelectorAll('[data-shift]')) {
+    control.addEventListener('click', () => move(Number(control.dataset.shift)));
+  }
+  rail.addEventListener('keydown', (event) => {
+    if (!['ArrowLeft', 'ArrowRight'].includes(event.key)) return;
+    event.preventDefault();
+    move(event.key === 'ArrowRight' ? 1 : -1);
+  });
+  rail.addEventListener('touchstart', ({ changedTouches: [point] }) => {
+    touch = point;
+  }, { passive: true });
+  rail.addEventListener('touchend', ({ changedTouches: [point] }) => {
+    if (!touch) return;
+    const dx = point.clientX - touch.clientX;
+    const dy = point.clientY - touch.clientY;
+    touch = undefined;
+    if (Math.abs(dx) > 35 && Math.abs(dx) > Math.abs(dy)) move(dx < 0 ? 1 : -1);
+  }, { passive: true });
+  rail.addEventListener('touchcancel', () => { touch = undefined; });
+  show();
+
+  const dialog = carousel.querySelector('.review-dialog');
+  if (!dialog) continue;
+  const pause = carousel.querySelector('[data-review-pause]');
+  let paused = false;
+  let timer;
+  const updatePause = (value) => {
+    paused = value;
+    pause.setAttribute('aria-label', paused ? 'Play testimonials' : 'Pause testimonials');
+    pause.textContent = paused ? '▶' : 'Ⅱ';
+  };
+  pause.addEventListener('click', () => updatePause(!paused));
+  for (const [i, dot] of dots.entries()) {
+    dot.addEventListener('click', () => {
+      updatePause(true);
+      status.setAttribute('aria-live', 'polite');
+      const step = i - activeIndex();
+      if (step) move(step);
+    });
+  }
+  for (const slide of slides) {
+    slide.querySelector('[data-review-more]').addEventListener('click', () => {
+      dialog.querySelector('h3').textContent = slide.querySelector('h3').textContent;
+      dialog.querySelector('[data-review-quote]').textContent = slide.querySelector('blockquote').textContent;
+      dialog.querySelector('[data-review-author]').textContent = slide.querySelector('.review-byline strong').textContent + ' · Illustrative demo review';
+      dialog.showModal();
+    });
+  }
+  new IntersectionObserver(([entry]) => {
+    clearInterval(timer);
+    if (!entry.isIntersecting) return;
+    timer = setInterval(() => {
+      if (paused || reducedMotion.matches || document.hidden || dialog.open ||
+          carousel.matches(':hover, :focus-within')) return;
+      status.setAttribute('aria-live', 'off');
+      move(1);
+    }, 6500);
+  }, { threshold: .15 }).observe(carousel);
+}
+
+const hero = document.querySelector('.hero');
+if (theme && hero) {
+  const video = hero.querySelector('[data-video]');
+  const dots = [...document.querySelectorAll('.dots a')].map((link) => ({
+    link, section: document.querySelector(link.hash),
+  }));
+  const backToTop = document.querySelector('.back-to-top');
+  const parallax = [...document.querySelectorAll('.institutional .market img')];
+  const scrollCopy = document.querySelector('.institutional .scroll-copy');
+  const scrollFrame = () => {
+    const heroEnd = hero.getBoundingClientRect().bottom;
+    page.classList.toggle('has-scrolled', scrollY > 24);
+    page.classList.toggle('past-hero', heroEnd < 80);
+    if (backToTop) backToTop.classList.toggle('is-visible', scrollY > innerHeight * 1.6);
+
+    const active = dots.findLast(({ section }) => section.getBoundingClientRect().top <= innerHeight * .42);
+    for (const dot of dots) {
+      if (dot === active) dot.link.setAttribute('aria-current', 'location');
+      else dot.link.removeAttribute('aria-current');
+    }
+
+    if (theme !== 'institutional') return;
+    const heroProgress = reducedMotion.matches ? 0 : clamp(scrollY / hero.offsetHeight);
+    hero.style.setProperty('--hero-progress', heroProgress);
+    if (scrollCopy) {
+      const top = scrollCopy.parentElement.getBoundingClientRect().top + scrollCopy.offsetTop;
+      const progress = reducedMotion.matches ? 1 : clamp((innerHeight * .91 - top) / (innerHeight * .43));
+      scrollCopy.style.setProperty('--copy-progress', progress);
+    }
+    for (const image of parallax) {
+      const bounds = image.parentElement.getBoundingClientRect();
+      const progress = reducedMotion.matches ? .5 : clamp((innerHeight - bounds.top) / (innerHeight + bounds.height));
+      image.style.setProperty('--image-offset', (progress - .5) * 68 + 'px');
+    }
+  };
+
+  let frame;
+  const queueScroll = () => {
+    if (frame) return;
+    frame = requestAnimationFrame(() => {
+      frame = undefined;
+      scrollFrame();
+    });
+  };
+  addEventListener('scroll', queueScroll, { passive: true });
+  addEventListener('resize', queueScroll);
+  scrollFrame();
+
+  const updateVideo = () => {
+    if (!video) return;
+    if (reducedMotion.matches) {
+      video.pause();
+      video.classList.remove('is-playing');
+    } else if (!video.src) {
+      video.src = video.dataset.video;
+      video.play().catch(() => {});
+    } else {
+      video.play().catch(() => {});
+    }
+  };
+  if (video) {
+    video.addEventListener('playing', () => video.classList.add('is-playing'));
+    const videoVisibility = new IntersectionObserver(([entry]) => {
+      if (entry.isIntersecting) updateVideo();
+      else video.pause();
+    });
+    videoVisibility.observe(hero);
+  }
+
+  const selectors = {
+    approachable: '.hero-copy > *, .section-art, .intro-copy > *, .intro-panel, .teal .rows article, .portfolio-layout .carousel, .stats > div, .reason, .why-intro, #learn > :not(.section-art), .testimonials .carousel, .closing .actions > *',
+    bold: '.hero-layout > div, .axis-fact-grid > div, .axis-showcase-copy, .axis-metric-grid > div, .axis-section-head, .axis-testimonial figure, .tiles > article, .closing .actions',
+    institutional: '.accordion, .market-map > div, .fund article, .metric-band .stats, #faq .rows > article, .institutional-about > div, #portfolio h2, .insights-feed > article',
+  };
+  const items = [...document.querySelectorAll(selectors[theme])];
+  const stagger = new Map();
+  const countObserver = new IntersectionObserver((entries) => {
+    for (const { target, isIntersecting } of entries) {
+      if (!isIntersecting) continue;
+      countObserver.unobserve(target);
+      if (reducedMotion.matches) continue;
+      const final = target.textContent;
+      const parts = final.match(/^([^0-9]*)([0-9][0-9,]*(?:\.[0-9]+)?)(.*)$/);
+      if (!parts) continue;
+      const [, prefix, digits, suffix] = parts;
+      const value = Number(digits.replaceAll(',', ''));
+      const formatter = new Intl.NumberFormat('en-US', {
+        minimumFractionDigits: digits.split('.')[1]?.length || 0,
+        maximumFractionDigits: digits.split('.')[1]?.length || 0,
+      });
+      const duration = theme === 'approachable' ? 1400 : 1100;
+      const start = performance.now();
+      const draw = (now) => {
+        const progress = clamp((now - start) / duration);
+        if (progress === 1 || reducedMotion.matches) {
+          target.textContent = final;
+          return;
+        }
+        const eased = 1 - (1 - progress) ** 3;
+        target.textContent = prefix + formatter.format(value * eased) + suffix;
+        requestAnimationFrame(draw);
+      };
+      requestAnimationFrame(draw);
+    }
+  }, { threshold: .4 });
+  for (const number of document.querySelectorAll('[data-count]')) countObserver.observe(number);
+  const observer = new IntersectionObserver((entries) => {
+    for (const { target, isIntersecting } of entries) {
+      if (!isIntersecting) continue;
+      observer.unobserve(target);
+      target.classList.add('is-revealed');
+    }
+  }, { threshold: theme === 'bold' ? .15 : .12 });
+
+  for (const item of items) {
+    const sibling = stagger.get(item.parentElement) || 0;
+    stagger.set(item.parentElement, sibling + 1);
+    item.classList.add('motion-item');
+    item.style.setProperty('--reveal-delay', Math.min(sibling, 4) * (theme === 'approachable' ? 200 : 100) + 'ms');
+    const bounds = item.getBoundingClientRect();
+    if (bounds.bottom < 0) item.classList.add('is-revealed');
+    else observer.observe(item);
+  }
+
+  for (const accordion of document.querySelectorAll('details.accordion')) {
+    accordion.addEventListener('toggle', () => {
+      if (!accordion.open) return;
+      for (const sibling of accordion.parentElement.querySelectorAll('details[open]')) {
+        if (sibling !== accordion) sibling.open = false;
+      }
+    });
+  }
+  reducedMotion.addEventListener('change', () => {
+    updateVideo();
+    queueScroll();
+  });
+}
+
+
+
+
+const depthPointer = matchMedia('(hover: hover) and (pointer: fine)');
+for (const surface of document.querySelectorAll('.property, .process-card, .bold #services article, .institutional #learn article')) {
+  surface.classList.add('depth-surface');
+  surface.addEventListener('pointermove', (event) => {
+    if (!depthPointer.matches || reducedMotion.matches || event.pointerType === 'touch') return;
+    const bounds = surface.getBoundingClientRect();
+    const horizontal = clamp((event.clientX - bounds.left) / bounds.width) - .5;
+    const vertical = clamp((event.clientY - bounds.top) / bounds.height) - .5;
+    surface.style.setProperty('--tilt-x', -vertical * 7 + 'deg');
+    surface.style.setProperty('--tilt-y', horizontal * 8 + 'deg');
+  }, { passive: true });
+  surface.addEventListener('pointerleave', () => {
+    surface.style.removeProperty('--tilt-x');
+    surface.style.removeProperty('--tilt-y');
+  });
+}
+
+
+const cookiePanel = document.querySelector('[data-cookie-panel]');
+if (cookiePanel) {
+  const key = 'cookie-preferences-v1:' + theme;
+  const settingsButton = document.querySelector('[data-cookie-open]');
+  const detailsButton = cookiePanel.querySelector('[data-cookie-details]');
+  const form = cookiePanel.querySelector('[data-cookie-form]');
+  const optional = [...form.querySelectorAll('input:not(:disabled)')];
+  let preferences;
+  let returnFocus = false;
+  try {
+    const stored = JSON.parse(localStorage.getItem(key));
+    if (stored && optional.every(({ name }) => typeof stored[name] === 'boolean')) {
+      preferences = stored;
+    }
+  } catch {
+    // The panel still works when browser storage is unavailable.
+  }
+
+  const show = () => {
+    for (const input of optional) input.checked = preferences?.[input.name] === true;
+    cookiePanel.hidden = false;
+    settingsButton.setAttribute('aria-expanded', 'true');
+  };
+  const save = (choice) => {
+    preferences = Object.fromEntries(optional.map(({ name, checked }) =>
+      [name, choice === 'accept' || (choice === 'selected' && checked)]));
+    try {
+      localStorage.setItem(key, JSON.stringify(preferences));
+    } catch {
+      // Keep the choice for this page when storage is unavailable.
+    }
+    const focusInPanel = cookiePanel.contains(document.activeElement);
+    cookiePanel.hidden = true;
+    settingsButton.setAttribute('aria-expanded', 'false');
+    if (returnFocus) settingsButton.focus();
+    else if (focusInPanel) {
+      const main = document.querySelector('#main');
+      main.setAttribute('tabindex', '-1');
+      main.focus({ preventScroll: true });
+    }
+    returnFocus = false;
+  };
+
+  settingsButton.hidden = false;
+  settingsButton.addEventListener('click', () => {
+    returnFocus = true;
+    show();
+    cookiePanel.querySelector('h2').focus({ preventScroll: true });
+  });
+  detailsButton.addEventListener('click', () => {
+    const expanded = cookiePanel.classList.toggle('show-details');
+    detailsButton.setAttribute('aria-expanded', String(expanded));
+    detailsButton.textContent = expanded ? 'Hide preferences' : 'Customize';
+  });
+  for (const button of cookiePanel.querySelectorAll('[data-cookie-choice]')) {
+    button.addEventListener('click', () => save(button.dataset.cookieChoice));
+  }
+  form.addEventListener('submit', (event) => {
+    event.preventDefault();
+    save('selected');
+  });
+  cookiePanel.addEventListener('keydown', (event) => {
+    if (event.key === 'Escape') {
+      event.stopPropagation();
+      save('decline');
+    }
+  });
+  if (!preferences) show();
+}
+
+
+
+const holdings = document.querySelector('[data-holdings]');
+if (holdings) {
+  const rail = holdings.querySelector('.holdings-rail');
+  for (const button of holdings.querySelectorAll('[data-holding-step]')) {
+    button.addEventListener('click', () => {
+      const step = Number(button.dataset.holdingStep);
+      const distance = rail.firstElementChild.getBoundingClientRect().width + parseFloat(getComputedStyle(rail).columnGap);
+      const max = rail.scrollWidth - rail.clientWidth;
+      let left = rail.scrollLeft + step * distance;
+      if (step > 0 && rail.scrollLeft >= max - 2) left = 0;
+      if (step < 0 && rail.scrollLeft <= 2) left = max;
+      rail.scrollTo({ left, behavior: reducedMotion.matches ? 'instant' : 'smooth' });
+    });
+  }
+}
+
+const booking = document.querySelector('[data-booking]');
+if (booking) {
+  const pacific = new Intl.DateTimeFormat('en-US', {
+    timeZone: 'America/Los_Angeles', year: 'numeric', month: 'numeric', day: 'numeric',
+  }).formatToParts(new Date());
+  const part = (name) => Number(pacific.find(({ type }) => type === name).value);
+  const today = new Date(Date.UTC(part('year'), part('month') - 1, part('day')));
+  const weekday = (date) => date.getUTCDay() > 0 && date.getUTCDay() < 6;
+  const nextWeekday = (date) => {
+    while (!weekday(date)) date.setUTCDate(date.getUTCDate() + 1);
+    return date;
+  };
+  let selected = nextWeekday(new Date(today));
+  let month = new Date(Date.UTC(selected.getUTCFullYear(), selected.getUTCMonth(), 1));
+  const monthLabel = booking.querySelector('[data-booking-month]');
+  const days = booking.querySelector('[data-booking-days]');
+  const dateLabel = booking.querySelector('[data-booking-date]');
+  const slots = booking.querySelector('[data-booking-slots]');
+  const result = booking.querySelector('[data-booking-result]');
+  const previous = booking.querySelector('[data-month-step="-1"]');
+  const dateFormat = new Intl.DateTimeFormat('en-US', { dateStyle: 'long', timeZone: 'UTC' });
+  const monthFormat = new Intl.DateTimeFormat('en-US', { month: 'long', year: 'numeric', timeZone: 'UTC' });
+  const timeFormat = new Intl.DateTimeFormat('en-US', { hour: 'numeric', minute: '2-digit', timeZone: 'UTC' });
+  const buttonFor = (label) => {
+    const button = document.createElement('button');
+    button.type = 'button';
+    button.textContent = label;
+    return button;
+  };
+
+  function render() {
+    monthLabel.textContent = monthFormat.format(month);
+    previous.disabled = month <= new Date(Date.UTC(today.getUTCFullYear(), today.getUTCMonth(), 1));
+    const year = month.getUTCFullYear();
+    const monthIndex = month.getUTCMonth();
+    const length = new Date(Date.UTC(year, monthIndex + 1, 0)).getUTCDate();
+    days.replaceChildren();
+    for (let i = 0; i < month.getUTCDay(); i++) days.append(document.createElement('span'));
+    for (let i = 1; i <= length; i++) {
+      const date = new Date(Date.UTC(year, monthIndex, i));
+      const button = buttonFor(i);
+      button.disabled = date < today || !weekday(date);
+      button.setAttribute('aria-label', dateFormat.format(date));
+      button.setAttribute('aria-pressed', String(+date === +selected));
+      button.addEventListener('click', () => {
+        selected = date;
+        render();
+        days.querySelector('[aria-pressed="true"]').focus({ preventScroll: true });
+      });
+      days.append(button);
+    }
+    const dateText = dateFormat.format(selected);
+    dateLabel.textContent = 'Showing times for ' + dateText;
+    slots.replaceChildren();
+    result.textContent = 'Demo only. Selecting a time does not book a meeting.';
+    for (let i = 0; i < 10; i++) {
+      const time = timeFormat.format(new Date(Date.UTC(2000, 0, 1, 9, i * 30)));
+      const button = buttonFor(time);
+      button.setAttribute('aria-pressed', 'false');
+      button.addEventListener('click', () => {
+        slots.querySelector('[aria-pressed="true"]')?.setAttribute('aria-pressed', 'false');
+        button.setAttribute('aria-pressed', 'true');
+        result.textContent = dateText + ' at ' + time + ' Pacific Time selected for preview. No meeting booked.';
+      });
+      slots.append(button);
+    }
+  }
+  for (const button of booking.querySelectorAll('[data-month-step]')) {
+    button.addEventListener('click', () => {
+      month = new Date(Date.UTC(month.getUTCFullYear(), month.getUTCMonth() + Number(button.dataset.monthStep), 1));
+      selected = nextWeekday(new Date(Math.max(+month, +today)));
+      render();
+    });
+  }
+  render();
+}
+
+
+const fundProgress = document.querySelector('.fund-progress');
+if (fundProgress && !reducedMotion.matches && 'IntersectionObserver' in window) {
+  fundProgress.classList.add('is-awaiting-reveal');
+  const observer = new IntersectionObserver(([entry]) => {
+    if (!entry.isIntersecting) return;
+    observer.disconnect();
+    fundProgress.classList.remove('is-awaiting-reveal');
+  }, { rootMargin: '0px 0px -6% 0px' });
+  observer.observe(fundProgress);
+}
+
+
+for (const filter of document.querySelectorAll('[data-filter]')) {
+  const category = filter.querySelector('[data-category]');
+  const query = filter.querySelector('[data-query]');
+  const empty = filter.querySelector('[data-filter-empty]');
+  const items = [...filter.querySelectorAll('[data-filter-item]')];
+  const update = () => {
+    const term = query?.value.trim().toLowerCase() || '';
+    for (const item of items) {
+      item.hidden = (category.value !== '' && item.dataset.group !== category.value) ||
+        !item.textContent.toLowerCase().includes(term);
+    }
+    empty.hidden = items.some((item) => !item.hidden);
+  };
+  category.addEventListener('change', update);
+  query?.addEventListener('input', update);
+  update();
+}
+

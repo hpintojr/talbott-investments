@@ -25,7 +25,7 @@ export const site = {
     briefThumbnail: '',
     // Stock placeholders until Talbott property photos arrive
     heroImage: photo('photo-1545324418-cc1a3fa10c00'),
-    helpImage: '/images/talbott-curves-1.webp',
+    helpImage: '/images/talbott-waves.webp',
     whyImage: photo('photo-1460317442991-0ec209397118'),
     closingImage: photo('photo-1494526585095-c41746248156'),
     pageImage: photo('photo-1545324418-cc1a3fa10c00'),

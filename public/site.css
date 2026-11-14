@@ -1052,3 +1052,11 @@
 @media(max-width:1100px){.why-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
 @media(max-width:700px){.why-top{grid-template-columns:1fr;align-items:start}.why-grid{grid-template-columns:1fr}.why-card{min-height:0}}
 @media(prefers-reduced-motion:reduce){.why-card{transition:none}.why-card:hover{transform:none}}
+
+/* Stephen headshot (transparent cutout) */
+.template-split > img[src*="stephen-predmore"]{aspect-ratio:4/5;max-height:560px;width:100%;object-fit:contain;object-position:center bottom;background:radial-gradient(120% 90% at 50% 20%,#0b4a82 0%,#232e4d 75%);border-radius:6px}
+.intro-panel img[src*="stephen-predmore"]{height:96%;object-position:right bottom}
+
+/* Closing section: lighter, neutral shade so the photo's color shows; darker only behind the text */
+.approachable .closing .section-art::after{background:radial-gradient(ellipse 60% 70% at 50% 50%,rgba(20,26,40,.62) 0%,rgba(20,26,40,.38) 55%,rgba(20,26,40,.18) 100%)}
+.approachable .closing :is(h2,p,.eyebrow){text-shadow:0 2px 14px rgba(0,0,0,.45)}

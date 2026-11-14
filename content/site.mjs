@@ -18,8 +18,8 @@ export const site = {
   assets: {
     logo: '',
     logoWhite: '',
-    headshot: '',
-    headshotCutout: '',
+    headshot: '/images/stephen-predmore.webp',
+    headshotCutout: '/images/stephen-predmore.webp',
     aboutUsVideo: '',
     aboutMeVideo: '',
     briefThumbnail: '',

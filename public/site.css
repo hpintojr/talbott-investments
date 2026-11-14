@@ -1090,3 +1090,4 @@
 
 /* Branded curve texture (How We Help, Ready to Explore): texture is already brand blue, so keep the shade light */
 .approachable .help-section .section-art::after{background:linear-gradient(100deg,#1c264266 0%,#1c264233 50%,transparent 100%)}
+.approachable .help-section .section-art{--reveal-scale:1;background-position:right top}

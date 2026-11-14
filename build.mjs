@@ -125,11 +125,11 @@ const home = `<main id="main">
     <div class="portfolio-layout" id="recent-deals">${carousel(site.properties.map(propertyCard).join(''))}${stats(site.stats, true)}</div>
     ${link('See Our Portfolio →', '/portfolio/')}
   </section>
-  <section class="section teal differentiators" id="why"><span class="section-art"${cover(A.whyImage)} aria-hidden="true"></span>
-    <div class="why-heading">${heading('What Makes Our Approach Different', 'Why Talbott Investments')}</div>
-    <p class="why-intro">Evaluating a private investment takes time and the right information. We make the process clear from the first conversation.</p>
-    <div class="tiles">${reasons.map(([t, d], i) => `<details class="reason"><summary><span class="index">0${i + 1}.</span><h3>${esc(t)}</h3></summary><div class="reason-body"><p>${esc(d)}</p></div></details>`).join('')}</div>
-    ${link('Schedule a Call →', SCHEDULE)}
+  <section class="section why-section" id="why">
+    <div class="why-top"><div>${heading('What Makes Our Approach Different', 'Why Talbott Investments')}</div>
+      <p class="why-lede">Evaluating a private investment takes time and the right information. We make the process clear from the first conversation.</p></div>
+    <div class="why-grid">${reasons.map(([t, d], i) => `<article class="why-card"><span class="why-num">0${i + 1}</span><h3>${esc(t)}</h3><p>${esc(d)}</p></article>`).join('')}</div>
+    <div class="why-cta">${link('Schedule a Call →', SCHEDULE)}</div>
   </section>
   <section class="section teal education-section" id="learn">
     <div class="education-copy">${heading('Is Too Much of Your Wealth Tied to One Company?', 'Start Here')}

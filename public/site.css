@@ -1030,3 +1030,25 @@
 .callout-bar{background:#232e4d;color:#fff;padding:14px 20px;font-weight:500}
 .site-credit{font-size:.75rem;color:#98a2b3}.site-credit a{color:inherit}
 .office-block address{font-style:normal;line-height:1.7}
+
+/* Section photos: always sit under a brand overlay so white text stays readable */
+.approachable .section-art::after{content:'';position:absolute;inset:0;background:linear-gradient(100deg,#232e4df2 0%,#232e4dd9 45%,#083965c4 100%)}
+/* Why Talbott: clean pillar cards */
+.why-section{background:radial-gradient(ellipse at 100% 0,#0b4a82 0%,#232e4d 62%);color:#fff;padding-block:clamp(72px,9vw,128px)}
+.why-section .eyebrow{color:#9fbde0}
+.why-section h2{color:#fff;font-size:clamp(2rem,3.6vw,3.4rem);line-height:1.12;margin:0;max-width:16ch}
+.why-top{display:grid;grid-template-columns:1.1fr 1fr;gap:clamp(24px,5vw,80px);align-items:end}
+.why-lede{margin:0;font-size:clamp(1.05rem,1.35vw,1.3rem);line-height:1.6;color:#d6e2f1;max-width:46ch}
+.why-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:clamp(14px,1.6vw,24px);margin-top:clamp(40px,5vw,72px)}
+.why-card{position:relative;display:flex;flex-direction:column;gap:14px;padding:clamp(24px,2.4vw,36px);background:#ffffff0d;border:1px solid #ffffff1f;border-radius:6px;min-height:260px;transition:background .25s,border-color .25s,transform .25s}
+.why-card::before{content:'';position:absolute;left:0;top:0;height:3px;width:56px;background:#6a95c3;border-radius:6px 0 0 0}
+.why-card:hover{background:#ffffff17;border-color:#6a95c380;transform:translateY(-3px)}
+.why-num{font-size:.85rem;letter-spacing:.18em;color:#6a95c3;font-weight:600}
+.why-card h3{margin:0;color:#fff;font-size:clamp(1.2rem,1.5vw,1.45rem);line-height:1.25}
+.why-card p{margin:0;color:#c9d6e6;line-height:1.6;font-size:1rem}
+.why-cta{margin-top:clamp(36px,4vw,56px)}
+.why-cta .button{background:#fff;color:#083965;min-height:48px;padding-inline:28px}
+.why-cta .button:hover{background:#eef3f9}
+@media(max-width:1100px){.why-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:700px){.why-top{grid-template-columns:1fr;align-items:start}.why-grid{grid-template-columns:1fr}.why-card{min-height:0}}
+@media(prefers-reduced-motion:reduce){.why-card{transition:none}.why-card:hover{transform:none}}

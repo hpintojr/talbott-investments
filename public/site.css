@@ -1091,3 +1091,5 @@
 /* Branded curve texture (How We Help, Ready to Explore): texture is already brand blue, so keep the shade light */
 .approachable .help-section .section-art::after{background:linear-gradient(100deg,#1c264266 0%,#1c264233 50%,transparent 100%)}
 .approachable .help-section .section-art{--reveal-scale:1;background-position:center}
+.why-section{background:linear-gradient(100deg,#1c2642b3 0%,#1c264280 50%,#1c264240 100%),url('/images/talbott-waves.webp') center/cover no-repeat,#232e4d}
+.why-card{background:#1b25418c;backdrop-filter:blur(2px)}.why-card:hover{background:#1b2541b3}

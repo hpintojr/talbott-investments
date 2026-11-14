@@ -1081,3 +1081,9 @@
 /* video placeholder: keep cutout transparent, avoid overlap on small screens */
 .video-ph img{background:transparent!important}
 @media (max-width:560px){.video-ph-copy span{display:none}.video-ph-copy{max-width:45%;bottom:7%}.video-ph-play{left:38%}}
+
+/* Home brief panel: Stephen breaks out above the box like the template sample */
+.intro-panel{overflow:visible}
+.intro-panel img{right:3%;width:auto;height:126%;max-width:60%;object-position:center bottom}
+.intro-panel h2{width:34%}
+@media (max-width:560px){.intro-panel h2{width:40%;margin-left:6%}.intro-panel img{right:0;height:122%}}

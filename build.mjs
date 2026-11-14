@@ -27,6 +27,19 @@ const media = (url, label, poster = '') => url
   : `<div class="template-media"><span aria-hidden="true">▶</span><strong>${esc(label)}</strong><small>Video from the 23. Website folder goes here</small></div>`;
 
 // GHL form / calendar embed. Renders a labeled slot until the embed ID is pasted into content/site.mjs.
+function heroLinework() {
+  const paths = Array.from({ length: 26 }, (_, index) => {
+    const x = 1 + index * 18.7;
+    const step = index - 14;
+    const delay = `style="--line-delay:${(index * .04).toFixed(2)}s"`;
+    if (step < 0) return `<path pathLength="1" d="M${x} 0V653" ${delay}/>`;
+    const inset = 18.7 * step;
+    return `<path pathLength="1" d="M${x} 0V${294 - inset}H487" ${delay}/>
+            <path pathLength="1" d="M${x} 653V${350 + inset}H487" ${delay}/>`;
+  }).join('');
+  return `<svg class="linework" viewBox="0 0 472 653" preserveAspectRatio="none" aria-hidden="true" focusable="false">${paths}</svg>`;
+}
+
 function ghl(key) {
   const { id, where } = site.ghl[key];
   if (!id) return `<div class="ghl-slot" data-ghl="${key}"><strong>GHL ${key === 'calendar' ? 'calendar' : 'form'} embed</strong><br>${esc(where)}</div>`;
@@ -108,7 +121,7 @@ const liveCardArt = live.flyer ? img(live.flyer, live.title + ' flyer') : ph('Li
 
 const home = `<main id="main">
   <section class="hero cover" style="--overlay:#232e4d99;--cover:url('${esc(A.heroImage)}')">
-    <div class="hero-copy"><h1>Invest With Confidence.</h1>
+    ${heroLinework()}<div class="hero-copy"><h1>Invest With Confidence.</h1>
     <p>Passive multifamily investments built on disciplined underwriting, transparent reporting, and consistent distributions.</p>${link('Schedule a Call →', SCHEDULE)}</div>
   </section>
   <section class="section split intro" id="about"><div class="intro-copy"><p class="eyebrow">About Talbott Investments</p>

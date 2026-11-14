@@ -129,9 +129,9 @@
   height: calc(100% - 67px);
   pointer-events: none;
   fill: none;
-  stroke: #b1f5c4;
+  stroke: #ffffff;
   stroke-width: .65px;
-  stroke-opacity: .48;
+  stroke-opacity: .55;
 }
 .linework path { vector-effect: non-scaling-stroke; }
 @media (prefers-reduced-motion: no-preference) {
@@ -1032,7 +1032,7 @@
 .office-block address{font-style:normal;line-height:1.7}
 
 /* Section photos: always sit under a brand overlay so white text stays readable */
-.approachable .closing .section-art::after{content:'';position:absolute;inset:0;background:linear-gradient(100deg,#232e4df2 0%,#232e4dd9 45%,#083965c4 100%)}
+.approachable .section-art::after{content:'';position:absolute;inset:0;background:linear-gradient(100deg,#232e4df2 0%,#232e4dd9 45%,#083965c4 100%)}
 /* Why Talbott: clean pillar cards */
 .why-section{background:radial-gradient(ellipse at 100% 0,#0b4a82 0%,#232e4d 62%);color:#fff;padding-block:clamp(72px,9vw,128px)}
 .why-section .eyebrow{color:#9fbde0}

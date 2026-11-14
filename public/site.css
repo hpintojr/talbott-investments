@@ -1087,3 +1087,7 @@
 .intro-panel img{right:3%;width:auto;height:126%;max-width:60%;object-position:center bottom}
 .intro-panel h2{width:34%}
 @media (max-width:560px){.intro-panel h2{width:40%;margin-left:6%}.intro-panel img{right:0;height:122%}}
+
+/* Branded curve texture (How We Help, Ready to Explore): texture is already brand blue, so keep the shade light */
+.approachable .help-section .section-art::after{background:linear-gradient(100deg,#1c264266 0%,#1c264233 50%,transparent 100%)}
+.approachable .closing .section-art::after{background:radial-gradient(ellipse 60% 70% at 50% 50%,rgba(20,26,40,.35) 0%,rgba(20,26,40,.12) 70%,transparent 100%)}

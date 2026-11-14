@@ -1,0 +1,58 @@
+{
+  "_readme": "VA EDIT FILE. Change text here only; never touch layout code. 'live' mirrors the GHL Webinar Builder custom values and is overwritten by scripts/sync-ghl.mjs when GHL API access is configured. Add a new replay by copying one block in 'replays' (newest first).",
+  "live": {
+    "title": "[Live webinar title - from GHL custom value: Webinar Name (Header)]",
+    "subtitle": "[Webinar sub-header - from GHL custom value: Webinar Name (Sub-Header)]",
+    "date": "[THURSDAY DECEMBER 10TH, 2026]",
+    "time": "[5PM-6PM PST]",
+    "host": "Stephen Predmore",
+    "flyer": "",
+    "whatYouWillLearn": [
+      "[Bullet 1 - from GHL custom value: What You Will Learn]",
+      "[Bullet 2]",
+      "[Bullet 3]",
+      "[Bullet 4]"
+    ],
+    "about": "[Short About This Webinar paragraph - from GHL custom value]",
+    "addToCalendarUrl": "",
+    "thankYouVideo": ""
+  },
+  "evergreen": {
+    "watchVideo": "",
+    "thumbnail": ""
+  },
+  "replays": [
+    {
+      "slug": "from-rsus-to-real-assets",
+      "label": "Replay · October 22, 2026",
+      "month": "October 2026",
+      "title": "From RSUs to Real Assets",
+      "subtitle": "How One Investor Turned $200,000 into $600 a Month in Distributions",
+      "callout": "",
+      "flyer": "",
+      "video": "",
+      "takeaways": [
+        "Projected returns are only as credible as the assumptions behind them.",
+        "One investor used this same evaluation process to convert vested RSUs into tax sheltered monthly cash flow.",
+        "A strong review process should make risks, assumptions, accountability, and execution more visible.",
+        "Moving wealth out of employer stock still requires a clear allocation and diligence process."
+      ]
+    },
+    {
+      "slug": "1031-exchanges",
+      "label": "Replay · September 2026",
+      "month": "September 2026",
+      "title": "1031 Exchanges",
+      "subtitle": "How Real Estate Investors Defer Taxes and Reposition Capital",
+      "callout": "A Framework for Keeping More of Your Capital Working",
+      "flyer": "",
+      "video": "",
+      "takeaways": [
+        "A 1031 exchange can help investors defer taxes, but planning must begin before the sale closes.",
+        "The exchange process is deadline driven and requires coordination with a qualified intermediary, CPA, attorney, and investment team.",
+        "A 1031 exchange can be used to reposition capital from management heavy properties into more passive real estate options.",
+        "Not every syndication can accept 1031 exchange funds, so investors need to understand the structure before assuming it qualifies."
+      ]
+    }
+  ]
+}

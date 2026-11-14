@@ -1,1 +1,1 @@
-{"name":"investor-website-templates","private":true,"type":"module","scripts":{"build":"node build.mjs"}}
+{"name":"talbott-investments","private":true,"type":"module","scripts":{"build":"node scripts/sync-ghl.mjs && node build.mjs"}}

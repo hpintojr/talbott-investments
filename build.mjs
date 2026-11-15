@@ -120,9 +120,13 @@ function footer() {
     <p class="site-credit">Website by <a href="https://goraise.ai">GoRaise.ai</a></p></footer>`;
 }
 
+const OG_IMAGE = 'https://talbott-investments.vercel.app/images/og-talbott.jpg';
 function shell(title, body, { withNewsletter = true, description = '' } = {}) {
   return `<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
   <meta name="robots" content="noindex"><title>${esc(title)}</title>${description ? `<meta name="description" content="${esc(description)}">` : ''}
+  <meta property="og:type" content="website"><meta property="og:site_name" content="Talbott Investments"><meta property="og:title" content="${esc(title)}">${description ? `<meta property="og:description" content="${esc(description)}">` : ''}
+  <meta property="og:image" content="${OG_IMAGE}"><meta property="og:image:width" content="1200"><meta property="og:image:height" content="630"><meta property="og:image:alt" content="Talbott Investments: Invest With Confidence">
+  <meta name="twitter:card" content="summary_large_image"><meta name="twitter:title" content="${esc(title)}">${description ? `<meta name="twitter:description" content="${esc(description)}">` : ''}<meta name="twitter:image" content="${OG_IMAGE}">
   ${A.favicon ? `<link rel="icon" href="${esc(A.favicon)}">` : ''}<link rel="stylesheet" href="/site.css"><script src="/site.js" defer></script></head>
   <body class="approachable"><a class="skip" href="#main">Skip to content</a>${header()}${body}${withNewsletter ? newsletter : ''}${footer()}</body></html>`;
 }

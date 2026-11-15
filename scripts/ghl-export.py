@@ -30,7 +30,7 @@ for p in pages:
     name='home' if rel=='.' else rel.replace('/','-')
     open(f'{O}/{name}.html','w').write(frag)
     manifest.append({'name':name,'path':ghlpath(rel),'title':html.unescape(title),'description':desc,'bytes':len(frag)})
-css=scope_css(fix(open(f'{D}/site.css').read()),'.ghl-site')+'.ghl-site{display:block;width:100%;text-align:left;margin:0;padding:0;--bg:#fff;--ink:#232e4d;background:#fff}'; js=open(f'{D}/site.js').read().replace("const page = document.body;","const page = document.querySelector('.ghl-site > div') || document.body;")
+css=scope_css(fix(open(f'{D}/site.css').read()),'.ghl-site')+'.ghl-site{display:block;width:100%;text-align:left;margin:0;padding:0;--bg:#fff;--ink:#232e4d;background:#fff}'+'.c-section:has(.ghl-site),.c-row:has(.ghl-site),.c-column:has(.ghl-site){padding:0!important;margin:0!important;max-width:none!important}.c-row:has(.ghl-site)>.inner,.c-section:has(.ghl-site)>.inner{max-width:none!important;width:100%!important}'; js=open(f'{D}/site.js').read().replace("const page = document.body;","const page = document.querySelector('.ghl-site > div') || document.body;")
 open(f'{O}/_head.html','w').write(f'<style>{css}</style>')
 open(f'{O}/_footer.html','w').write(f'<script>{fix(js)}</script>')
 json.dump(manifest,open(f'{O}/manifest.json','w'),indent=1)

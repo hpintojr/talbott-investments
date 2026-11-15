@@ -11,7 +11,7 @@ export const site = {
   phone: '(443) 806 9386',
   email: 'stephen@TalbottInvestments.com',
   // Nav and footer LinkedIn icon = Talbott company page. Icon stays hidden until this is set.
-  companyLinkedinUrl: '',
+  companyLinkedinUrl: 'https://www.linkedin.com/company/talbott-investments/',
   // Stephen's personal profile (About page, next to his bio)
   linkedinUrl: 'https://www.linkedin.com/in/stephen-predmore/',
   portalUrl: 'https://talbottinvestments.fundamentalportal.com/',
@@ -56,9 +56,12 @@ export const site = {
 
   // About page. Fill name, role, bio, photo, LinkedIn as they arrive.
   advisors: [
-    { name: 'Yohannes Cramlet', role: 'Advisor · Capitalyst Advisors', bio: '', photo: '', linkedin: '' /* Capitalyst Advisors page URL */ },
-    { name: '[Advisor name]', role: '[Role]', bio: '', photo: '', linkedin: '' },
-    { name: '[Advisor name]', role: '[Role]', bio: '', photo: '', linkedin: '' },
+    { name: 'Mike Ealy', role: 'Advisor · Nassau Investments', photo: '/images/mike-ealy.webp', linkedin: 'https://www.linkedin.com/in/nassaumikeealy/',
+      bio: 'Mike built Nassau Investments into one of the leading development firms in the Cincinnati area. Over 20 years he has applied his property and asset management experience to hundreds of successful real estate transactions, with a strength for picking the right projects and assembling the team to execute them.' },
+    { name: 'Yohannes Cramlet', role: 'Advisor · Capitalyst Advisors', photo: '/images/yohannes-cramlet.webp', linkedin: 'https://www.linkedin.com/company/capitalyst-advisors/',
+      bio: 'Yohannes founded Cramlet Capital in 2018, where he sets investment strategy and oversees acquisitions, dispositions, analysis and risk. Through Capitalyst Advisors he builds capital formation strategy for real estate operators and fund managers. Earlier he led acquisition and monetization of communication asset portfolios valued at over $1 billion at exit.' },
+    { name: 'John Casmon', role: 'Advisor · Casmon Capital Group', photo: '/images/john-casmon.webp', linkedin: 'https://www.linkedin.com/in/multifamily-apartments-john-casmon/',
+      bio: 'John launched Casmon Capital Group to help busy professionals invest in multifamily real estate, helping families invest in close to $90M of apartments. He hosts the Target Market Insights: Multifamily + Marketing podcast, co-founded the Midwest Real Estate Networking Summit, and previously led marketing campaigns for General Motors, PepsiCo and MillerCoors.' },
   ],
   // Vendors, legal counsel and other strategic partners (requested from Stephen)
   partners: [

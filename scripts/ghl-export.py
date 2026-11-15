@@ -34,7 +34,15 @@ css=scope_css(fix(open(f'{D}/site.css').read()),'.ghl-site')+'.ghl-site{display:
 OG='https://talbott-investments.vercel.app/images/og-talbott.jpg'
 og=f'<meta property="og:image" content="{OG}"><meta property="og:image:width" content="1200"><meta property="og:image:height" content="630"><meta property="og:image:alt" content="Talbott Investments: Invest With Confidence"><meta name="twitter:card" content="summary_large_image"><meta name="twitter:image" content="{OG}">'
 open(f'{O}/_head.html','w').write(og+f'<style>{css}</style>')
-open(f'{O}/_footer.html','w').write(f'<script>{fix(js)}</script>')
+# Site-wide fallback: pages pasted before a nav/footer change still get the company LinkedIn icon
+home=open(f'{D}/index.html').read()
+def grab(pat):
+    m=re.search(pat,home,re.S); return m.group(0) if m else ''
+li_nav=grab(r'<a class="linkedin-link".*?</a>'); li_foot=grab(r'<div class="footer-socials">.*?</div>')
+inject=("(function(){var N="+json.dumps(li_nav)+",F="+json.dumps(li_foot)+";"
+  "document.querySelectorAll('.ghl-site a.button.portal').forEach(function(a){if(N&&!a.parentNode.querySelector('.linkedin-link'))a.insertAdjacentHTML('beforebegin',N)});"
+  "document.querySelectorAll('.ghl-site a.footer-portal').forEach(function(a){if(F&&!a.parentNode.querySelector('.footer-socials'))a.insertAdjacentHTML('beforebegin',F)});})();")
+open(f'{O}/_footer.html','w').write(f'<script>{inject}{fix(js)}</script>')
 json.dump(manifest,open(f'{O}/manifest.json','w'),indent=1)
 for m in manifest: print(m['path'],m['bytes'],m['title'])
 print('css',len(css),'js',len(js))

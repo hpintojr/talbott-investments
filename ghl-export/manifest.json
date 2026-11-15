@@ -4,153 +4,153 @@
   "path": "/about",
   "title": "About | Talbott Investments",
   "description": "",
-  "bytes": 7830
+  "bytes": 9996
  },
  {
   "name": "contact",
   "path": "/contact",
   "title": "Contact | Talbott Investments",
   "description": "",
-  "bytes": 5556
+  "bytes": 6394
  },
  {
   "name": "home",
   "path": "/",
   "title": "Talbott Investments | Passive Multifamily Investing",
   "description": "Passive multifamily investments built on disciplined underwriting, transparent reporting, and consistent distributions.",
-  "bytes": 19816
+  "bytes": 20654
  },
  {
   "name": "investment-disclaimers",
   "path": "/investment-disclaimers",
   "title": "Investment Disclaimers | Talbott Investments",
   "description": "",
-  "bytes": 4605
+  "bytes": 5443
  },
  {
   "name": "learn",
   "path": "/learn",
   "title": "Learn | Talbott Investments",
   "description": "",
-  "bytes": 17267
+  "bytes": 18105
  },
  {
   "name": "newsletter-thank-you",
   "path": "/newsletter/thank-you",
   "title": "Thank You for Subscribing | Talbott Investments",
   "description": "",
-  "bytes": 4366
+  "bytes": 5204
  },
  {
   "name": "offerings",
   "path": "/offerings",
   "title": "Offerings | Talbott Investments",
   "description": "",
-  "bytes": 4901
+  "bytes": 5739
  },
  {
   "name": "portfolio",
   "path": "/portfolio",
   "title": "Portfolio | Talbott Investments",
   "description": "",
-  "bytes": 9642
+  "bytes": 10480
  },
  {
   "name": "portfolio-richwood-ave",
   "path": "/portfolio/richwood-ave",
   "title": "Richwood Ave. | Talbott Investments",
   "description": "",
-  "bytes": 4576
+  "bytes": 5414
  },
  {
   "name": "portfolio-rise-sunridge",
   "path": "/portfolio/rise-sunridge",
   "title": "Rise Sunridge | Talbott Investments",
   "description": "",
-  "bytes": 6191
+  "bytes": 7029
  },
  {
   "name": "privacy-policy",
   "path": "/privacy-policy",
   "title": "Privacy Policy | Talbott Investments",
   "description": "",
-  "bytes": 4310
+  "bytes": 5148
  },
  {
   "name": "schedule-a-call",
   "path": "/schedule-a-call",
   "title": "Schedule a Call | Talbott Investments",
   "description": "",
-  "bytes": 4146
+  "bytes": 4984
  },
  {
   "name": "strategy",
   "path": "/strategy",
   "title": "Strategy | Talbott Investments",
   "description": "",
-  "bytes": 6166
+  "bytes": 7004
  },
  {
   "name": "terms-of-use",
   "path": "/terms-of-use",
   "title": "Terms of Use | Talbott Investments",
   "description": "",
-  "bytes": 4320
+  "bytes": 5158
  },
  {
   "name": "thank-you",
   "path": "/thank-you",
   "title": "Thank You | Talbott Investments",
   "description": "",
-  "bytes": 3700
+  "bytes": 4538
  },
  {
   "name": "webinars-executive-investment-brief",
   "path": "/webinars/executive-investment-brief",
   "title": "The Executive Investment Brief | Talbott Investments",
   "description": "",
-  "bytes": 5203
+  "bytes": 6041
  },
  {
   "name": "webinars-executive-investment-brief-watch",
   "path": "/webinars/executive-investment-brief/watch",
   "title": "Watch the Executive Investment Brief | Talbott Investments",
   "description": "",
-  "bytes": 4003
+  "bytes": 4841
  },
  {
   "name": "webinars",
   "path": "/webinars",
   "title": "Webinars | Talbott Investments",
   "description": "",
-  "bytes": 7005
+  "bytes": 7843
  },
  {
   "name": "webinars-register",
   "path": "/webinars/register",
   "title": "Live Webinar Registration | Talbott Investments",
   "description": "",
-  "bytes": 5352
+  "bytes": 6190
  },
  {
   "name": "webinars-register-thank-you",
   "path": "/webinars/register/thank-you",
   "title": "You\u2019re Registered | Talbott Investments",
   "description": "",
-  "bytes": 4144
+  "bytes": 4982
  },
  {
   "name": "webinars-replay-1031-exchanges",
   "path": "/webinars/replay/1031-exchanges",
   "title": "1031 Exchanges | Talbott Investments",
   "description": "",
-  "bytes": 5637
+  "bytes": 6475
  },
  {
   "name": "webinars-replay-from-rsus-to-real-assets",
   "path": "/webinars/replay/from-rsus-to-real-assets",
   "title": "From RSUs to Real Assets | Talbott Investments",
   "description": "",
-  "bytes": 5556
+  "bytes": 6394
  }
 ]

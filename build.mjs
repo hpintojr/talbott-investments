@@ -150,9 +150,9 @@ function shell(title, body, { withNewsletter = true, description = '' } = {}) {
   <body class="approachable"><a class="skip" href="#main">Skip to content</a>${header()}${body}${withNewsletter ? newsletter : ''}${footer()}</body></html>`;
 }
 
-function subpage(label, title, intro, body, art = A.pageImage) {
-  return `<main id="main" class="investor-page"><section class="subpage-hero" style="--subpage-art:url('${esc(art)}')">
-    <div class="subpage-wrap"><p class="eyebrow">${esc(label)}</p><h1>${esc(title)}</h1>${intro ? `<p>${esc(intro)}</p>` : ''}</div>
+function subpage(label, title, intro, body, art = A.pageImage, heroExtra = '') {
+  return `<main id="main" class="investor-page"><section class="subpage-hero${heroExtra ? ' has-hero-extra' : ''}" style="--subpage-art:url('${esc(art)}')">
+    <div class="subpage-wrap"><p class="eyebrow">${esc(label)}</p><h1>${esc(title)}</h1>${intro ? `<p>${esc(intro)}</p>` : ''}${heroExtra}</div>
   </section><div class="subpage-wrap page-content">${body}</div></main>`;
 }
 
@@ -269,14 +269,14 @@ pages['offerings'] = ['Offerings', subpage('Investor Access', 'Current Offerings
   section('Get Notified', ghl('getNotified')), hero('offerings'))];
 
 const quick = [['Who can invest?', 'Our offerings are open to accredited investors, with accreditation verified before investing.'], ['What is the minimum investment?', 'Minimums are set in each offering’s documents.'], ['How are distributions handled?', 'Distribution timing and priorities are set in each offering’s documents, and investors receive regular reporting.'], ['Where do I find tax documents?', 'Tax documents are delivered through the investor portal.'], ['How long is my capital invested?', 'Hold periods typically run 2 to 5 years and are set in each offering’s documents.']];
-const neverMiss = `<section class="never-miss"><div><p class="eyebrow">${esc(site.newsletterName)}</p><h2>Never Miss an Article</h2><p>New articles, market insights, and first access to upcoming opportunities, delivered to your inbox.</p></div>${ghl('newsletter')}</section>`;
+// Newsletter signup sits in the Learn hero (Yohannes, Nov 15): short heading + first name/email only
+const heroSubscribe = `<div class="hero-subscribe"><h2>Never Miss an Insight</h2>${ghl('newsletter')}</div>`;
 pages['learn'] = ['Learn', subpage('Investor Education', 'Insights and Resources', 'Articles, quick answers, and market perspective for passive real estate investors.',
-  neverMiss +
   section('Resource Library', `<div class="template-filters" data-filter><label>Search resources <input type="search" data-query placeholder="Search resources"></label>
     <label>Category <select data-category><option value="">All</option>${site.articleCategories.map((c) => `<option>${esc(c)}</option>`).join('')}</select></label>
     <div class="template-grid article-grid">${site.articles.map((a) => `<div data-filter-item data-group="${esc(a.category)}">${articleCard(a)}</div>`).join('')}</div><p data-filter-empty hidden>No matching resources.</p></div>`) +
   section('Quick Answers', grid(quick.map(([q, a]) => panel('Quick Answer', q, a)))) +
-  section('', link('Watch the Executive Investment Brief →', BRIEF), 'Investor Brief'), hero('learn')), { withNewsletter: false }];
+  section('', link('Watch the Executive Investment Brief →', BRIEF), 'Investor Brief'), hero('learn'), heroSubscribe), { withNewsletter: false }];
 
 const replayCard = (r) => `<article class="template-panel replay-row"><div><p class="eyebrow">${esc(r.month)}</p><h3>${link(r.title, `/webinars/replay/${r.slug}/`, 'nav-link')}</h3><p>${esc(r.subtitle)}</p>${link('Watch Replay', `/webinars/replay/${r.slug}/`)}</div>${pic(r.cover || r.flyer, r.title + ' cover')}</article>`;
 pages['webinars'] = ['Webinars', subpage('Investor Briefings', 'Webinars and Events', 'Watch the Executive Investment Brief on demand, join Stephen’s next live webinar, or browse past recordings.',

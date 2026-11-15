@@ -1211,3 +1211,17 @@
 .replay-soon{position:absolute;left:50%;bottom:18px;transform:translateX(-50%);background:#0b1a33cc;color:#fff;font-size:.8rem;letter-spacing:.06em;padding:6px 14px;border-radius:999px;white-space:nowrap}
 .replay-details{max-width:900px;margin-top:clamp(28px,4vw,48px)}
 @media(max-width:560px){.replay-play{width:64px;height:64px;margin:-32px 0 0 -32px}.replay-play::after{left:26px;top:20px;border-width:12px 0 12px 20px}}
+
+/* Learn hero newsletter signup (compact) */
+.hero-subscribe{margin-top:clamp(18px,2.4vw,28px);max-width:640px}
+.hero-subscribe h2{font-size:clamp(1.05rem,1.5vw,1.3rem)!important;line-height:1.25;letter-spacing:-.01em;color:#fff;margin:0 0 10px;font-weight:600}
+.hero-subscribe .lead-form{display:grid;grid-template-columns:1fr auto;gap:10px;align-items:end;margin:0}
+.hero-subscribe .lead-fields{display:grid;grid-template-columns:1fr 1.3fr;gap:10px;align-items:end}
+.hero-subscribe .lead-form label span{color:#b9cbe4;font-size:.68rem;letter-spacing:.1em;text-transform:uppercase}
+.hero-subscribe .lead-form input{background:#ffffff14!important;border:1px solid #ffffff3d!important;color:#fff!important;min-height:42px;padding:9px 12px;border-radius:8px}
+.hero-subscribe .lead-form input::placeholder{color:#c3cfe2b3}
+.hero-subscribe .lead-form input:focus{outline:0;border-color:#9fbde0!important;box-shadow:0 0 0 4px #9fbde033}
+.hero-subscribe .lead-submit{background:#fff!important;color:#083965!important;min-height:42px;border-radius:8px;margin:0;align-self:end}
+.hero-subscribe .lead-note{display:none}
+.hero-subscribe .ghl-embed{width:100%;min-height:180px;border:0;border-radius:10px;display:block}
+@media(max-width:640px){.hero-subscribe .lead-form,.hero-subscribe .lead-fields{grid-template-columns:1fr}.hero-subscribe .lead-submit{justify-self:stretch}}

@@ -1,5 +1,5 @@
 {
-  "_readme": "VA EDIT FILE. Change text here only; never touch layout code. 'live' mirrors the GHL Webinar Builder custom values and is overwritten by scripts/sync-ghl.mjs when GHL API access is configured. Replays follow the Drive '5. Webinar Replays' folder order. Each replay: title, subtitle, 4 takeaways, 'cover' (image URL) and 'video' (a direct MP4 URL from GHL media storage, or a Streamable link or embed code). Until 'video' is set the cover shows with a 'video coming soon' note. 'about' is optional.",
+  "_readme": "VA EDIT FILE. Change text here only; never touch layout code. 'live' mirrors the GHL Webinar Builder custom values and is overwritten by scripts/sync-ghl.mjs when GHL API access is configured. Replays follow the Drive '5. Webinar Replays' folder order. Each replay: title, subtitle, 4 takeaways, 'cover' (image URL) and 'video' (a direct MP4 URL from GHL media storage, or a Streamable link or embed code). Until 'video' is set the cover shows with a 'video coming soon' note. 'about' is optional. 'queuedReplays' holds replays 1-5 from Drive, ready but not shown yet (Yohannes: only 6 and 7 for now). Move a block into 'replays' to publish it.",
   "live": {
     "title": "[Live webinar title - from GHL custom value: Webinar Name (Header)]",
     "subtitle": "[Webinar sub-header - from GHL custom value: Webinar Name (Sub-Header)]",
@@ -22,6 +22,44 @@
     "thumbnail": "https://assets.cdn.filesafe.space/wcZcbuIFekpLyE3fmvmO/media/69e7a919b0e5e2bb7f877828.png"
   },
   "replays": [
+    {
+      "slug": "1031-exchanges",
+      "label": "Replay · September 2026",
+      "month": "September 2026",
+      "title": "Escape Capital Gains. Escape Concentration.",
+      "subtitle": "The Passive 1031 Strategy for Engineering Leaders",
+      "callout": "",
+      "about": "",
+      "cover": "/images/replays/1031-exchanges.webp",
+      "flyer": "",
+      "video": "",
+      "takeaways": [
+        "A 1031 exchange can help investors defer taxes, but planning must begin before the sale closes.",
+        "The exchange process is deadline driven and requires coordination with a qualified intermediary, CPA, attorney, and investment team.",
+        "A 1031 exchange can be used to reposition capital from management heavy properties into more passive real estate options.",
+        "Not every syndication can accept 1031 exchange funds, so investors need to understand the structure before assuming it qualifies."
+      ]
+    },
+    {
+      "slug": "from-rsus-to-real-assets",
+      "label": "Replay · October 22, 2026",
+      "month": "October 2026",
+      "title": "From RSUs to Real Assets",
+      "subtitle": "How One Investor Turned $200,000 Into $600 a Month in Tax Sheltered Distributions",
+      "callout": "",
+      "about": "",
+      "cover": "/images/replays/from-rsus-to-real-assets.webp",
+      "flyer": "",
+      "video": "",
+      "takeaways": [
+        "Projected returns are only as credible as the assumptions behind them.",
+        "One investor used this same evaluation process to convert vested RSUs into tax sheltered monthly cash flow.",
+        "A strong review process should make risks, assumptions, accountability, and execution more visible.",
+        "Moving wealth out of employer stock still requires a clear allocation and diligence process."
+      ]
+    }
+  ],
+  "queuedReplays": [
     {
       "slug": "rsus-to-real-assets-engineering-leaders",
       "label": "Webinar Replay",
@@ -110,42 +148,6 @@
         "Multifamily's income advantage comes from essential housing demand, diversified rent rolls, and operational scale.",
         "Tax benefits can exist across real estate, but multifamily often provides a clear depreciation and cost segregation story.",
         "For many passive investors, multifamily may offer the most balanced combination of income, tax efficiency, risk control, and understandability."
-      ]
-    },
-    {
-      "slug": "1031-exchanges",
-      "label": "Replay · September 2026",
-      "month": "September 2026",
-      "title": "Escape Capital Gains. Escape Concentration.",
-      "subtitle": "The Passive 1031 Strategy for Engineering Leaders",
-      "callout": "",
-      "about": "",
-      "cover": "/images/replays/1031-exchanges.webp",
-      "flyer": "",
-      "video": "",
-      "takeaways": [
-        "A 1031 exchange can help investors defer taxes, but planning must begin before the sale closes.",
-        "The exchange process is deadline driven and requires coordination with a qualified intermediary, CPA, attorney, and investment team.",
-        "A 1031 exchange can be used to reposition capital from management heavy properties into more passive real estate options.",
-        "Not every syndication can accept 1031 exchange funds, so investors need to understand the structure before assuming it qualifies."
-      ]
-    },
-    {
-      "slug": "from-rsus-to-real-assets",
-      "label": "Replay · October 22, 2026",
-      "month": "October 2026",
-      "title": "From RSUs to Real Assets",
-      "subtitle": "How One Investor Turned $200,000 Into $600 a Month in Tax Sheltered Distributions",
-      "callout": "",
-      "about": "",
-      "cover": "/images/replays/from-rsus-to-real-assets.webp",
-      "flyer": "",
-      "video": "",
-      "takeaways": [
-        "Projected returns are only as credible as the assumptions behind them.",
-        "One investor used this same evaluation process to convert vested RSUs into tax sheltered monthly cash flow.",
-        "A strong review process should make risks, assumptions, accountability, and execution more visible.",
-        "Moving wealth out of employer stock still requires a clear allocation and diligence process."
       ]
     }
   ]

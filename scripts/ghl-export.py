@@ -4,7 +4,7 @@ os.makedirs(O,exist_ok=True)
 media=json.load(open(f'{S}/media.json'))
 pages=sorted(p for p in glob.glob(f'{D}/**/index.html',recursive=True))
 slugs={os.path.relpath(os.path.dirname(p),D) for p in pages}
-def ghlpath(rel): return '/' if rel=='.' else '/'+rel.replace('/','-')
+def ghlpath(rel): return '/' if rel=='.' else '/'+rel
 def fix(t):
     for k,v in media.items(): t=t.replace(f'/images/{k}',v)
     # internal links -> GHL single-segment paths

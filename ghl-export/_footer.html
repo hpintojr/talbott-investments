@@ -493,4 +493,34 @@ for (const filter of document.querySelectorAll('[data-filter]')) {
   update();
 }
 
+
+// Fit the hero linework to its real pixel size so the line-draw animation
+// works everywhere. WebKit (Safari and every iOS browser) ignores pathLength
+// on non-scaling strokes, which left the lines static on iPhones.
+for (const svg of document.querySelectorAll('.linework')) {
+  const [, , baseW, baseH] = svg.getAttribute('viewBox').split(' ').map(Number);
+  const paths = [...svg.querySelectorAll('path')];
+  for (const path of paths) path.dataset.d = path.getAttribute('d');
+  let lastW = 0;
+  let lastH = 0;
+  const fit = () => {
+    const { width, height } = svg.getBoundingClientRect();
+    if (!width || !height || (Math.abs(width - lastW) < 1 && Math.abs(height - lastH) < 1)) return;
+    lastW = width;
+    lastH = height;
+    const sx = width / baseW;
+    const sy = height / baseH;
+    svg.setAttribute('viewBox', `0 0 ${width.toFixed(1)} ${height.toFixed(1)}`);
+    for (const path of paths) {
+      const d = path.dataset.d.replace(/([MVH])\s*([\d.]+)(?:\s+([\d.]+))?/g, (m, cmd, a, b) => {
+        if (cmd === 'M') return `M${(a * sx).toFixed(1)} ${(b * sy).toFixed(1)}`;
+        return cmd + (a * (cmd === 'V' ? sy : sx)).toFixed(1);
+      });
+      path.setAttribute('d', d);
+    }
+    svg.classList.add('is-fitted');
+  };
+  fit();
+  addEventListener('resize', fit, { passive: true });
+}
 </script>

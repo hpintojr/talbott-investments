@@ -133,7 +133,7 @@
   stroke-width: .65px;
   stroke-opacity: .55;
 }
-.linework path { vector-effect: non-scaling-stroke; }
+.linework:not(.is-fitted) path { vector-effect: non-scaling-stroke; }
 @media (prefers-reduced-motion: no-preference) {
   .linework path {
     stroke-dasharray: 1;
@@ -1184,3 +1184,8 @@
 .approachable .why-card:hover{background:#ffffff12;border-color:#ffffff40}
 .approachable .template-panel{border-radius:var(--radius);overflow:hidden}
 .approachable .menu{border-radius:999px;padding:8px 18px;font-weight:600}
+/* White header states show the dark logo */
+.approachable.has-scrolled .header .brand-logo .logo-white,.approachable .header:has(+ .legal-main) .brand-logo .logo-white{display:none}
+.approachable.has-scrolled .header .brand-logo .logo-dark,.approachable .header:has(+ .legal-main) .brand-logo .logo-dark{display:block}
+/* Newsletter card stacks on phones */
+@media(max-width:760px){.approachable .newsletter-layout{grid-template-columns:minmax(0,1fr);gap:22px}}

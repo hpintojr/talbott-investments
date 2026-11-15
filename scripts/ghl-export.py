@@ -1,7 +1,7 @@
 import json,re,os,sys,glob,html
-S=os.path.dirname(os.path.abspath(__file__)); D=f'{S}/ghl-dist'; O='/mnt/project-files/talbott/ghl-export'
+S=os.path.dirname(os.path.abspath(__file__)); D=os.environ.get('GHL_DIST','ghl-dist'); O=os.environ.get('GHL_OUT','ghl-export')
 os.makedirs(O,exist_ok=True)
-media=json.load(open(f'{S}/media.json'))
+media=json.load(open(f'{S}/ghl-media.json'))
 pages=sorted(p for p in glob.glob(f'{D}/**/index.html',recursive=True))
 slugs={os.path.relpath(os.path.dirname(p),D) for p in pages}
 def ghlpath(rel): return '/' if rel=='.' else '/'+rel

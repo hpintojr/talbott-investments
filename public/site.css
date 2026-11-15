@@ -1033,6 +1033,8 @@
 .brand-logo img{height:44px;width:auto}
 .placeholder-photo{display:grid;place-items:center;aspect-ratio:1.69;background:linear-gradient(135deg,#232e4d,#083965);color:#cfe0f3;font-size:.8rem;letter-spacing:.14em;text-transform:uppercase;text-align:center;padding:12px}
 .ghl-embed{width:100%;border:0;min-height:520px;background:#fff}
+/* GHL forms size themselves to their content (form_embed.js); only the calendar needs a floor. */
+.ghl-embed-form{min-height:0;height:430px}
 .ghl-slot{border:1px dashed #6a95c3;padding:20px;background:#f6f9fd;color:#232e4d;font-size:.9rem}
 .metric-table{width:100%;border-collapse:collapse;max-width:720px}.metric-table td{padding:12px 4px;border-bottom:1px solid #6a95c355}.metric-table td:last-child{text-align:right;color:#232e4d;font-weight:500}
 .check-list{padding-left:20px}.check-list li{margin:.4em 0}

@@ -33,20 +33,20 @@ export const site = {
     aboutMeVideo: '',
     briefThumbnail: '',
     // Stock placeholders until Talbott property photos arrive
-    // Home hero: the longer building photo from the Drive Hero Image folder goes here.
-    heroImage: photo('photo-1545324418-cc1a3fa10c00'),
+    // Heroes: blue versions of the Hylee-style images Hamilton picked (public/images/hero-*.webp).
+    // Home hero = the long multifamily building.
+    heroImage: '/images/hero-building.webp',
     helpImage: '/images/talbott-waves.webp',
     closingImage: photo('photo-1460317442991-0ec209397118'),
-    pageImage: photo('photo-1545324418-cc1a3fa10c00'),
-    // Per-page hero images so subpages don't all repeat one photo. Swap for Hero Image folder photos.
+    pageImage: '/images/hero-aerial.webp',
     pageHeroes: {
-      about: photo('photo-1494526585095-c41746248156'),
-      strategy: photo('photo-1460317442991-0ec209397118'),
-      portfolio: photo('photo-1545324418-cc1a3fa10c00'),
-      offerings: photo('photo-1494526585095-c41746248156'),
-      learn: '/images/talbott-waves.webp',
-      webinars: photo('photo-1460317442991-0ec209397118'),
-      contact: photo('photo-1494526585095-c41746248156'),
+      about: '/images/hero-ribbons.webp',
+      strategy: '/images/hero-swirl.webp',
+      portfolio: '/images/hero-aerial.webp',
+      offerings: '/images/hero-waves.webp',
+      learn: '/images/hero-ribbons.webp',
+      webinars: '/images/hero-swirl.webp',
+      contact: '/images/hero-waves.webp',
     },
   },
 

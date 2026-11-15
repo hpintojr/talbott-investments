@@ -39,14 +39,15 @@ export const site = {
     helpImage: '/images/talbott-waves.webp',
     closingImage: photo('photo-1460317442991-0ec209397118'),
     pageImage: '/images/hero-aerial.webp',
+    // One unique hero per nav page (all 2880px, recolored blue)
     pageHeroes: {
       about: '/images/hero-ribbons.webp',
       strategy: '/images/hero-swirl.webp',
       portfolio: '/images/hero-aerial.webp',
-      offerings: '/images/hero-waves.webp',
-      learn: '/images/hero-ribbons.webp',
-      webinars: '/images/hero-swirl.webp',
-      contact: '/images/hero-waves.webp',
+      learn: '/images/hero-folds.webp',
+      contact: '/images/hero-stacked.webp',
+      offerings: '/images/hero-arcs.webp',
+      webinars: '/images/hero-waves.webp',
     },
   },
 

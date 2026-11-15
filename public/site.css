@@ -135,7 +135,7 @@
 }
 .linework:not(.is-fitted) path { vector-effect: non-scaling-stroke; }
 @media (prefers-reduced-motion: no-preference) {
-  .linework path {
+  .linework:not(.is-fitted) path {
     stroke-dasharray: 1;
     animation: draw-hero-line 3s cubic-bezier(.22,.61,.36,1) var(--line-delay) both;
   }

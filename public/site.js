@@ -500,7 +500,7 @@ for (const filter of document.querySelectorAll('[data-filter]')) {
 for (const svg of document.querySelectorAll('.linework')) {
   const [, , baseW, baseH] = svg.getAttribute('viewBox').split(' ').map(Number);
   const paths = [...svg.querySelectorAll('path')];
-  for (const path of paths) path.dataset.d = path.getAttribute('d');
+  for (const path of paths) { path.dataset.d = path.getAttribute('d'); path.removeAttribute('pathLength'); }
   let lastW = 0;
   let lastH = 0;
   const fit = () => {
@@ -519,6 +519,23 @@ for (const svg of document.querySelectorAll('.linework')) {
       path.setAttribute('d', d);
     }
     svg.classList.add('is-fitted');
+    if (!svg.dataset.drawn) {
+      // Draw the lines with measured pixel lengths (no pathLength), which every
+      // engine animates, including iOS Safari and Chrome on iPhone.
+      svg.dataset.drawn = '1';
+      if (!reducedMotion.matches) {
+        for (const path of paths) {
+          const len = path.getTotalLength();
+          const delay = (parseFloat(path.style.getPropertyValue('--line-delay')) || 0) * 1000;
+          path.style.strokeDasharray = `${len} ${len}`;
+          const draw = path.animate(
+            [{ strokeDashoffset: len }, { strokeDashoffset: 0 }],
+            { duration: 3000, delay, easing: 'cubic-bezier(.22,.61,.36,1)', fill: 'backwards' }
+          );
+          draw.onfinish = () => { path.style.strokeDasharray = 'none'; };
+        }
+      }
+    }
   };
   fit();
   addEventListener('resize', fit, { passive: true });

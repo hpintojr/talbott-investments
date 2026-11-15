@@ -19,18 +19,21 @@ export const site = {
   discoveryCallUrl: 'https://connect.talbottinvestments.com/company-scheduler',
   introCallUrl: 'https://connect.talbottinvestments.com/invest-stephen',
   // Thank-you video shared by the newsletter and webinar confirmation pages (Drive "11. Thank You Video")
-  thankYouVideo: '',
+  // GHL custom value "9 Evergreen Thank You-Schedule A Call Video URL"
+  thankYouVideo: 'https://assets.cdn.filesafe.space/wcZcbuIFekpLyE3fmvmO/media/69d405474cde4bbc2a0d5ba7.mp4',
   newsletterName: 'The Engineering Collective',
 
   // Assets from Drive "23. Website" folder. Leave '' for a placeholder.
   assets: {
-    logo: '', // Drive "4. Logo and Favicon"
-    logoWhite: '',
-    favicon: '',
+    // Logo Light / Logo Dark from GHL custom values; favicon cropped from the mark
+    logo: '/images/logo.png',
+    logoWhite: '/images/logo-white.png',
+    favicon: '/images/favicon.png',
     headshot: '/images/stephen-profile.webp',
     headshotCutout: '/images/stephen-predmore.webp',
-    aboutUsVideo: '',
-    aboutMeVideo: '',
+    // From GHL custom values "6. Evergreen About Us" and "7. About Me"
+    aboutUsVideo: 'https://assets.cdn.filesafe.space/wcZcbuIFekpLyE3fmvmO/media/6a3946427b00529580989d24.mp4',
+    aboutMeVideo: 'https://assets.cdn.filesafe.space/wcZcbuIFekpLyE3fmvmO/media/69d405474cde4bbc2a0d5ba7.mp4',
     briefThumbnail: '',
     // Stock placeholders until Talbott property photos arrive
     // Heroes: blue versions of the Hylee-style images Hamilton picked (public/images/hero-*.webp).
@@ -69,12 +72,12 @@ export const site = {
   // Forms: https://api.leadconnectorhq.com/widget/form/<ID>
   // Calendar: https://api.leadconnectorhq.com/widget/booking/<ID>
   ghl: {
-    newsletter: { id: '', where: 'Forms > 8. Article, Newsletter, Blogs > 2. Investor Newsletter' },
-    getNotified: { id: '', where: 'Forms > 9. Website Forms > 2. Get Notified About the Next Offering' },
-    evergreen: { id: '', where: 'Forms > 2. Evergreen Webinar > 1. Evergreen Webinar Registration' },
-    liveWebinar: { id: '', where: 'Forms > 3. Live Webinars > live webinar registration form' },
-    contact: { id: '', where: 'Forms > 9. Website Forms > 1. Contact Form' },
-    calendar: { id: '', where: 'Calendars > Stephen Calendar Group > Investor Introduction Call - Stephen (30 min)' },
+    newsletter: { id: 'EVSSI8VNXH9Ghd7aCkMg', where: 'Forms > 8. Article, Newsletter, Blogs > 2. Investor Newsletter' },
+    getNotified: { id: 'AvWH3bYyEHHnIu6YiYJN', where: 'Forms > 9. Website Forms > 2. Get Notified About the Next Offering' },
+    evergreen: { id: 'dNjByee01o9mOCAX4cmZ', where: 'Forms > 2. Evergreen Webinar > 1. Evergreen Webinar Registration' },
+    liveWebinar: { id: '4j48BWsrlUr36REdk9fo', where: 'Forms > 3. Live Webinars > live webinar registration form' },
+    contact: { id: 'DRxpB4co0ATUbZ1biBkv', where: 'Forms > 9. Website Forms > 1. Contact Form' },
+    calendar: { id: 'WQWY7tLU92Q8FSr6tOpG', where: 'Calendars > Stephen Calendar Group > Investor Introduction Call - Stephen (30 min)' },
   },
 
   stats: [['13', 'Properties'], ['$175M', 'Portfolio Value'], ['910', 'Units'], ['9', 'States']],

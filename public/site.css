@@ -1101,3 +1101,9 @@
 .person-grid .template-panel img,.person-card .placeholder-photo{aspect-ratio:1;object-fit:cover}.linkedin-button{margin-top:14px}.replay-details{align-items:start}
 /* Blue hero images are pre-darkened, so use a lighter left-weighted shade to let the texture show */
 .approachable .subpage-hero{background:linear-gradient(90deg,#06122acc 0%,#06122a80 55%,#06122a33 100%),var(--subpage-art) center/cover,#0a2446}
+
+/* Real logo (GHL Logo Light/Dark) */
+.brand-logo img{background:none;object-fit:contain;width:auto;height:44px}
+.brand-logo .logo-dark{display:none}
+.approachable .header:has(+ .investor-page) .brand-logo .logo-white{display:none}
+.approachable .header:has(+ .investor-page) .brand-logo .logo-dark{display:block}

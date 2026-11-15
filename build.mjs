@@ -81,13 +81,16 @@ const hero = (k) => A.pageHeroes?.[k] || A.pageImage;
 const nav = [['About', '/about/'], ['Strategy', '/strategy/'], ['Portfolio', '/portfolio/'], ['Learn', '/learn/'], ['Invest With Us', '/contact/'], ['Offerings', '/offerings/'], ['Webinars', '/webinars/']];
 
 const brand = (white = false) => {
-  const logo = white ? A.logoWhite || A.logo : A.logo;
-  return logo ? `<img src="${esc(logo)}" alt="${esc(site.firm)}">` : `<span>TALBOTT<small>INVESTMENTS</small></span>`;
+  if (!A.logo && !A.logoWhite) return `<span>TALBOTT<small>INVESTMENTS</small></span>`;
+  // White logo on dark backgrounds; the header also carries the navy logo for pages with a white header.
+  const imgs = [`<img class="logo-white" src="${esc(A.logoWhite || A.logo)}" alt="${esc(site.firm)}">`];
+  if (white === 'both' && A.logo) imgs.push(`<img class="logo-dark" src="${esc(A.logo)}" alt="" aria-hidden="true">`);
+  return imgs.join('');
 };
 
 function header() {
   const portal = site.portalUrl || '/contact/';
-  return `<header class="header"><a class="brand-logo" href="/" aria-label="${esc(site.firm)} home">${brand(true)}</a>
+  return `<header class="header"><a class="brand-logo" href="/" aria-label="${esc(site.firm)} home">${brand('both')}</a>
     <button class="menu" aria-expanded="false" aria-controls="site-nav" type="button">Menu</button>
     <nav id="site-nav" aria-label="Main navigation">${nav.map(([l, h]) => link(l, h, 'nav-link')).join('')}
     ${site.companyLinkedinUrl ? `<a class="linkedin-link" href="${esc(site.companyLinkedinUrl)}" aria-label="${esc(site.firm)} on LinkedIn"><svg aria-hidden="true" viewBox="0 0 24 24" fill="currentColor"><path d="M5.1 8.7h3.2V19H5.1zM6.7 3.6a1.9 1.9 0 1 1 0 3.8 1.9 1.9 0 0 1 0-3.8zM10.6 8.7h3.1v1.4h.1a3.4 3.4 0 0 1 3.1-1.7c3.3 0 3.9 2.2 3.9 5V19h-3.2v-5c0-1.2 0-2.8-1.7-2.8s-2 1.3-2 2.7V19h-3.3z"/></svg></a>` : ''}

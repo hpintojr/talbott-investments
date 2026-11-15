@@ -1,0 +1,52 @@
+/* Talbott Learn hero newsletter (GHL form erHRiRf7v9ZzyzqRok19). Dark-hero style to match talbott-investments.vercel.app/learn */
+html, body, #app, .form-builder--wrap, #_builder-form, .form-side, .fields-container {
+  background: transparent !important;
+}
+#_branding-wrap { display: none !important; }
+.form-builder--wrap, .form-builder--wrap * { font-family: Arial, Helvetica, sans-serif !important; }
+.form-builder--wrap, #_builder-form, .form-side {
+  padding: 0 !important; margin: 0 !important; box-shadow: none !important;
+  border: 0 !important; max-width: none !important; width: 100% !important;
+}
+#_builder-form .fields-container { margin: 0 !important; padding: 0 !important; }
+#_builder-form .form-field-wrapper {
+  padding: 0 !important; margin: 0 0 10px !important; width: 100% !important; max-width: none !important; flex: none !important;
+}
+#_builder-form .form-field-container, #_builder-form .field-container, #_builder-form .form-builder--item {
+  padding: 0 !important; margin: 0 !important;
+}
+/* Short copy only: hide the note under the button */
+#_builder-form .fields-container > .form-field-wrapper:last-child:not(:has(button)) { display: none !important; }
+
+#_builder-form#_builder-form label.label-alignment,
+#_builder-form#_builder-form .field-label {
+  font-size: 11px !important; font-weight: 700 !important; letter-spacing: 0.1em !important;
+  text-transform: uppercase !important; color: #b9cbe4 !important; margin: 0 0 6px !important; padding: 0 !important;
+}
+#_builder-form label.label-alignment span { display: none !important; }
+
+#_builder-form .email-input-wrapper svg { display: none !important; }
+#_builder-form#_builder-form .form-control {
+  height: 46px !important; min-height: 46px !important; box-sizing: border-box !important;
+  padding: 0 14px !important; margin: 0 !important;
+  background: rgba(255,255,255,0.08) !important; border: 1px solid rgba(255,255,255,0.24) !important;
+  border-radius: 8px !important; color: #fff !important; font-size: 15px !important; box-shadow: none !important;
+}
+#_builder-form#_builder-form .form-control::placeholder { color: rgba(255,255,255,0.55) !important; }
+#_builder-form#_builder-form .form-control:focus { border-color: rgba(255,255,255,0.6) !important; outline: none !important; }
+
+#_builder-form#_builder-form .button-element {
+  height: 46px !important; min-height: 46px !important; width: 100% !important; margin: 0 !important; padding: 0 22px !important;
+  background: #fff !important; color: #083965 !important; border: 0 !important; border-radius: 8px !important;
+  font-size: 15px !important; font-weight: 700 !important; box-shadow: none !important;
+}
+#_builder-form#_builder-form .button-element * { color: #083965 !important; }
+
+/* Wider than a phone: name, email and button on one row */
+@media (min-width: 520px) {
+  #_builder-form .fields-container {
+    display: grid !important; grid-template-columns: 1fr 1.3fr auto; column-gap: 10px; align-items: end;
+  }
+  #_builder-form .form-field-wrapper { margin: 0 !important; }
+  #_builder-form#_builder-form .button-element { width: auto !important; white-space: nowrap; }
+}

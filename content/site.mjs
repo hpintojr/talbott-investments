@@ -76,6 +76,7 @@ export const site = {
   // Calendar: https://api.leadconnectorhq.com/widget/booking/<ID>
   ghl: {
     newsletter: { id: 'EVSSI8VNXH9Ghd7aCkMg', where: 'Forms > 8. Article, Newsletter, Blogs > 2. Investor Newsletter' },
+    newsletterHero: { id: 'erHRiRf7v9ZzyzqRok19', where: 'Forms > 8. Article, Newsletter, Blogs > 3. Investor Newsletter - Learn Hero' },
     getNotified: { id: 'AvWH3bYyEHHnIu6YiYJN', where: 'Forms > 9. Website Forms > 2. Get Notified About the Next Offering' },
     evergreen: { id: 'dNjByee01o9mOCAX4cmZ', where: 'Forms > 2. Evergreen Webinar > 1. Evergreen Webinar Registration' },
     liveWebinar: { id: '4j48BWsrlUr36REdk9fo', where: 'Forms > 3. Live Webinars > live webinar registration form' },

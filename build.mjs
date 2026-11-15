@@ -270,7 +270,7 @@ pages['offerings'] = ['Offerings', subpage('Investor Access', 'Current Offerings
 
 const quick = [['Who can invest?', 'Our offerings are open to accredited investors, with accreditation verified before investing.'], ['What is the minimum investment?', 'Minimums are set in each offering’s documents.'], ['How are distributions handled?', 'Distribution timing and priorities are set in each offering’s documents, and investors receive regular reporting.'], ['Where do I find tax documents?', 'Tax documents are delivered through the investor portal.'], ['How long is my capital invested?', 'Hold periods typically run 2 to 5 years and are set in each offering’s documents.']];
 // Newsletter signup sits in the Learn hero (Yohannes, Nov 15): short heading + first name/email only
-const heroSubscribe = `<div class="hero-subscribe"><h2>Never Miss an Insight</h2>${ghl('newsletter')}</div>`;
+const heroSubscribe = `<div class="hero-subscribe"><h2>Never Miss an Insight</h2>${process.env.GHL_EXPORT ? ghl('newsletterHero').replace('<iframe ', '<iframe allowtransparency="true" ') : leadForm('newsletter')}</div>`;
 pages['learn'] = ['Learn', subpage('Investor Education', 'Insights and Resources', 'Articles, quick answers, and market perspective for passive real estate investors.',
   section('Resource Library', `<div class="template-filters" data-filter><label>Search resources <input type="search" data-query placeholder="Search resources"></label>
     <label>Category <select data-category><option value="">All</option>${site.articleCategories.map((c) => `<option>${esc(c)}</option>`).join('')}</select></label>

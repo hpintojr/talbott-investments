@@ -1223,5 +1223,6 @@
 .hero-subscribe .lead-form input:focus{outline:0;border-color:#9fbde0!important;box-shadow:0 0 0 4px #9fbde033}
 .hero-subscribe .lead-submit{background:#fff!important;color:#083965!important;min-height:42px;border-radius:8px;margin:0;align-self:end}
 .hero-subscribe .lead-note{display:none}
-.hero-subscribe .ghl-embed{width:100%;min-height:180px;border:0;border-radius:10px;display:block}
+.hero-subscribe .ghl-embed,.hero-subscribe .ghl-embed-form{height:80px;width:100%;min-height:80px;border:0;border-radius:0;background:transparent!important;box-shadow:none!important;padding:0!important;display:block;color-scheme:normal}
+@media (max-width:519px){.hero-subscribe .ghl-embed,.hero-subscribe .ghl-embed-form{height:220px;min-height:220px}}
 @media(max-width:640px){.hero-subscribe .lead-form,.hero-subscribe .lead-fields{grid-template-columns:1fr}.hero-subscribe .lead-submit{justify-self:stretch}}

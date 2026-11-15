@@ -27,7 +27,7 @@ export const site = {
     logo: '', // Drive "4. Logo and Favicon"
     logoWhite: '',
     favicon: '',
-    headshot: '/images/stephen-predmore.webp',
+    headshot: '/images/stephen-profile.webp',
     headshotCutout: '/images/stephen-predmore.webp',
     aboutUsVideo: '',
     aboutMeVideo: '',

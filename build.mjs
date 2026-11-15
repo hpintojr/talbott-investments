@@ -57,12 +57,16 @@ const forms = {
 };
 function leadForm(key) {
   const c = forms[key];
-  const input = (k) => { const [name, label, type, ac] = F[k]; return `<label>${label}<input name="${name}" type="${type}" autocomplete="${ac}"${k === 'phone' ? '' : ' required'}></label>`; };
-  return `<form class="lead-form lead-form-${key}" method="post" action="/api/lead">
+  const ph = { first: 'Jane', last: 'Smith', email: 'you@company.com', phone: '(555) 123-4567' };
+  const input = (k) => { const [name, label, type, ac] = F[k]; return `<label><span>${label}</span><input name="${name}" type="${type}" autocomplete="${ac}" placeholder="${ph[k]}"${k === 'phone' ? '' : ' required'}></label>`; };
+  const arrow = '<svg aria-hidden="true" viewBox="0 0 20 20" width="16" height="16"><path d="M4 10h11m-4-4 4 4-4 4" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>';
+  const note = key === 'newsletter' ? '<p class="lead-note"><svg aria-hidden="true" viewBox="0 0 20 20" width="14" height="14"><path d="M6 9V7a4 4 0 0 1 8 0v2m-9 0h10v8H5z" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/></svg>No spam. Unsubscribe anytime.</p>'
+    : '<p class="lead-note"><svg aria-hidden="true" viewBox="0 0 20 20" width="14" height="14"><path d="M6 9V7a4 4 0 0 1 8 0v2m-9 0h10v8H5z" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/></svg>Your information stays private and is never shared.</p>';
+  return `<form class="lead-form lead-form-${key}${key === 'newsletter' ? ' lead-form-inline' : ''}" method="post" action="/api/lead">
     <input type="hidden" name="form" value="${key}"><input type="hidden" name="next" value="${c.next}">
     <div class="hp" aria-hidden="true"><label>Leave this field empty<input name="website" type="text" tabindex="-1" autocomplete="off"></label></div>
     <div class="lead-fields">${c.fields.map(input).join('')}${c.message ? '<label class="wide">Message<textarea name="message" rows="4"></textarea></label>' : ''}</div>
-    <button class="button" type="submit">${c.button}</button></form>`;
+    <button class="button lead-submit" type="submit">${c.button}${arrow}</button>${note}</form>`;
 }
 
 function ghl(key) {
@@ -151,7 +155,9 @@ const help = [
   ['Experienced Operating Partners', 'We invest alongside established operators with the scale and systems to carry out the business plan.'],
   ['Transparent Reporting, Consistent Distributions', 'You always know how your investment is performing and when to expect cash flow.'],
 ];
-const liveCardArt = live.flyer ? img(live.flyer, live.title + ' flyer') : ph('Live webinar flyer');
+const liveSet = !String(live.title).trim().startsWith('[');
+const liveCardArt = live.flyer ? img(live.flyer, live.title + ' flyer') : img(A.pageHeroes.webinars, 'Live investor webinar');
+const liveTitle = liveSet ? live.title : 'Next Live Webinar: Dates Coming Soon';
 
 const home = `<main id="main">
   <section class="hero cover" style="--overlay:#232e4d99;--cover:url('${esc(A.heroImage)}')">
@@ -189,7 +195,7 @@ const home = `<main id="main">
     <div class="actions">${link('Schedule a Call →', SCHEDULE)}</div></section>
   <section class="home-resources"><div class="subpage-wrap"><p class="eyebrow">Investor Resources</p><h2>Explore Talbott Investments</h2>
     ${grid([panel('How We Invest', 'How We Invest', 'Our markets, our criteria, and how every deal is underwritten.', '/strategy/'),
-      panel(`Live Webinar · ${live.date}`, live.title, `${live.time} with ${live.host}`, '/webinars/register/', liveCardArt, 'Register'),
+      (liveSet ? panel(`Live Webinar · ${live.date}`, live.title, `${live.time} with ${live.host}`, '/webinars/register/', liveCardArt, 'Register') : panel('Live Webinar', liveTitle, `Hosted by ${live.host}. Subscribe to the newsletter to hear first.`, '/webinars/', liveCardArt, 'See Webinars')),
       panel('Investor Education', 'Investor Education', 'Articles and quick answers for passive investors.', '/learn/')])}
     <p class="eyebrow">Latest Insights</p><h2>Latest Insights</h2>${grid(site.articles.slice(0, 2).map(articleCard))}
     ${section('How to Get Started', steps([['Learn', 'Watch the Executive Investment Brief or join a live webinar to see how we invest.'], ['Connect', 'Schedule a call to talk through your goals and confirm fit.'], ['Invest', 'Verify accreditation, review the offering, and invest through the investor portal.']]))}
@@ -253,7 +259,7 @@ const replayCard = (r) => `<article class="template-panel replay-row"><div><p cl
 pages['webinars'] = ['Webinars', subpage('Investor Briefings', 'Webinars and Events', 'Watch the Executive Investment Brief on demand, join Stephen’s next live webinar, or browse past recordings.',
   section('Choose a Briefing', grid([
     panel('On Demand', 'The Executive Investment Brief', 'Reduce concentration risk, prepare for tax exposure, and build passive income through multifamily.', BRIEF, (A.briefThumbnail ? img(A.briefThumbnail, 'Executive Investment Brief thumbnail') : videoPh('The Executive Investment Brief', 'Watch on demand'))),
-    panel('Live Webinar', live.title, `${live.date} · ${live.time}`, '/webinars/register/', liveCardArt),
+    (liveSet ? panel('Live Webinar', live.title, `${live.date} · ${live.time}`, '/webinars/register/', liveCardArt) : panel('Live Webinar', liveTitle, 'Replays of past sessions are below.', '/webinars/', liveCardArt)),
     panel('Replay Library', 'Past Recordings', 'Watch past webinars on your own schedule.', '#past-recordings', pic(webinars.replays[0]?.cover || webinars.replays[0]?.flyer, 'Replay library')),
   ], 'webinar-cards')) +
   `<div id="past-recordings">${section('Past Recordings', `<div class="template-grid replay-list">${webinars.replays.map(replayCard).join('')}</div>`)}</div>`, hero('webinars'))];
@@ -297,7 +303,11 @@ pages['schedule-a-call'] = ['Schedule a Call', subpage('Investor Relations', 'Sc
   `<div class="template-split"><div>${ghl('calendar')}</div><div>${section('What to Expect', bullets(['Get acquainted', 'Clarify your investment objectives', 'Determine whether there is alignment']))}</div></div>`), { withNewsletter: false }];
 
 pages['contact'] = ['Contact', subpage('Investor Relations', 'Get Started', 'Ask a question or schedule an introductory call.',
-  `<div class="template-split">${section('Get in Touch', ghl('contact'))}<div class="office-block">${section('Office', `<address>${esc(site.location)}<br><a href="tel:+14438069386">${esc(site.phone)}</a><br><a href="mailto:${esc(site.email)}">${esc(site.email)}</a></address>${link('Schedule a Call', SCHEDULE)}`)}</div></div>`, hero('contact'))];
+  `<div class="template-split">${section('Get in Touch', ghl('contact'))}<div class="office-block">${section('Office', `<ul class="contact-list">
+    <li><svg aria-hidden="true" viewBox="0 0 24 24"><path d="M12 21s-7-6.1-7-11.5A7 7 0 0 1 19 9.5C19 14.9 12 21 12 21z"/><circle cx="12" cy="9.5" r="2.5"/></svg><span>${esc(site.location)}</span></li>
+    <li><svg aria-hidden="true" viewBox="0 0 24 24"><path d="M5 4h4l2 5-2.5 1.5a11 11 0 0 0 5 5L15 13l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-2"/></svg><a href="tel:+14438069386">${esc(site.phone)}</a></li>
+    <li><svg aria-hidden="true" viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg><a href="mailto:${esc(site.email)}">${esc(site.email)}</a></li></ul>
+    <p>Prefer to talk it through? Book a 30 minute introduction call with Stephen.</p>${link('Schedule a Call', SCHEDULE)}`)}</div></div>`, hero('contact'))];
 
 const legalNote = (from) => `<p class="ghl-slot">Draft. Final copy is adapted from <a href="${from}">${from}</a> with every Cramlet name, email, phone, and address changed to Talbott’s. Pending legal copy paste.</p>`;
 pages['privacy-policy'] = ['Privacy Policy', subpage('Legal', 'Privacy Policy', '', legalNote('https://cramletcapital.com/privacy-policy/'))];

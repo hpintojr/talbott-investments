@@ -1107,3 +1107,67 @@
 .brand-logo .logo-dark{display:none}
 .approachable .header:has(+ .investor-page) .brand-logo .logo-white{display:none}
 .approachable .header:has(+ .investor-page) .brand-logo .logo-dark{display:block}
+
+/* ---------- Design refresh (Nov 2026) ---------- */
+.approachable{--radius:12px;--radius-sm:8px;--shadow-sm:0 1px 2px #0b1a3310,0 2px 8px #0b1a330d;--shadow-md:0 10px 30px -12px #0b1a3333,0 2px 6px #0b1a3312;--ease:cubic-bezier(.2,.7,.2,1)}
+/* Buttons: soft corners, lift on hover */
+.approachable .button{border-radius:var(--radius-sm);gap:10px;transition:transform .2s var(--ease),box-shadow .2s var(--ease),filter .2s;letter-spacing:.01em}
+.approachable .button:hover{transform:translateY(-1px);box-shadow:0 8px 20px -8px #08396599;filter:brightness(1.12)}
+.approachable .button svg{transition:transform .2s var(--ease)}.approachable .button:hover svg{transform:translateX(3px)}
+.approachable .header .portal{border-radius:999px;padding-inline:22px}
+/* Forms */
+.approachable .lead-form{gap:14px}
+.approachable .lead-form label{gap:7px;font-size:.72rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:#4b5a78}
+.approachable .lead-form input,.approachable .lead-form textarea,.approachable .template-filters input,.approachable .template-filters select{border:1px solid #d6dde9;border-radius:var(--radius-sm);background:#f7f9fc;color:#16213b;font-size:1rem;letter-spacing:0;text-transform:none;padding:13px 15px;min-height:50px;transition:border-color .2s,box-shadow .2s,background .2s}
+.approachable .lead-form input::placeholder,.approachable .lead-form textarea::placeholder{color:#9aa6bb}
+.approachable .lead-form input:hover,.approachable .lead-form textarea:hover{border-color:#b8c4d8}
+.approachable .lead-form input:focus,.approachable .lead-form textarea:focus,.approachable .template-filters :is(input,select):focus{outline:0;background:#fff;border-color:#6a95c3;box-shadow:0 0 0 4px #6a95c333}
+.approachable .lead-form textarea{min-height:130px;resize:vertical}
+.approachable .lead-submit{min-height:52px;padding-inline:28px;font-size:.98rem}
+.lead-note{display:flex;align-items:center;gap:7px;margin:2px 0 0;font-size:.82rem;color:#6b7891}
+.lead-note svg{flex:none;opacity:.8}
+/* Inline newsletter: one pill row on desktop */
+.approachable .lead-form-inline{grid-template-columns:1fr auto;align-items:end;column-gap:10px}
+.approachable .lead-form-inline .lead-fields{grid-template-columns:1fr 1.3fr;gap:10px}
+.approachable .lead-form-inline .lead-note{grid-column:1/-1}
+@media(max-width:760px){.approachable .lead-form-inline{grid-template-columns:1fr}.approachable .lead-form-inline .lead-fields{grid-template-columns:1fr}.approachable .lead-form-inline .lead-submit{width:100%}}
+/* Newsletter band as a card */
+.approachable .newsletter-band{background:linear-gradient(180deg,#eef2f8,#e7edf6);border-top:0}
+.approachable .newsletter-layout{background:#fff;border:1px solid #dfe5ef;border-radius:20px;box-shadow:var(--shadow-md);padding:clamp(24px,4vw,48px);grid-template-columns:1fr 1.25fr;gap:clamp(20px,4vw,56px)}
+.approachable .newsletter-band .eyebrow{display:inline-flex;align-items:center;gap:8px}
+.approachable .newsletter-band .eyebrow::before{content:'';width:22px;height:2px;background:#6a95c3}
+/* Dark form surfaces (Never Miss an Article) */
+.approachable .never-miss{border-radius:20px;box-shadow:var(--shadow-md);overflow:hidden;position:relative}
+.approachable .never-miss .lead-form label{color:#b9cbe4}
+.approachable .never-miss .lead-form input{background:#ffffff14;border-color:#ffffff33;color:#fff}
+.approachable .never-miss .lead-form input::placeholder{color:#c3cfe2b3}
+.approachable .never-miss .lead-form input:focus{background:#ffffff1f;border-color:#9fbde0;box-shadow:0 0 0 4px #9fbde033}
+.approachable .never-miss .lead-submit{background:#fff;color:#083965}
+.approachable .never-miss .lead-note{color:#b9cbe4}
+/* Cards: rounded, soft shadow, lift */
+.approachable :is(.article-card,.person-card,.resource-card,.process-card,.property,.why-card,.home-resources article,.page-section article){border-radius:var(--radius);overflow:hidden}
+.approachable :is(.article-card,.property,.home-resources article){box-shadow:var(--shadow-sm);transition:transform .25s var(--ease),box-shadow .25s var(--ease)}
+.approachable :is(.article-card,.property,.home-resources article):hover{transform:translateY(-3px);box-shadow:var(--shadow-md)}
+.approachable .article-cover img{transition:transform .5s var(--ease)}.approachable .article-card:hover .article-cover img{transform:scale(1.04)}
+.approachable .template-split>img,.approachable .template-split>picture img,.approachable .video-ph,.approachable .ghl-embed{border-radius:var(--radius)}
+/* Dark footer so the white logo reads */
+.approachable .approachable-footer{background:#0d1830;color:#c9d3e4;--line:#ffffff1f}
+.approachable .approachable-footer a{color:#e6ecf6}
+.approachable .approachable-footer .nav-link{opacity:.85}.approachable .approachable-footer .nav-link:hover{opacity:1}
+.approachable .approachable-footer address{color:#9fb0cb;font-style:normal;margin-top:10px}
+.approachable .approachable-footer .footer-portal{border:1px solid #ffffff55;border-radius:999px;padding:9px 20px;background:transparent;color:#fff;text-decoration:none}
+.approachable .approachable-footer .footer-portal:hover{background:#fff;color:#0d1830}
+.approachable .approachable-footer .footer-legal{border-color:#ffffff1f}
+.approachable .approachable-footer .disclosure{color:#8d9cb6;border-color:#ffffff1f}
+.approachable .approachable-footer .disclosure strong{color:#c9d3e4}
+.approachable .approachable-footer .site-credit{color:#6f7f9b}
+.approachable .approachable-footer .brand-logo img{height:48px}
+/* Contact page */
+.approachable .office-block>section,.approachable .office-block .page-section{background:#f4f7fb;border:1px solid #e1e7f0;border-radius:16px;padding:clamp(22px,3vw,36px)}
+.contact-list{list-style:none;margin:8px 0 18px;padding:0;display:grid;gap:14px}
+.contact-list li{display:flex;align-items:center;gap:12px;color:#33405c}
+.contact-list svg{flex:none;width:38px;height:38px;padding:9px;border-radius:50%;background:#fff;box-shadow:var(--shadow-sm);fill:none;stroke:#083965;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round}
+.contact-list a{color:#083965;text-decoration:none;font-weight:600}.contact-list a:hover{text-decoration:underline}
+.approachable .office-block p{color:#5b6884}
+.approachable .lead-form-contact{margin-top:18px}
+.approachable section>h2+.lead-form{margin-top:18px}

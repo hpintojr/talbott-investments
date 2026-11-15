@@ -53,5 +53,16 @@ html, body, #app, .form-builder--wrap, #_builder-form, .form-side, .fields-conta
 
 /* GHL gives the form a 200px min-height, which centers the fields and leaves a gap in the hero */
 #_builder-form .form-side, #_builder-form > .flex { min-height: 0 !important; height: auto !important; align-items: flex-start !important; }
-/* GHL sets padding-left:39px !important inline on the email input (room for the icon we hide); pull the text back to 14px */
-#_builder-form#_builder-form #email { text-indent: -25px !important; }
+/* GHL sets padding-left:39px !important inline on the email input (room for the icon we hide).
+   Draw the box on the wrapper and slide the input 25px left inside it, so the text sits 14px in like the name field. */
+#_builder-form .email-input, #_builder-form .email-input-wrapper { width: 100% !important; flex: 1 1 100% !important; }
+#_builder-form .email-input-wrapper {
+  position: relative !important; overflow: hidden !important; box-sizing: border-box !important; height: 46px !important;
+  border: 1px solid rgba(255,255,255,0.24) !important; border-radius: 8px !important; background: rgba(255,255,255,0.08) !important;
+}
+#_builder-form#_builder-form #email {
+  margin-left: -25px !important; width: calc(100% + 25px) !important; max-width: none !important;
+  height: 44px !important; min-height: 44px !important; border: 0 !important; border-radius: 0 !important; background: transparent !important;
+}
+/* Fields fill the full width of the iframe */
+#_builder-form .form-side, #_builder-form .fields-container { width: 100% !important; max-width: none !important; flex: 1 1 100% !important; }

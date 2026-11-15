@@ -10,26 +10,59 @@ export const site = {
   location: 'Baltimore, Maryland',
   phone: '(443) 806 9386',
   email: 'stephen@TalbottInvestments.com',
+  // Nav and footer LinkedIn icon = Talbott company page. Icon stays hidden until this is set.
+  companyLinkedinUrl: '',
+  // Stephen's personal profile (About page, next to his bio)
   linkedinUrl: 'https://www.linkedin.com/in/stephen-predmore/',
-  portalUrl: '', // LP portal URL (open item, owner: Stephen)
+  portalUrl: 'https://talbottinvestments.fundamentalportal.com/',
+  // Real CTAs from Talbott's GHL funnels
+  discoveryCallUrl: 'https://connect.talbottinvestments.com/company-scheduler',
+  introCallUrl: 'https://connect.talbottinvestments.com/invest-stephen',
+  // Thank-you video shared by the newsletter and webinar confirmation pages (Drive "11. Thank You Video")
+  thankYouVideo: '',
   newsletterName: 'The Engineering Collective',
 
   // Assets from Drive "23. Website" folder. Leave '' for a placeholder.
   assets: {
-    logo: '',
+    logo: '', // Drive "4. Logo and Favicon"
     logoWhite: '',
+    favicon: '',
     headshot: '/images/stephen-predmore.webp',
     headshotCutout: '/images/stephen-predmore.webp',
     aboutUsVideo: '',
     aboutMeVideo: '',
     briefThumbnail: '',
     // Stock placeholders until Talbott property photos arrive
+    // Home hero: the longer building photo from the Drive Hero Image folder goes here.
     heroImage: photo('photo-1545324418-cc1a3fa10c00'),
     helpImage: '/images/talbott-waves.webp',
-    whyImage: photo('photo-1460317442991-0ec209397118'),
-    closingImage: photo('photo-1494526585095-c41746248156'),
+    closingImage: photo('photo-1460317442991-0ec209397118'),
     pageImage: photo('photo-1545324418-cc1a3fa10c00'),
+    // Per-page hero images so subpages don't all repeat one photo. Swap for Hero Image folder photos.
+    pageHeroes: {
+      about: photo('photo-1494526585095-c41746248156'),
+      strategy: photo('photo-1460317442991-0ec209397118'),
+      portfolio: photo('photo-1545324418-cc1a3fa10c00'),
+      offerings: photo('photo-1494526585095-c41746248156'),
+      learn: '/images/talbott-waves.webp',
+      webinars: photo('photo-1460317442991-0ec209397118'),
+      contact: photo('photo-1494526585095-c41746248156'),
+    },
   },
+
+  // About page. Fill name, role, bio, photo, LinkedIn as they arrive.
+  advisors: [
+    { name: 'Yohannes Cramlet', role: 'Advisor · Capitalyst Advisors', bio: '', photo: '', linkedin: '' /* Capitalyst Advisors page URL */ },
+    { name: '[Advisor name]', role: '[Role]', bio: '', photo: '', linkedin: '' },
+    { name: '[Advisor name]', role: '[Role]', bio: '', photo: '', linkedin: '' },
+  ],
+  // Vendors, legal counsel and other strategic partners (requested from Stephen)
+  partners: [
+    { name: '[Legal counsel]', role: 'Securities and fund counsel', url: '' },
+    { name: '[Fund administrator]', role: 'Investor portal and reporting', url: '' },
+    { name: '[CPA firm]', role: 'Tax and K-1 preparation', url: '' },
+    { name: '[Operating partner]', role: 'Property management', url: '' },
+  ],
 
   // GHL embeds. Paste the ID from Integrate > Standard embed code.
   // Forms: https://api.leadconnectorhq.com/widget/form/<ID>
@@ -62,13 +95,21 @@ export const site = {
     ['Richwood Ave.', 'Baltimore, MD', 'Single family', '1 home', '2020', 'Realized', 'richwood-ave', ''],
   ],
 
-  // The 12 existing posts from Talbott's GHL Resources blog site, newest first.
-  // Fill title, category, summary and url from GHL; placeholders until then.
-  articleCategories: ['Tax Strategy', 'Due Diligence', 'Deal Terms and Returns', 'Investing Fundamentals'],
-  articles: Array.from({ length: 12 }, (_, i) => ({
-    title: `[Resources blog article ${i + 1}]`,
-    category: ['Tax Strategy', 'Due Diligence', 'Deal Terms and Returns', 'Investing Fundamentals'][i % 4],
-    summary: 'Pulled from Talbott’s GHL Resources blog. Link to the existing post; do not rewrite.',
-    url: '',
-  })),
+  // Talbott's GHL Resources blog (blog815585), newest first. Cards link to the live posts.
+  articleCategories: ['Tax Benefits', 'Investor Returns', 'Due Diligence', 'Finance', 'Terms', 'Benefits', 'Market Insights'],
+  articles: [
+    { title: 'The Hidden Tax Trap Software Engineering Leaders Face (and How To Escape It)', date: 'Jan 14, 2026', category: 'Tax Benefits', summary: 'The hidden tax trap, and how to escape it.', url: 'https://talbottinvestments.com/post/the-hidden-wealth-trip-of-software-engineering-leaders', cover: 'https://storage.googleapis.com/msgsndr/wcZcbuIFekpLyE3fmvmO/media/6969425ce4cf740a0418c1d6.png' },
+    { title: 'Preferred Return: The Term Every Real Estate Investor Should Know', date: 'Dec 31, 2025', category: 'Investor Returns', summary: 'Unlocking investor benefits: why preferred return matters in real estate deals.', url: 'https://talbottinvestments.com/post/preferred-return-the-term-every-real-estate-investor-should-know', cover: 'https://storage.googleapis.com/msgsndr/wcZcbuIFekpLyE3fmvmO/media/695420a7edb8a250f4d935af.png' },
+    { title: 'Why It\'s Never Too Late To Start Investing In Real Estate', date: 'Dec 25, 2025', category: 'Benefits', summary: 'Building wealth at any age: why real estate investing is always an option.', url: 'https://talbottinvestments.com/post/why-its-never-too-late-to-start-investing-in-real-estate', cover: 'https://storage.googleapis.com/msgsndr/wcZcbuIFekpLyE3fmvmO/media/695420a7ec06c570e1ac840e.png' },
+    { title: 'Why Real Estate Analysis Matters', date: 'Nov 27, 2025', category: 'Finance', summary: 'Studying real estate investments before you commit capital.', url: 'https://talbottinvestments.com/post/why-real-estate-analysis-matter', cover: 'https://storage.googleapis.com/msgsndr/wcZcbuIFekpLyE3fmvmO/media/695420a77ccb03e4f2578f73.png' },
+    { title: 'The Importance of Due Diligence', date: 'Oct 22, 2025', category: 'Due Diligence', summary: 'Mitigating risk and maximizing returns: why due diligence is essential for smart investing.', url: 'https://talbottinvestments.com/post/the-importance-of-due-diligence-', cover: 'https://storage.googleapis.com/msgsndr/wcZcbuIFekpLyE3fmvmO/media/695420a7c0d43292cea32ddd.png' },
+    { title: 'What Markets are Best for Private Real Estate Investments', date: 'Sep 23, 2025', category: 'Due Diligence', summary: 'Finding the goldmine: how to identify the best markets for private real estate investments.', url: 'https://talbottinvestments.com/post/what-markets-are-best-for-private-real-estate-investments', cover: 'https://storage.googleapis.com/msgsndr/wcZcbuIFekpLyE3fmvmO/media/695420a7c0d4321cf0a32ddc.png' },
+    { title: 'What is a Waterfall Structure in Real Estate Finance', date: 'Aug 12, 2025', category: 'Finance', summary: 'Follow the money flow: breaking down the waterfall structure in investing.', url: 'https://talbottinvestments.com/post/what-is-a-waterfall-structure-in-real-estate-finance-', cover: '' },
+    { title: 'What is the Capital Stack in Real Estate Finance', date: 'Jul 24, 2025', category: 'Finance', summary: 'Decoding the capital stack: debt, equity, and risk in real estate finance.', url: 'https://talbottinvestments.com/post/what-is-the-capital-stack-in-real-estate-finance', cover: '' },
+    { title: 'Return of Capital Vs. Return on Capital', date: 'Jun 20, 2025', category: 'Investor Returns', summary: 'The key difference between return of capital and return on capital.', url: 'https://talbottinvestments.com/post/return-of-capital-vs-return-on-capital', cover: 'https://storage.googleapis.com/msgsndr/wcZcbuIFekpLyE3fmvmO/media/695420a7c0d4323deba32dd8.png' },
+    { title: 'Investing in Real Estate with a Self Directed IRA: Pros and Cons', date: 'Apr 9, 2025', category: 'Tax Benefits', summary: 'The benefits and risks of using a self-directed IRA for private real estate investing.', url: 'https://talbottinvestments.com/post/investing-in-real-estate-with-a-self-directed-ira-pros-and-cons', cover: '' },
+    { title: 'How Cost Segregation Affects Your Taxes', date: 'Mar 16, 2025', category: 'Tax Benefits', summary: 'How cost segregation can boost your real estate returns.', url: 'https://talbottinvestments.com/post/how-cost-segregation-affects-your-taxes', cover: '' },
+    { title: 'Accredited Investor VS. Non Accredited Investor', date: 'Feb 6, 2025', category: 'Terms', summary: 'Understanding the key differences, and where you stand.', url: 'https://talbottinvestments.com/post/accredited-investor-vs-non-accredited-investor', cover: '' },
+    { title: 'Passive Investing Terms You Should Know', date: 'Jan 15, 2025', category: 'Terms', summary: 'Essential terminology for passive investors in real estate and alternative investments.', url: 'https://talbottinvestments.com/post/passive-investing-terms-you-should-know-', cover: '' },
+  ],
 };

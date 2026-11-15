@@ -1,5 +1,5 @@
 {
-  "_readme": "VA EDIT FILE. Change text here only; never touch layout code. 'live' mirrors the GHL Webinar Builder custom values and is overwritten by scripts/sync-ghl.mjs when GHL API access is configured. Add a new replay by copying one block in 'replays' (newest first).",
+  "_readme": "VA EDIT FILE. Change text here only; never touch layout code. 'live' mirrors the GHL Webinar Builder custom values and is overwritten by scripts/sync-ghl.mjs when GHL API access is configured. Add a new replay by copying one block in 'replays' (newest first). Each replay has 'about' (About This Webinar paragraph) and 'cover' (cover image URL, from Drive '5. Webinar Replays').",
   "live": {
     "title": "[Live webinar title - from GHL custom value: Webinar Name (Header)]",
     "subtitle": "[Webinar sub-header - from GHL custom value: Webinar Name (Sub-Header)]",
@@ -29,6 +29,8 @@
       "title": "From RSUs to Real Assets",
       "subtitle": "How One Investor Turned $200,000 into $600 a Month in Distributions",
       "callout": "",
+      "about": "",
+      "cover": "",
       "flyer": "",
       "video": "",
       "takeaways": [
@@ -45,6 +47,8 @@
       "title": "1031 Exchanges",
       "subtitle": "How Real Estate Investors Defer Taxes and Reposition Capital",
       "callout": "A Framework for Keeping More of Your Capital Working",
+      "about": "",
+      "cover": "",
       "flyer": "",
       "video": "",
       "takeaways": [

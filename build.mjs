@@ -44,7 +44,29 @@ function heroLinework() {
   return `<svg class="linework" viewBox="0 0 472 653" preserveAspectRatio="none" aria-hidden="true" focusable="false">${paths}</svg>`;
 }
 
+// Native, site-styled lead forms. They post to /api/lead (api/lead.js), which drops honeypot
+// hits, upserts the contact into GHL with a tag when GHL_API_TOKEN + GHL_LOCATION_ID are set,
+// then redirects to the next page in the funnel.
+const F = { first: ['firstName', 'First name', 'text', 'given-name'], last: ['lastName', 'Last name', 'text', 'family-name'], email: ['email', 'Email', 'email', 'email'], phone: ['phone', 'Phone', 'tel', 'tel'] };
+const forms = {
+  newsletter: { tag: 'newsletter-optin', fields: ['first', 'email'], button: 'Subscribe', next: '/newsletter/thank-you/' },
+  getNotified: { tag: 'offering-notify', fields: ['first', 'last', 'email', 'phone'], button: 'Get Notified', next: '/thank-you/' },
+  evergreen: { tag: 'evergreen-webinar-registered', fields: ['first', 'last', 'email', 'phone'], button: 'Watch the Briefing', next: '/webinars/executive-investment-brief/watch/' },
+  liveWebinar: { tag: 'live-webinar-registered', fields: ['first', 'last', 'email', 'phone'], button: 'Reserve My Seat', next: '/webinars/register/thank-you/' },
+  contact: { tag: 'website-contact', fields: ['first', 'last', 'email', 'phone'], message: true, button: 'Send Message', next: '/thank-you/' },
+};
+function leadForm(key) {
+  const c = forms[key];
+  const input = (k) => { const [name, label, type, ac] = F[k]; return `<label>${label}<input name="${name}" type="${type}" autocomplete="${ac}"${k === 'phone' ? '' : ' required'}></label>`; };
+  return `<form class="lead-form lead-form-${key}" method="post" action="/api/lead">
+    <input type="hidden" name="form" value="${key}"><input type="hidden" name="next" value="${c.next}">
+    <div class="hp" aria-hidden="true"><label>Leave this field empty<input name="website" type="text" tabindex="-1" autocomplete="off"></label></div>
+    <div class="lead-fields">${c.fields.map(input).join('')}${c.message ? '<label class="wide">Message<textarea name="message" rows="4"></textarea></label>' : ''}</div>
+    <button class="button" type="submit">${c.button}</button></form>`;
+}
+
 function ghl(key) {
+  if (key !== 'calendar') return leadForm(key);
   const { id, where } = site.ghl[key];
   if (!id) return `<div class="ghl-slot" data-ghl="${key}"><strong>GHL ${key === 'calendar' ? 'calendar' : 'form'} embed</strong><br>${esc(where)}</div>`;
   const kind = key === 'calendar' ? 'booking' : 'form';
@@ -54,6 +76,8 @@ function ghl(key) {
 
 const SCHEDULE = '/schedule-a-call/';
 const BRIEF = '/webinars/executive-investment-brief/';
+const THANKS_VIDEO = site.thankYouVideo || live.thankYouVideo;
+const hero = (k) => A.pageHeroes?.[k] || A.pageImage;
 const nav = [['About', '/about/'], ['Strategy', '/strategy/'], ['Portfolio', '/portfolio/'], ['Learn', '/learn/'], ['Invest With Us', '/contact/'], ['Offerings', '/offerings/'], ['Webinars', '/webinars/']];
 
 const brand = (white = false) => {
@@ -66,7 +90,7 @@ function header() {
   return `<header class="header"><a class="brand-logo" href="/" aria-label="${esc(site.firm)} home">${brand(true)}</a>
     <button class="menu" aria-expanded="false" aria-controls="site-nav" type="button">Menu</button>
     <nav id="site-nav" aria-label="Main navigation">${nav.map(([l, h]) => link(l, h, 'nav-link')).join('')}
-    <a class="linkedin-link" href="${esc(site.linkedinUrl)}" aria-label="${esc(site.firm)} on LinkedIn"><svg aria-hidden="true" viewBox="0 0 24 24" fill="currentColor"><path d="M5.1 8.7h3.2V19H5.1zM6.7 3.6a1.9 1.9 0 1 1 0 3.8 1.9 1.9 0 0 1 0-3.8zM10.6 8.7h3.1v1.4h.1a3.4 3.4 0 0 1 3.1-1.7c3.3 0 3.9 2.2 3.9 5V19h-3.2v-5c0-1.2 0-2.8-1.7-2.8s-2 1.3-2 2.7V19h-3.3z"/></svg></a>
+    ${site.companyLinkedinUrl ? `<a class="linkedin-link" href="${esc(site.companyLinkedinUrl)}" aria-label="${esc(site.firm)} on LinkedIn"><svg aria-hidden="true" viewBox="0 0 24 24" fill="currentColor"><path d="M5.1 8.7h3.2V19H5.1zM6.7 3.6a1.9 1.9 0 1 1 0 3.8 1.9 1.9 0 0 1 0-3.8zM10.6 8.7h3.1v1.4h.1a3.4 3.4 0 0 1 3.1-1.7c3.3 0 3.9 2.2 3.9 5V19h-3.2v-5c0-1.2 0-2.8-1.7-2.8s-2 1.3-2 2.7V19h-3.3z"/></svg></a>` : ''}
     ${link('LP Login', portal, 'button portal')}</nav></header>`;
 }
 
@@ -80,17 +104,17 @@ function footer() {
   return `<footer class="section footer approachable-footer">
     <div class="approachable-footer-top"><div><a class="brand-logo footer-wordmark" href="/">${brand(true)}</a><address>${esc(site.location)}</address></div>
     <nav aria-label="Footer">${links.map(([l, h]) => link(l, h, 'nav-link')).join('')}
-      <div class="footer-socials"><a class="footer-linkedin" href="${esc(site.linkedinUrl)}" aria-label="${esc(site.firm)} on LinkedIn"><svg aria-hidden="true" viewBox="0 0 24 24" fill="currentColor"><path d="M5.1 8.7h3.2V19H5.1zM6.7 3.6a1.9 1.9 0 1 1 0 3.8 1.9 1.9 0 0 1 0-3.8zM10.6 8.7h3.1v1.4h.1a3.4 3.4 0 0 1 3.1-1.7c3.3 0 3.9 2.2 3.9 5V19h-3.2v-5c0-1.2 0-2.8-1.7-2.8s-2 1.3-2 2.7V19h-3.3z"/></svg></a></div>
+      ${site.companyLinkedinUrl ? `<div class="footer-socials"><a class="footer-linkedin" href="${esc(site.companyLinkedinUrl)}" aria-label="${esc(site.firm)} on LinkedIn"><svg aria-hidden="true" viewBox="0 0 24 24" fill="currentColor"><path d="M5.1 8.7h3.2V19H5.1zM6.7 3.6a1.9 1.9 0 1 1 0 3.8 1.9 1.9 0 0 1 0-3.8zM10.6 8.7h3.1v1.4h.1a3.4 3.4 0 0 1 3.1-1.7c3.3 0 3.9 2.2 3.9 5V19h-3.2v-5c0-1.2 0-2.8-1.7-2.8s-2 1.3-2 2.7V19h-3.3z"/></svg></a></div>` : ''}
       ${link('LP Login', site.portalUrl || '/contact/', 'footer-portal')}</nav></div>
     <div class="footer-legal"><small>© 2026 ${esc(site.firm)}. All rights reserved.</small><nav aria-label="Legal">${legal.map(([l, h]) => link(l, h, 'nav-link')).join('')}</nav></div>
-    <p class="disclosure"><strong>NO OFFER OF SECURITIES. DISCLOSURE OF INTERESTS.</strong> ${esc(site.firm)} and its representatives do not provide tax, legal, or accounting advice. This material has been prepared for informational purposes only, and is not intended to provide, and should not be relied on for, tax, legal, or accounting advice. Offerings are made only to accredited investors under Rule 506(c) through the applicable offering documents. You should consult your own tax, legal, and accounting advisors before engaging in any transaction.</p>
+    <p class="disclosure"><strong>NO OFFER OF SECURITIES. DISCLOSURE OF INTERESTS.</strong> ${esc(site.firm)} and its representatives do not provide tax, legal, or accounting advice. This material has been prepared for informational purposes only, and is not intended to provide, and should not be relied on for, tax, legal, or accounting advice. Offerings are made only to accredited investors under Rule 506(b) through the applicable offering documents. You should consult your own tax, legal, and accounting advisors before engaging in any transaction.</p>
     <p class="site-credit">Website by <a href="https://goraise.ai">GoRaise.ai</a></p></footer>`;
 }
 
 function shell(title, body, { withNewsletter = true, description = '' } = {}) {
   return `<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
   <meta name="robots" content="noindex"><title>${esc(title)}</title>${description ? `<meta name="description" content="${esc(description)}">` : ''}
-  <link rel="stylesheet" href="/site.css"><script src="/site.js" defer></script></head>
+  ${A.favicon ? `<link rel="icon" href="${esc(A.favicon)}">` : ''}<link rel="stylesheet" href="/site.css"><script src="/site.js" defer></script></head>
   <body class="approachable"><a class="skip" href="#main">Skip to content</a>${header()}${body}${withNewsletter ? newsletter : ''}${footer()}</body></html>`;
 }
 
@@ -107,7 +131,8 @@ const propertyCard = ([name, loc, type, size, , status, slug, photo]) => {
 const carousel = (slides) => `<div class="carousel" data-carousel><div class="rail" tabindex="0" aria-label="Recent transactions"><div class="track">${slides}</div></div><p class="sr-only" aria-live="polite" data-slide-status></p>
   <div class="controls"><button type="button" data-shift="-1" aria-label="Previous property">←</button><button type="button" data-shift="1" aria-label="Next property">→</button></div></div>`;
 
-const articleCard = (a) => panel(a.category, a.title, a.summary, a.url || '', '', 'Explore');
+const articleCard = (a) => `<article class="template-panel article-card">${a.url ? `<a class="article-cover" href="${esc(a.url)}" tabindex="-1" aria-hidden="true">${a.cover ? img(a.cover, '') : '<span class="article-cover-ph">' + esc(a.category) + '</span>'}</a>` : ''}
+  <p class="article-meta"><span>${esc(a.category)}</span>${a.date ? `<time>${esc(a.date)}</time>` : ''}</p><h3>${a.url ? link(a.title, a.url, 'nav-link') : esc(a.title)}</h3>${a.summary ? `<p>${esc(a.summary)}</p>` : ''}${a.url ? link('Read Article →', a.url, 'text-link') : ''}</article>`;
 
 // ---------- Home ----------
 const reasons = [
@@ -168,17 +193,21 @@ const home = `<main id="main">
 // ---------- Subpages ----------
 const pages = {};
 
+const person = (x) => `<article class="template-panel person-card">${pic(x.photo, x.name + ' photo')}<p class="eyebrow">${esc(x.role)}</p><h3>${esc(x.name)}</h3>${x.bio ? `<p>${esc(x.bio)}</p>` : ''}${x.linkedin ? link('LinkedIn →', x.linkedin, 'text-link') : '<p class="ghl-slot">LinkedIn link needed</p>'}</article>`;
+const partner = (x) => `<article class="template-panel"><p class="eyebrow">${esc(x.role)}</p><h3>${x.url ? link(x.name, x.url, 'nav-link') : esc(x.name)}</h3></article>`;
 pages['about'] = ['About', subpage('Firm and Leadership', 'About Talbott Investments', 'Meet the person behind the investment process.',
   section('Our Firm', `<div class="template-split">${media(A.aboutUsVideo, 'About Us video')}<div>${p(['Talbott Investments acquires and manages value add multifamily communities in growing markets, alongside experienced operating partners. We help busy professionals build passive income through real assets.', 'Our work centers on three things: disciplined acquisitions, institutional quality operating partners, and clear investor communication.'])}</div></div>`) +
-  section('Leadership', `<div class="template-split">${pic(A.headshot, 'Stephen Predmore headshot')}<div><p class="eyebrow">Managing Partner</p><h3>Stephen Predmore</h3>${p(['Stephen founded Talbott Investments after a 30 year career in engineering, where he became a licensed Professional Engineer. A corporate downsizing showed him how exposed a single paycheck can be, and he committed to building wealth through real assets and helping others do the same. Today he builds relationships with investors and operating partners, evaluates acquisitions in target markets, and oversees the investor experience from first call to distribution.'])}</div></div>${media(A.aboutMeVideo, 'About Me video (founder)')}`) +
-  section('Values', steps([['Trust Is Earned', 'We do what we say we will do and prepare before we need to.'], ['Transparency', 'Assumptions, risks, and results are easy to find, not buried.'], ['Discipline', 'We pass on far more deals than we pursue.']])))];
+  section('Leadership', `<div class="template-split">${pic(A.headshot, 'Stephen Predmore headshot')}<div><p class="eyebrow">Managing Partner</p><h3>Stephen Predmore</h3>${p(['Stephen founded Talbott Investments after a 30 year career in engineering, where he became a licensed Professional Engineer. A corporate downsizing showed him how exposed a single paycheck can be, and he committed to building wealth through real assets and helping others do the same. Today he builds relationships with investors and operating partners, evaluates acquisitions in target markets, and oversees the investor experience from first call to distribution.'])}${link('Connect with Stephen on LinkedIn', site.linkedinUrl, 'button linkedin-button')}</div></div>${media(A.aboutMeVideo, 'About Me video (founder)')}`) +
+  section('Advisors', grid(site.advisors.map(person), 'person-grid')) +
+  section('Strategic Partners', p(['The legal, tax, administration, and operating partners who support every Talbott offering.']) + grid(site.partners.map(partner))) +
+  section('Values', steps([['Trust Is Earned', 'We do what we say we will do and prepare before we need to.'], ['Transparency', 'Assumptions, risks, and results are easy to find, not buried.'], ['Discipline', 'We pass on far more deals than we pursue.']])), hero('about'))];
 
 pages['strategy'] = ['Strategy', subpage('How We Invest', 'Investment Strategy and Approach', 'How we select markets, underwrite deals, and oversee every investment.',
   section('Investment Focus', p(['We acquire value add multifamily communities: well located Class B properties in strong neighborhoods, where better management and targeted renovations can raise income and value. Hold periods typically run 2 to 5 years.'])) +
-  section('Target Markets', grid([panel('Target Market', 'High Growth Metros', 'Population growth, positive net migration, job growth, and a diverse economy not reliant on one sector.'), panel('Target Market', 'Landlord Friendly States', 'A favorable tax climate, balanced regulations, and a strong institutional buyer presence for future exits.')])) +
+  section('Target Markets', grid([panel('Target Market', 'High Growth Metros', 'Population growth, positive net migration, job growth, and a diverse economy not reliant on one sector.'), panel('Target Market', 'Business-Friendly Environments', 'A favorable tax climate, balanced regulations, and a strong institutional buyer presence for future exits.')])) +
   section('Underwriting and Approval', steps([['Source', 'Screen every opportunity against our market and property criteria.'], ['Underwrite', 'Use conservative assumptions, test downside scenarios, and build in reserves.'], ['Approve', 'Move forward only when a deal meets every standard.']])) +
-  section('Deal Structure and Risk', p(['Minimums, fees, distribution priorities, and hold periods are set in each offering’s documents. Offerings are available to accredited investors under Rule 506(c).', 'Risk controls include conservative leverage, interest rate protection, healthy reserves, and investors receiving a preferred return before the sponsor participates in profits.']) + link('Explore Investor Education →', '/learn/')) +
-  section('Tax Advantages', p(['Multifamily may offer depreciation, cost segregation, and 1031 exchange benefits that can reduce taxable income from distributions and defer capital gains. Benefits depend on your situation. Consult your tax advisor.'])))];
+  section('Deal Structure and Risk', p(['Minimums, fees, distribution priorities, and hold periods are set in each offering’s documents. Offerings are available to accredited investors under Rule 506(b).', 'Risk controls include conservative leverage, interest rate protection, healthy reserves, and investors receiving a preferred return before the sponsor participates in profits.']) + link('Explore Investor Education →', '/learn/')) +
+  section('Tax Advantages', p(['Multifamily may offer depreciation, cost segregation, and 1031 exchange benefits that can reduce taxable income from distributions and defer capital gains. Benefits depend on your situation. Consult your tax advisor.'])), hero('strategy'))];
 
 const filterGrid = `<div class="template-filters" data-filter><label>Status <select data-category><option value="">All statuses</option><option>Active</option><option>Realized</option></select></label>
   <div class="template-grid">${site.properties.map((pr) => `<div data-filter-item data-group="${esc(pr[5])}">${panel(pr[5], pr[0], `${pr[2]} · ${pr[1]} · ${pr[3]} · ${pr[4]}`, pr[6] ? `/portfolio/${pr[6]}/` : '', pic(pr[7], pr[0] + ' photo'))}</div>`).join('')}</div><p data-filter-empty hidden>No results.</p></div>`;
@@ -186,7 +215,7 @@ const filterGrid = `<div class="template-filters" data-filter><label>Status <sel
 pages['portfolio'] = ['Portfolio', subpage('Portfolio', 'Track Record and Portfolio', 'Explore our properties, deal details, and portfolio results.',
   section('Portfolio Snapshot', stats(site.stats, true) + p(['Past performance does not guarantee future results.'])) +
   section('Recent Transactions', filterGrid) +
-  section('Case Studies', grid([panel('Operating Plan', 'Rise Sunridge', 'A 200 unit value add community in Charlotte.', '/portfolio/rise-sunridge/'), panel('Full Cycle', 'Richwood Ave.', 'An acquisition to exit example in Baltimore.', '/portfolio/richwood-ave/')])))];
+  section('Case Studies', grid([panel('Operating Plan', 'Rise Sunridge', 'A 200 unit value add community in Charlotte.', '/portfolio/rise-sunridge/'), panel('Full Cycle', 'Richwood Ave.', 'An acquisition to exit example in Baltimore.', '/portfolio/richwood-ave/')])), hero('portfolio'))];
 
 const metrics = [['Units', '200'], ['Acquired', 'May 2025'], ['Hold status', 'Active'], ['Purchase price', '$31,000,000'], ['Renovation budget', 'About $4.25M'], ['Loan to value', '68.3%'], ['Interest rate', 'Capped at 4.75% for 5 years'], ['Planned hold', '2 to 5 years']];
 pages['portfolio/rise-sunridge'] = ['Rise Sunridge', subpage('Property Profile', 'Rise Sunridge', 'A 200 unit value add multifamily community in Charlotte, North Carolina.',
@@ -202,27 +231,27 @@ pages['portfolio/richwood-ave'] = ['Richwood Ave.', subpage('Case Study · Full 
   link('Back to Portfolio', '/portfolio/'))];
 
 pages['offerings'] = ['Offerings', subpage('Investor Access', 'Current Offerings', 'Speak with our team to review current and upcoming opportunities.',
-  `<p>${link('Contact Investor Relations', SCHEDULE)}</p>` +
   section('Investor Access', p(['Offering materials and accreditation verification are handled through our investor portal.']) + link('Contact Investor Relations', SCHEDULE)) +
-  section('Preview the Offering Flow', p(['See how we present an opportunity, from the market to the business plan.']) + link('View Sample Offering →', '/portfolio/rise-sunridge/', 'text-link')) +
-  section('Get Notified', ghl('getNotified')))];
+  section('Get Notified', ghl('getNotified')), hero('offerings'))];
 
 const quick = [['Who can invest?', 'Our offerings are open to accredited investors, with accreditation verified before investing.'], ['What is the minimum investment?', 'Minimums are set in each offering’s documents.'], ['How are distributions handled?', 'Distribution timing and priorities are set in each offering’s documents, and investors receive regular reporting.'], ['Where do I find tax documents?', 'Tax documents are delivered through the investor portal.'], ['How long is my capital invested?', 'Hold periods typically run 2 to 5 years and are set in each offering’s documents.']];
+const neverMiss = `<section class="never-miss"><div><p class="eyebrow">${esc(site.newsletterName)}</p><h2>Never Miss an Article</h2><p>New articles, market insights, and first access to upcoming opportunities, delivered to your inbox.</p></div>${ghl('newsletter')}</section>`;
 pages['learn'] = ['Learn', subpage('Investor Education', 'Insights and Resources', 'Articles, quick answers, and market perspective for passive real estate investors.',
+  neverMiss +
   section('Resource Library', `<div class="template-filters" data-filter><label>Search resources <input type="search" data-query placeholder="Search resources"></label>
     <label>Category <select data-category><option value="">All</option>${site.articleCategories.map((c) => `<option>${esc(c)}</option>`).join('')}</select></label>
-    <div class="template-grid">${site.articles.map((a) => `<div data-filter-item data-group="${esc(a.category)}">${articleCard(a)}</div>`).join('')}</div><p data-filter-empty hidden>No matching resources.</p></div>`) +
+    <div class="template-grid article-grid">${site.articles.map((a) => `<div data-filter-item data-group="${esc(a.category)}">${articleCard(a)}</div>`).join('')}</div><p data-filter-empty hidden>No matching resources.</p></div>`) +
   section('Quick Answers', grid(quick.map(([q, a]) => panel('Quick Answer', q, a)))) +
-  section('', link('Watch the Executive Investment Brief →', BRIEF), 'Investor Brief'))];
+  section('', link('Watch the Executive Investment Brief →', BRIEF), 'Investor Brief'), hero('learn')), { withNewsletter: false }];
 
-const replayCard = (r) => `<article class="template-panel replay-row"><div><p class="eyebrow">${esc(r.month)}</p><h3>${link(r.title, `/webinars/replay/${r.slug}/`, 'nav-link')}</h3><p>${esc(r.subtitle)}</p>${link('Watch Replay', `/webinars/replay/${r.slug}/`)}</div>${pic(r.flyer, r.title + ' flyer')}</article>`;
+const replayCard = (r) => `<article class="template-panel replay-row"><div><p class="eyebrow">${esc(r.month)}</p><h3>${link(r.title, `/webinars/replay/${r.slug}/`, 'nav-link')}</h3><p>${esc(r.subtitle)}</p>${link('Watch Replay', `/webinars/replay/${r.slug}/`)}</div>${pic(r.cover || r.flyer, r.title + ' cover')}</article>`;
 pages['webinars'] = ['Webinars', subpage('Investor Briefings', 'Webinars and Events', 'Watch the Executive Investment Brief on demand, join Stephen’s next live webinar, or browse past recordings.',
   section('Choose a Briefing', grid([
     panel('On Demand', 'The Executive Investment Brief', 'Reduce concentration risk, prepare for tax exposure, and build passive income through multifamily.', BRIEF, (A.briefThumbnail ? img(A.briefThumbnail, 'Executive Investment Brief thumbnail') : videoPh('The Executive Investment Brief', 'Watch on demand'))),
     panel('Live Webinar', live.title, `${live.date} · ${live.time}`, '/webinars/register/', liveCardArt),
-    panel('Replay Library', 'Past Recordings', 'Watch past webinars on your own schedule.', '#past-recordings', pic(webinars.replays[0]?.flyer, 'Replay library')),
+    panel('Replay Library', 'Past Recordings', 'Watch past webinars on your own schedule.', '#past-recordings', pic(webinars.replays[0]?.cover || webinars.replays[0]?.flyer, 'Replay library')),
   ], 'webinar-cards')) +
-  `<div id="past-recordings">${section('Past Recordings', `<div class="template-grid replay-list">${webinars.replays.map(replayCard).join('')}</div>`)}</div>`)];
+  `<div id="past-recordings">${section('Past Recordings', `<div class="template-grid replay-list">${webinars.replays.map(replayCard).join('')}</div>`)}</div>`, hero('webinars'))];
 
 pages['webinars/executive-investment-brief'] = ['The Executive Investment Brief', subpage('On Demand', 'The Executive Investment Brief', 'An on demand briefing on reducing concentration risk, preparing for tax exposure, and building passive income through multifamily.',
   section('What You Will Learn', bullets(['The hidden risks of RSU concentration and the tax shock that comes at vesting', 'Why multifamily moves independently of the stock market and creates consistent passive income', 'The common issues passive investors face, and how a transparent sponsor avoids them', 'A real use case: how a value add property is performing for investors today'])) +
@@ -231,35 +260,45 @@ pages['webinars/executive-investment-brief'] = ['The Executive Investment Brief'
 // Evergreen watch page (on Vercel for now; GHL form redirects here)
 pages['webinars/executive-investment-brief/watch'] = ['Watch the Executive Investment Brief', subpage('On Demand', 'The Executive Investment Brief', 'Thank you for registering. Watch the full briefing below.',
   section('', media(webinars.evergreen.watchVideo, 'Executive Investment Brief', webinars.evergreen.thumbnail)) +
-  section('Ready to Talk?', p(['Start with a conversation about your goals, your timeline, and whether our approach is the right fit.']) + link('Schedule a Call', SCHEDULE)))];
+  section('Ready to Talk?', p(['Start with a conversation about your goals, your timeline, and whether our approach is the right fit.']) + link('Schedule Discovery Call', site.discoveryCallUrl)), hero('webinars')), { withNewsletter: false }];
 
 pages['webinars/register'] = ['Live Webinar Registration', subpage('Live Webinar Registration', live.title, `${live.date} · ${live.time} · Hosted by ${live.host}`,
   (live.subtitle ? `<p class="lead" style="color:#232e4d">${esc(live.subtitle)}</p>` : '') +
   `<div class="template-split"><div>${section('What You Will Learn', bullets(live.whatYouWillLearn))}${section('About This Webinar', p([live.about]))}</div><div>${pic(live.flyer, 'Live webinar flyer')}</div></div>` +
   section('Reserve a Place', ghl('liveWebinar')), live.flyer || A.pageImage)];
 
+const introCta = section('Ready to Talk?', p(['Schedule a short introduction call with Stephen to talk through your goals and see whether our approach is the right fit.']) + link('Schedule an Introduction Call', site.introCallUrl), 'Next Step');
 pages['webinars/register/thank-you'] = ['You’re Registered', subpage('You’re Registered', 'Thank You for Registering for the Live Webinar', 'Check your email for your confirmation and the link to join.',
   `<p>${live.addToCalendarUrl ? link('Add to Your Calendar', live.addToCalendarUrl) : '<span class="ghl-slot">Add to Your Calendar button: paste this month’s calendar link in content/webinars.json</span>'}</p>` +
-  section('A Message from Stephen', media(live.thankYouVideo, 'Webinar thank you video')), A.pageImage), { withNewsletter: false }];
+  section('A Message from Stephen', media(THANKS_VIDEO, 'Thank you message from Stephen')) +
+  introCta, hero('webinars')), { withNewsletter: false }];
+
+pages['newsletter/thank-you'] = ['Thank You for Subscribing', subpage(site.newsletterName, 'Thank You for Subscribing to Our Newsletter', 'A confirmation email and your first article are on the way to your inbox. If you do not see them shortly, please check your promotions or spam folder.',
+  section('What to Expect', p([`${site.newsletterName} arrives in your inbox [twice a month], with practical articles on passive real estate investing, market insights, and first access to new opportunities.`])) +
+  section('A Message from Stephen', media(THANKS_VIDEO, 'Thank you message from Stephen')) +
+  introCta, hero('learn')), { withNewsletter: false }];
+
+pages['thank-you'] = ['Thank You', subpage('Thank You', 'Thank You. We Received Your Message.', 'A member of our team will follow up shortly.', introCta, hero('contact')), { withNewsletter: false }];
 
 for (const r of webinars.replays) {
   pages[`webinars/replay/${r.slug}`] = [r.title, subpage(r.label, r.title, r.subtitle,
     (r.callout ? `<p class="callout-bar">${esc(r.callout)}</p>` : '') +
-    section('', media(r.video, r.title + ' replay', r.flyer)) +
-    section('Key Takeaways', bullets(r.takeaways)) + link('Schedule a Call', SCHEDULE))];
+    section('', media(r.video, r.title + ' replay', r.cover || r.flyer)) +
+    `<div class="template-split replay-details"><div>${section('About This Webinar', r.about ? p([r.about]) : '<p class="ghl-slot">About This Webinar copy needed (content/webinars.json, "about")</p>')}${section('Key Takeaways', bullets(r.takeaways))}</div><div>${pic(r.cover, r.title + ' cover image')}</div></div>` +
+    link('Schedule a Call', SCHEDULE), hero('webinars'))];
 }
 
 pages['schedule-a-call'] = ['Schedule a Call', subpage('Investor Relations', 'Schedule a Call', 'Pick a time to talk through your goals, your timeline, and whether our approach is the right fit.',
   `<div class="template-split"><div>${ghl('calendar')}</div><div>${section('What to Expect', bullets(['Get acquainted', 'Clarify your investment objectives', 'Determine whether there is alignment']))}</div></div>`), { withNewsletter: false }];
 
 pages['contact'] = ['Contact', subpage('Investor Relations', 'Get Started', 'Ask a question or schedule an introductory call.',
-  `<div class="template-split">${section('Get in Touch', ghl('contact'))}<div class="office-block">${section('Office', `<address>${esc(site.location)}<br><a href="tel:+14438069386">${esc(site.phone)}</a><br><a href="mailto:${esc(site.email)}">${esc(site.email)}</a></address>${link('Schedule a Call', SCHEDULE)}`)}</div></div>`)];
+  `<div class="template-split">${section('Get in Touch', ghl('contact'))}<div class="office-block">${section('Office', `<address>${esc(site.location)}<br><a href="tel:+14438069386">${esc(site.phone)}</a><br><a href="mailto:${esc(site.email)}">${esc(site.email)}</a></address>${link('Schedule a Call', SCHEDULE)}`)}</div></div>`, hero('contact'))];
 
 const legalNote = (from) => `<p class="ghl-slot">Draft. Final copy is adapted from <a href="${from}">${from}</a> with every Cramlet name, email, phone, and address changed to Talbott’s. Pending legal copy paste.</p>`;
 pages['privacy-policy'] = ['Privacy Policy', subpage('Legal', 'Privacy Policy', '', legalNote('https://cramletcapital.com/privacy-policy/'))];
 pages['terms-of-use'] = ['Terms of Use', subpage('Legal', 'Terms of Use', '', legalNote('https://cramletcapital.com/terms-and-conditions/'))];
 pages['investment-disclaimers'] = ['Investment Disclaimers', subpage('Legal', 'Investment Disclaimers', '', legalNote('https://cramletcapital.com/general-disclosure/') +
-  p(['Private investments are illiquid and may result in a loss of principal. Past performance does not guarantee future results. Offerings are available only to accredited investors under Rule 506(c) and only through the applicable offering documents. Consult your tax advisor.']))];
+  p(['Private investments are illiquid and may result in a loss of principal. Past performance does not guarantee future results. Offerings are available only to accredited investors under Rule 506(b) and only through the applicable offering documents. Consult your tax advisor.']))];
 
 // ---------- Write ----------
 await rm('dist', { recursive: true, force: true });

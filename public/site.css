@@ -207,6 +207,13 @@
 @media (max-width: 560px) {
   .approachable .intro::before { left: 46%; background-size: 11px 100%; }
   .intro-panel h2 { font-size: clamp(.95rem, 4.7vw, 1.55rem); }
+  /* Phones: keep the lines to the right edge and fade them out behind the copy. */
+  .linework {
+    width: 30%;
+    stroke-opacity: .4;
+    -webkit-mask-image: linear-gradient(to bottom, #000 0, #000 38%, rgba(0,0,0,.18) 55%, rgba(0,0,0,.18) 100%);
+    mask-image: linear-gradient(to bottom, #000 0, #000 38%, rgba(0,0,0,.18) 55%, rgba(0,0,0,.18) 100%);
+  }
 }
 
 

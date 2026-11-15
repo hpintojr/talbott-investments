@@ -64,7 +64,12 @@
   border: 1px solid currentColor;
   text-decoration: none;
 }.ghl-site .linkedin-link svg{ width: 24px; height: 24px; }.ghl-site .linkedin-link:hover{ background: #ffffff20; }.ghl-site .approachable.has-scrolled .linkedin-link:hover{ background: #00583f12; }@media (max-width: 850px){.ghl-site .linework{ width: 48%; }.ghl-site .linkedin-link{ align-self: flex-start; }
-}@media (max-width: 560px){.ghl-site .approachable .intro::before{ left: 46%; background-size: 11px 100%; }.ghl-site .intro-panel h2{ font-size: clamp(.95rem, 4.7vw, 1.55rem); }
+}@media (max-width: 560px){.ghl-site .approachable .intro::before{ left: 46%; background-size: 11px 100%; }.ghl-site .intro-panel h2{ font-size: clamp(.95rem, 4.7vw, 1.55rem); }.ghl-site .linework{
+    width: 30%;
+    stroke-opacity: .4;
+    -webkit-mask-image: linear-gradient(to bottom, #000 0, #000 38%, rgba(0,0,0,.18) 55%, rgba(0,0,0,.18) 100%);
+    mask-image: linear-gradient(to bottom, #000 0, #000 38%, rgba(0,0,0,.18) 55%, rgba(0,0,0,.18) 100%);
+  }
 }.ghl-site .approachable .motion-item{ --reveal-duration: 1s; }.ghl-site .approachable .hero-copy > *{ --reveal-y: 0px; }.ghl-site .approachable .hero-copy h1.is-revealed{
   animation-name: wipe-hero-title;
   animation-duration: 1.05s;

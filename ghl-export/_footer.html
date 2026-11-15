@@ -16,7 +16,7 @@ if (menu) {
 
 const reducedMotion = matchMedia('(prefers-reduced-motion: reduce)');
 const clamp = (value) => Math.max(0, Math.min(value, 1));
-const page = document.body;
+const page = document.querySelector('.ghl-site > div') || document.body;
 const theme = ['approachable', 'bold', 'institutional'].find((name) => page.classList.contains(name));
 
 for (const carousel of document.querySelectorAll('[data-carousel]')) {

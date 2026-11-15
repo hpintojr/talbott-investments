@@ -1,4 +1,6 @@
 import json,re,os,sys,glob,html
+sys.path.insert(0,os.path.dirname(os.path.abspath(__file__)))
+from css_scope import scope_css
 S=os.path.dirname(os.path.abspath(__file__)); D=os.environ.get('GHL_DIST','ghl-dist'); O=os.environ.get('GHL_OUT','ghl-export')
 os.makedirs(O,exist_ok=True)
 media=json.load(open(f'{S}/ghl-media.json'))
@@ -24,11 +26,11 @@ for p in pages:
     d=re.search(r'<meta name="description" content="(.*?)"',t); desc=html.unescape(d.group(1)) if d else ''
     bc=re.search(r'<body class="([^"]*)"',t).group(1)
     body=re.search(r'<body[^>]*>(.*)</body>',t,re.S).group(1)
-    frag=f'<div class="ghl-site {bc}">{fix(body)}</div>'
+    frag=f'<div class="ghl-site"><div class="{bc}">{fix(body)}</div></div>'
     name='home' if rel=='.' else rel.replace('/','-')
     open(f'{O}/{name}.html','w').write(frag)
     manifest.append({'name':name,'path':ghlpath(rel),'title':html.unescape(title),'description':desc,'bytes':len(frag)})
-css=fix(open(f'{D}/site.css').read()); js=open(f'{D}/site.js').read()
+css=scope_css(fix(open(f'{D}/site.css').read()),'.ghl-site')+'.ghl-site{display:block;width:100%;text-align:left;margin:0;padding:0;--bg:#fff;--ink:#232e4d;background:#fff}'; js=open(f'{D}/site.js').read().replace("const page = document.body;","const page = document.querySelector('.ghl-site > div') || document.body;")
 open(f'{O}/_head.html','w').write(f'<style>{css}</style>')
 open(f'{O}/_footer.html','w').write(f'<script>{fix(js)}</script>')
 json.dump(manifest,open(f'{O}/manifest.json','w'),indent=1)

@@ -1171,3 +1171,15 @@
 .approachable .office-block p{color:#5b6884}
 .approachable .lead-form-contact{margin-top:18px}
 .approachable section>h2+.lead-form{margin-top:18px}
+/* Home portfolio + stats */
+.approachable .portfolio-layout .stats{border:0;gap:14px;grid-auto-flow:row;grid-template-columns:repeat(2,minmax(0,1fr))}
+.approachable .portfolio-layout .stats>div{background:#fff;border:1px solid #e1e7f0;border-radius:var(--radius);box-shadow:var(--shadow-sm);padding:22px 24px}
+.approachable .portfolio-layout .stats dd{color:#083965;font-weight:600}
+.approachable .portfolio-layout .stats dt{color:#5b6884}
+.approachable .property{background:#fff;border:1px solid #e1e7f0}
+.approachable .placeholder-photo{background:linear-gradient(135deg,#0b2447,#19376d 60%,#2e5a8f)}
+.approachable .controls button{border-radius:50%;width:44px;height:44px;background:#fff;box-shadow:var(--shadow-sm);transition:background .2s,color .2s}
+.approachable .controls button:not(:disabled):hover{background:#083965;color:#fff}
+.approachable .why-card{border-radius:var(--radius);background:#ffffff08;backdrop-filter:blur(2px);transition:background .25s,border-color .25s}
+.approachable .why-card:hover{background:#ffffff12;border-color:#ffffff40}
+.approachable .template-panel{border-radius:var(--radius);overflow:hidden}

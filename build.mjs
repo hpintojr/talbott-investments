@@ -66,11 +66,13 @@ function leadForm(key) {
 }
 
 function ghl(key) {
-  if (key !== 'calendar') return leadForm(key);
   const { id, where } = site.ghl[key];
+  // The Vercel build uses native forms; the GHL export (GHL_EXPORT=1) embeds the real GHL forms.
+  if (key !== 'calendar' && !(process.env.GHL_EXPORT && id)) return leadForm(key);
   if (!id) return `<div class="ghl-slot" data-ghl="${key}"><strong>GHL ${key === 'calendar' ? 'calendar' : 'form'} embed</strong><br>${esc(where)}</div>`;
   const kind = key === 'calendar' ? 'booking' : 'form';
-  return `<iframe class="ghl-embed" src="https://api.leadconnectorhq.com/widget/${kind}/${esc(id)}" id="ghl-${kind}-${esc(id)}" title="${esc(where.split('>').pop().trim())}"></iframe>
+  const frameId = kind === 'form' ? `inline-${esc(id)}` : `${esc(id)}_booking`;
+  return `<iframe class="ghl-embed ghl-embed-${kind}" src="https://api.leadconnectorhq.com/widget/${kind}/${esc(id)}" id="${frameId}" data-layout="{'id':'INLINE'}" data-trigger-type="alwaysShow" data-activation-type="alwaysActivated" data-deactivation-type="neverDeactivate" data-form-id="${esc(id)}" scrolling="no" title="${esc(where.split('>').pop().trim())}"></iframe>
     <script src="https://link.msgsndr.com/js/form_embed.js" defer></script>`;
 }
 
@@ -304,13 +306,14 @@ pages['investment-disclaimers'] = ['Investment Disclaimers', subpage('Legal', 'I
   p(['Private investments are illiquid and may result in a loss of principal. Past performance does not guarantee future results. Offerings are available only to accredited investors under Rule 506(b) and only through the applicable offering documents. Consult your tax advisor.']))];
 
 // ---------- Write ----------
-await rm('dist', { recursive: true, force: true });
-await mkdir('dist', { recursive: true });
-await cp('public', 'dist', { recursive: true });
-await writeFile('dist/index.html', shell(`${site.firm} | Passive Multifamily Investing`, home, { description: 'Passive multifamily investments built on disciplined underwriting, transparent reporting, and consistent distributions.' }));
+const OUT = process.env.OUT || 'dist';
+await rm(OUT, { recursive: true, force: true });
+await mkdir(OUT, { recursive: true });
+await cp('public', OUT, { recursive: true });
+await writeFile(`${OUT}/index.html`, shell(`${site.firm} | Passive Multifamily Investing`, home, { description: 'Passive multifamily investments built on disciplined underwriting, transparent reporting, and consistent distributions.' }));
 for (const [slug, [title, html, opts = {}]] of Object.entries(pages)) {
-  await mkdir('dist/' + slug, { recursive: true });
-  await writeFile(`dist/${slug}/index.html`, shell(`${title} | ${site.firm}`, html, opts));
+  await mkdir(`${OUT}/${slug}`, { recursive: true });
+  await writeFile(`${OUT}/${slug}/index.html`, shell(`${title} | ${site.firm}`, html, opts));
 }
-await writeFile('dist/404.html', shell(`Page not found | ${site.firm}`, subpage('404', 'Page Not Found', 'The page you are looking for has moved.', link('Back to Home', '/'))));
+await writeFile(`${OUT}/404.html`, shell(`Page not found | ${site.firm}`, subpage('404', 'Page Not Found', 'The page you are looking for has moved.', link('Back to Home', '/'))));
 console.log(`Built ${Object.keys(pages).length + 1} pages`);

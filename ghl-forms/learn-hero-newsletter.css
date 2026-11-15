@@ -50,3 +50,8 @@ html, body, #app, .form-builder--wrap, #_builder-form, .form-side, .fields-conta
   #_builder-form .form-field-wrapper { margin: 0 !important; }
   #_builder-form#_builder-form .button-element { width: auto !important; white-space: nowrap; }
 }
+
+/* GHL gives the form a 200px min-height, which centers the fields and leaves a gap in the hero */
+#_builder-form .form-side, #_builder-form > .flex { min-height: 0 !important; height: auto !important; align-items: flex-start !important; }
+/* GHL sets padding-left:39px !important inline on the email input (room for the icon we hide); pull the text back to 14px */
+#_builder-form#_builder-form #email { text-indent: -25px !important; }

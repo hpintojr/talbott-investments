@@ -1183,3 +1183,4 @@
 .approachable .why-card{border-radius:var(--radius);background:#ffffff08;backdrop-filter:blur(2px);transition:background .25s,border-color .25s}
 .approachable .why-card:hover{background:#ffffff12;border-color:#ffffff40}
 .approachable .template-panel{border-radius:var(--radius);overflow:hidden}
+.approachable .menu{border-radius:999px;padding:8px 18px;font-weight:600}

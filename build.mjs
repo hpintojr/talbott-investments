@@ -25,6 +25,25 @@ const panel = (label, title, summary, href = '', art = '', cta = 'Explore') => `
 const media = (url, label, poster = '') => url
   ? `<video class="template-video" controls playsinline preload="metadata" src="${esc(url)}"${poster ? ` poster="${esc(poster)}"` : ''} aria-label="${esc(label)}"></video>`
   : videoPh(label);
+// Replay video block: cover + coded play button; click swaps in the MP4 or Streamable embed and autoplays.
+function replayVideo(r) {
+  const v = (r.video || '').trim();
+  const cover = r.cover || r.flyer;
+  let kind = '', src = '';
+  if (v) {
+    const iframe = v.match(/<iframe[^>]*src=["']([^"']+)["']/i);
+    const sid = v.match(/streamable\.com\/(?:e\/|o\/)?([a-z0-9]+)/i);
+    if (iframe) { kind = 'embed'; src = iframe[1]; }
+    else if (sid) { kind = 'embed'; src = `https://streamable.com/e/${sid[1]}`; }
+    else { kind = 'mp4'; src = v; }
+  }
+  if (!cover && !src) return videoPh(r.title, 'Webinar Replay');
+  const art = cover ? `<img src="${esc(cover)}" alt="${esc(r.title)} replay cover" decoding="async">` : '<span class="replay-video-blank"></span>';
+  return src
+    ? `<div class="replay-video" data-kind="${kind}" data-src="${esc(src)}"><button type="button" class="replay-video-btn" aria-label="Play ${esc(r.title)} replay">${art}<span class="replay-play" aria-hidden="true"></span></button></div>`
+    : `<div class="replay-video is-pending">${art}<span class="replay-play" aria-hidden="true"></span><span class="replay-soon">Replay video coming soon</span></div>`;
+}
+
 // Video-style placeholder: branded backdrop, Stephen cutout, centered play button. Swapped out once the real video or thumbnail is set.
 function videoPh(title, eyebrow = 'Video') {
   return `<div class="video-ph" role="img" aria-label="${esc(title)} (video coming soon)"><img src="/images/stephen-predmore.webp" alt="" aria-hidden="true" loading="lazy"><div class="video-ph-copy"><span>${esc(eyebrow)}</span><strong>${esc(title)}</strong></div><span class="video-ph-play" aria-hidden="true"></span></div>`;
@@ -298,8 +317,8 @@ pages['thank-you'] = ['Thank You', subpage('Thank You', 'Thank You. We Received 
 for (const r of webinars.replays) {
   pages[`webinars/replay/${r.slug}`] = [r.title, subpage(r.label, r.title, r.subtitle,
     (r.callout ? `<p class="callout-bar">${esc(r.callout)}</p>` : '') +
-    section('', media(r.video, r.title + ' replay', r.cover || r.flyer)) +
-    `<div class="template-split replay-details"><div>${section('About This Webinar', r.about ? p([r.about]) : '<p class="ghl-slot">About This Webinar copy needed (content/webinars.json, "about")</p>')}${section('Key Takeaways', bullets(r.takeaways))}</div><div>${pic(r.cover, r.title + ' cover image')}</div></div>` +
+    section('', replayVideo(r)) +
+    `<div class="replay-details">${r.about ? section('About This Webinar', p([r.about])) : ''}${section('Key Takeaways', bullets(r.takeaways))}</div>` +
     link('Schedule a Call', SCHEDULE), hero('webinars'))];
 }
 

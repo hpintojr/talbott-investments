@@ -540,3 +540,25 @@ for (const svg of document.querySelectorAll('.linework')) {
   fit();
   addEventListener('resize', fit, { passive: true });
 }
+
+// Replay video block: swap the cover for the video on click and autoplay
+document.querySelectorAll('.replay-video[data-src]').forEach((box) => {
+  const btn = box.querySelector('.replay-video-btn');
+  if (!btn) return;
+  btn.addEventListener('click', () => {
+    const src = box.dataset.src;
+    if (box.dataset.kind === 'embed') {
+      const f = document.createElement('iframe');
+      f.src = src + (src.includes('?') ? '&' : '?') + 'autoplay=1';
+      f.allow = 'autoplay; fullscreen; picture-in-picture';
+      f.allowFullscreen = true;
+      f.title = btn.getAttribute('aria-label') || 'Webinar replay';
+      box.replaceChildren(f);
+    } else {
+      const v = document.createElement('video');
+      v.src = src; v.controls = true; v.autoplay = true; v.playsInline = true;
+      box.replaceChildren(v);
+      v.play().catch(() => {});
+    }
+  }, { once: true });
+});

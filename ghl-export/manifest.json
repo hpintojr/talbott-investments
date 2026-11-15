@@ -123,7 +123,7 @@
   "path": "/webinars",
   "title": "Webinars | Talbott Investments",
   "description": "",
-  "bytes": 7843
+  "bytes": 10551
  },
  {
   "name": "webinars-register",
@@ -142,15 +142,50 @@
  {
   "name": "webinars-replay-1031-exchanges",
   "path": "/webinars/replay/1031-exchanges",
-  "title": "1031 Exchanges | Talbott Investments",
+  "title": "Escape Capital Gains. Escape Concentration. | Talbott Investments",
   "description": "",
-  "bytes": 6475
+  "bytes": 6049
+ },
+ {
+  "name": "webinars-replay-due-diligence-framework",
+  "path": "/webinars/replay/due-diligence-framework",
+  "title": "The Due Diligence Framework | Talbott Investments",
+  "description": "",
+  "bytes": 5949
  },
  {
   "name": "webinars-replay-from-rsus-to-real-assets",
   "path": "/webinars/replay/from-rsus-to-real-assets",
   "title": "From RSUs to Real Assets | Talbott Investments",
   "description": "",
-  "bytes": 6394
+  "bytes": 5946
+ },
+ {
+  "name": "webinars-replay-multifamily-vs-build-to-rent-vs-self-storage",
+  "path": "/webinars/replay/multifamily-vs-build-to-rent-vs-self-storage",
+  "title": "Multifamily vs. Build to Rent vs. Self Storage | Talbott Investments",
+  "description": "",
+  "bytes": 6100
+ },
+ {
+  "name": "webinars-replay-rise-sunridge",
+  "path": "/webinars/replay/rise-sunridge",
+  "title": "Rise Sunridge | Talbott Investments",
+  "description": "",
+  "bytes": 5958
+ },
+ {
+  "name": "webinars-replay-rsus-to-real-assets-engineering-leaders",
+  "path": "/webinars/replay/rsus-to-real-assets-engineering-leaders",
+  "title": "From RSUs to Real Assets | Talbott Investments",
+  "description": "",
+  "bytes": 5982
+ },
+ {
+  "name": "webinars-replay-the-second-engine",
+  "path": "/webinars/replay/the-second-engine",
+  "title": "The Second Engine | Talbott Investments",
+  "description": "",
+  "bytes": 5806
  }
 ]

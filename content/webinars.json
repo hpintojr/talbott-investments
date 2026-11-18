@@ -1,5 +1,5 @@
 {
-  "_readme": "VA EDIT FILE. Change text here only; never touch layout code. 'live' mirrors the GHL Webinar Builder custom values and is overwritten by scripts/sync-ghl.mjs when GHL API access is configured. Replays follow the Drive '5. Webinar Replays' folder order. Each replay: title, subtitle, 4 takeaways, 'cover' (image URL) and 'video' (a direct MP4 URL from GHL media storage, or a Streamable link or embed code). Until 'video' is set the cover shows with a 'video coming soon' note. 'about' is optional. 'queuedReplays' holds replays 1-5 from Drive, ready but not shown yet (Yohannes: only 6 and 7 for now). Move a block into 'replays' to publish it.",
+  "_readme": "VA EDIT FILE. Change text here only; never touch layout code. 'live' mirrors the GHL Webinar Builder custom values and is overwritten by scripts/sync-ghl.mjs when GHL API access is configured. Replays follow the Drive '5. Webinar Replays' folder order. Each replay: title, subtitle, 4 takeaways, 'cover' (image URL) and 'video' (a direct MP4 URL from GHL media storage, or a Streamable link or embed code). Until 'video' is set the cover shows with a 'video coming soon' note. 'about' is optional. 'queuedReplays' holds replays staged but not shown; empty since Nov 17, 2026 (Yohannes: show all 7).",
   "live": {
     "title": "[Live webinar title - from GHL custom value: Webinar Name (Header)]",
     "subtitle": "[Webinar sub-header - from GHL custom value: Webinar Name (Sub-Header)]",
@@ -23,24 +23,6 @@
   },
   "replays": [
     {
-      "slug": "1031-exchanges",
-      "label": "Replay · September 2026",
-      "month": "September 2026",
-      "title": "Escape Capital Gains. Escape Concentration.",
-      "subtitle": "The Passive 1031 Strategy for Engineering Leaders",
-      "callout": "",
-      "about": "",
-      "cover": "/images/replays/1031-exchanges.webp",
-      "flyer": "",
-      "video": "",
-      "takeaways": [
-        "A 1031 exchange can help investors defer taxes, but planning must begin before the sale closes.",
-        "The exchange process is deadline driven and requires coordination with a qualified intermediary, CPA, attorney, and investment team.",
-        "A 1031 exchange can be used to reposition capital from management heavy properties into more passive real estate options.",
-        "Not every syndication can accept 1031 exchange funds, so investors need to understand the structure before assuming it qualifies."
-      ]
-    },
-    {
       "slug": "from-rsus-to-real-assets",
       "label": "Replay · October 22, 2026",
       "month": "October 2026",
@@ -50,81 +32,61 @@
       "about": "",
       "cover": "/images/replays/from-rsus-to-real-assets.webp",
       "flyer": "",
-      "video": "",
+      "video": "https://files.leadconnectorhq.com/file/6adab4fbfdcb71bb8285a9ea/webinar-from-rsus-to-real-assets2.mp4",
       "takeaways": [
         "Projected returns are only as credible as the assumptions behind them.",
         "One investor used this same evaluation process to convert vested RSUs into tax sheltered monthly cash flow.",
         "A strong review process should make risks, assumptions, accountability, and execution more visible.",
         "Moving wealth out of employer stock still requires a clear allocation and diligence process."
       ]
-    }
-  ],
-  "queuedReplays": [
+    },
     {
-      "slug": "rsus-to-real-assets-engineering-leaders",
-      "label": "Webinar Replay",
-      "month": "On Demand",
-      "title": "From RSUs to Real Assets",
-      "subtitle": "How SaaS Engineering Leaders Reduce Risk with Real Estate",
+      "slug": "1031-exchanges",
+      "label": "Replay · August 26, 2026",
+      "month": "August 2026",
+      "title": "Escape Capital Gains. Escape Concentration.",
+      "subtitle": "The Passive 1031 Strategy for Engineering Leaders",
       "callout": "",
       "about": "",
-      "cover": "https://assets.cdn.filesafe.space/wcZcbuIFekpLyE3fmvmO/media/6aac3f50254a2c54081b588b.png",
+      "cover": "/images/replays/1031-exchanges.webp",
       "flyer": "",
-      "video": "",
+      "video": "https://files.leadconnectorhq.com/file/6a8f87544fe741935400a3ee/webinar-1031s.mp4",
       "takeaways": [
-        "Holding vested RSUs in employer stock ties your income, career, and net worth to the same company.",
-        "Diversifying is a planned allocation decision, not a reaction to a price drop or a tax bill.",
-        "Passive multifamily lets you own real assets without becoming a landlord, because an experienced operator runs the property.",
-        "Before moving equity into real estate, decide how much capital, for how long, and what role it plays in your portfolio."
+        "A 1031 exchange can help investors defer taxes, but planning must begin before the sale closes.",
+        "The exchange process is deadline driven and requires coordination with a qualified intermediary, CPA, attorney, and investment team.",
+        "A 1031 exchange can be used to reposition capital from management heavy properties into more passive real estate options.",
+        "Not every syndication can accept 1031 exchange funds, so investors need to understand the structure before assuming it qualifies."
       ]
     },
     {
-      "slug": "the-second-engine",
-      "label": "Webinar Replay",
-      "month": "On Demand",
-      "title": "The Second Engine",
-      "subtitle": "Building Wealth Beyond Salary, Bonus, and Equity",
+      "slug": "multifamily-vs-build-to-rent-vs-self-storage",
+      "label": "Replay · July 22, 2026",
+      "month": "July 2026",
+      "title": "Multifamily vs. Build to Rent vs. Self Storage",
+      "subtitle": "Which Offers the Best Mix of Income, Tax Efficiency, and Risk Control?",
       "callout": "",
       "about": "",
-      "cover": "/images/replays/the-second-engine.webp",
+      "cover": "/images/replays/multifamily-vs-build-to-rent-vs-self-storage.webp",
       "flyer": "",
-      "video": "",
+      "video": "https://files.leadconnectorhq.com/file/6a615bf581877afd27fd204e/webinar-multifamily-vs-btr-vs-ss.mp4",
       "takeaways": [
-        "Multifamily can create cash flow, appreciation, and tax advantages.",
-        "Multifamily offers a faster path to scale than single family investing.",
-        "The right multifamily strategy can reduce dependence on salary, bonus, and equity.",
-        "Wealth grows by consistently acquiring income producing apartment assets."
-      ]
-    },
-    {
-      "slug": "due-diligence-framework",
-      "label": "Webinar Replay",
-      "month": "On Demand",
-      "title": "The Due Diligence Framework",
-      "subtitle": "How to Assess Risk, Operator Quality, and Deal Fit",
-      "callout": "",
-      "about": "",
-      "cover": "/images/replays/due-diligence-framework.webp",
-      "flyer": "",
-      "video": "",
-      "takeaways": [
-        "A projected return is only as reliable as the assumptions and risks behind it.",
-        "The operator deserves its own underwriting: track record, alignment, reporting, and how problems get handled.",
-        "Deal fit matters as much as deal quality. Liquidity, time horizon, and portfolio role have to match your goals.",
-        "A repeatable diligence process gives you the confidence to pass on deals that look good but are wrong for you."
+        "Each asset class has strengths, but they are not equal in simplicity, stability, or investor fit.",
+        "Multifamily's income advantage comes from essential housing demand, diversified rent rolls, and operational scale.",
+        "Tax benefits can exist across real estate, but multifamily often provides a clear depreciation and cost segregation story.",
+        "For many passive investors, multifamily may offer the most balanced combination of income, tax efficiency, risk control, and understandability."
       ]
     },
     {
       "slug": "rise-sunridge",
-      "label": "Webinar Replay",
-      "month": "On Demand",
+      "label": "Replay · June 24, 2026",
+      "month": "June 2026",
       "title": "Rise Sunridge",
       "subtitle": "Income, Tax Efficiency, and Downside Protection in One Deal",
       "callout": "",
       "about": "",
       "cover": "/images/replays/rise-sunridge.webp",
       "flyer": "",
-      "video": "",
+      "video": "https://files.leadconnectorhq.com/file/6a3c8670817563b473e71d13/rise-sunridge-use-case.mp4",
       "takeaways": [
         "A strong deal should be evaluated as a full strategy, not just by projected returns.",
         "Rise Sunridge's income story came from the property, market demand, operating plan, and distribution structure.",
@@ -133,22 +95,59 @@
       ]
     },
     {
-      "slug": "multifamily-vs-build-to-rent-vs-self-storage",
-      "label": "Webinar Replay",
-      "month": "On Demand",
-      "title": "Multifamily vs. Build to Rent vs. Self Storage",
-      "subtitle": "Which Offers the Best Mix of Income, Tax Efficiency, and Risk Control?",
+      "slug": "due-diligence-framework",
+      "label": "Replay · April 22, 2026",
+      "month": "April 2026",
+      "title": "The Due Diligence Framework",
+      "subtitle": "How to Assess Risk, Operator Quality, and Deal Fit",
       "callout": "",
       "about": "",
-      "cover": "/images/replays/multifamily-vs-build-to-rent-vs-self-storage.webp",
+      "cover": "/images/replays/due-diligence-framework.webp",
       "flyer": "",
-      "video": "",
+      "video": "https://files.leadconnectorhq.com/file/69e97c175df4011c240923c6/the-due-diligence-framework.mp4",
       "takeaways": [
-        "Each asset class has strengths, but they are not equal in simplicity, stability, or investor fit.",
-        "Multifamily's income advantage comes from essential housing demand, diversified rent rolls, and operational scale.",
-        "Tax benefits can exist across real estate, but multifamily often provides a clear depreciation and cost segregation story.",
-        "For many passive investors, multifamily may offer the most balanced combination of income, tax efficiency, risk control, and understandability."
+        "A projected return is only as reliable as the assumptions and risks behind it.",
+        "The operator deserves its own underwriting: track record, alignment, reporting, and how problems get handled.",
+        "Deal fit matters as much as deal quality. Liquidity, time horizon, and portfolio role have to match your goals.",
+        "A repeatable diligence process gives you the confidence to pass on deals that look good but are wrong for you."
+      ]
+    },
+    {
+      "slug": "the-second-engine",
+      "label": "Replay · March 25, 2026",
+      "month": "March 2026",
+      "title": "The Second Engine",
+      "subtitle": "Building Wealth Beyond Salary, Bonus, and Equity",
+      "callout": "",
+      "about": "",
+      "cover": "/images/replays/the-second-engine.webp",
+      "flyer": "",
+      "video": "https://files.leadconnectorhq.com/file/69c487e8cdb915cacfe3a240/the-second-engine.mp4",
+      "takeaways": [
+        "Multifamily can create cash flow, appreciation, and tax advantages.",
+        "Multifamily offers a faster path to scale than single family investing.",
+        "The right multifamily strategy can reduce dependence on salary, bonus, and equity.",
+        "Wealth grows by consistently acquiring income producing apartment assets."
+      ]
+    },
+    {
+      "slug": "rsus-to-real-assets-engineering-leaders",
+      "label": "Replay · March 11, 2026",
+      "month": "March 2026",
+      "title": "From RSUs to Real Assets",
+      "subtitle": "How SaaS Engineering Leaders Reduce Risk with Real Estate",
+      "callout": "",
+      "about": "",
+      "cover": "https://assets.cdn.filesafe.space/wcZcbuIFekpLyE3fmvmO/media/6aac3f50254a2c54081b588b.png",
+      "flyer": "",
+      "video": "https://files.leadconnectorhq.com/file/69a978c2b003fa5a7eb2beb6/from-rsus-to-real-assets.mp4",
+      "takeaways": [
+        "Holding vested RSUs in employer stock ties your income, career, and net worth to the same company.",
+        "Diversifying is a planned allocation decision, not a reaction to a price drop or a tax bill.",
+        "Passive multifamily lets you own real assets without becoming a landlord, because an experienced operator runs the property.",
+        "Before moving equity into real estate, decide how much capital, for how long, and what role it plays in your portfolio."
       ]
     }
-  ]
+  ],
+  "queuedReplays": []
 }

@@ -562,4 +562,33 @@ document.querySelectorAll('.replay-video[data-src]').forEach((box) => {
     }
   }, { once: true });
 });
+
+// Live GHL custom values (Nov 19): pages render a build-time snapshot; this swaps in the current
+// values from /api/custom-values so edits in GHL show up without a redeploy.
+(function () {
+  const root = document.body;
+  if (!root.querySelector('[data-cv],[data-cv-href],[data-cv-src],[data-cv-poster]')) return;
+  // On GHL the export carries {{custom_values}} tokens that GHL merges server-side; no API there.
+  if (document.querySelector('.ghl-site')) return;
+  fetch('/api/custom-values', { headers: { Accept: 'application/json' } })
+    .then((r) => (r.ok ? r.json() : null))
+    .then((data) => {
+      const v = data && data.values;
+      if (!v) return;
+      const has = (k) => Object.prototype.hasOwnProperty.call(v, k);
+      root.querySelectorAll('[data-cv]').forEach((el) => {
+        const k = el.dataset.cv; if (!has(k)) return;
+        el.textContent = v[k];
+        if (el.hasAttribute('data-cv-hide-empty')) el.hidden = !v[k];
+      });
+      root.querySelectorAll('[data-cv-section]').forEach((el) => { const k = el.dataset.cvSection; if (has(k)) el.hidden = !v[k]; });
+      root.querySelectorAll('[data-cv-href]').forEach((el) => { const k = el.dataset.cvHref; if (has(k) && v[k]) el.href = v[k]; });
+      root.querySelectorAll('[data-cv-src]').forEach((el) => { const k = el.dataset.cvSrc; if (has(k) && v[k] && el.getAttribute('src') !== v[k]) el.src = v[k]; });
+      root.querySelectorAll('[data-cv-poster]').forEach((el) => {
+        const k = el.dataset.cvPoster; if (!has(k)) return;
+        if (v[k]) el.poster = v[k]; else el.removeAttribute('poster');
+      });
+    })
+    .catch(() => {});
+})();
 </script>

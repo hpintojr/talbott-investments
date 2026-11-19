@@ -20,6 +20,14 @@ def fix(t):
         else: return m.group(0)
         return f'href={q}{new}{"#"+frag if frag else ""}{q}'
     return re.sub(r'href=(["\'])(/[^"\'#]*(?:#[^"\']*)?)\1',rl,t)
+def cv_tokens(t):
+    # data-cv bindings -> GHL {{custom_values.key}} tokens, merged by GHL at render time
+    T=lambda k:'{{custom_values.'+k+'}}'
+    t=re.sub(r'(<[^>]*\sdata-cv="([^"]+)"[^>]*>)[^<]*(<)',lambda m:m.group(1)+T(m.group(2))+m.group(3),t)
+    for a in ('src','href'):
+        t=re.sub(r'\s'+a+r'="[^"]*"([^>]*?)\sdata-cv-'+a+r'="([^"]+)"',lambda m:' '+a+'="'+T(m.group(2))+'"'+m.group(1),t)
+    t=re.sub(r'(?:\sposter="[^"]*")?(\sdata-cv-poster="([^"]+)")',lambda m:' poster="'+T(m.group(2))+'"',t)
+    return t
 manifest=[]
 for p in pages:
     rel=os.path.relpath(os.path.dirname(p),D); t=open(p).read()
@@ -29,6 +37,7 @@ for p in pages:
     body=re.search(r'<body[^>]*>(.*)</body>',t,re.S).group(1)
     name='home' if rel=='.' else rel.replace('/','-')
     for u,tok in cvals.get(name,{}).items(): body=body.replace(u,tok)
+    body=cv_tokens(body)
     frag=f'<div class="ghl-site"><div class="{bc}">{fix(body)}</div></div>'
     open(f'{O}/{name}.html','w').write(frag)
     manifest.append({'name':name,'path':ghlpath(rel),'title':html.unescape(title),'description':desc,'bytes':len(frag)})

@@ -1,0 +1,28 @@
+{
+  "_readme": "Snapshot of Talbott's GHL custom values used by the webinar pages (build-time fallback). Refreshed from GHL on every build when GHL_API_TOKEN + GHL_LOCATION_ID are set in Vercel; at runtime /api/custom-values serves the live values and site.js swaps them in, so editing the custom value in GHL updates the site within about a minute. Do not edit by hand.",
+  "values": {
+    "3_evergreen_webinar_social_media_cover": "https://files.leadconnectorhq.com/file/6aff4908d50d9db796fe438c/talbott-executive-brief-video-thumbnail-noicp.png",
+    "1_evergreen_webinar_name": "Beyond The Vesting Schedule: Architecting a Tax-Sheltered Passive Income System for Software Engineering Leaders",
+    "2_evergreen_webinar_sub_header": "An on demand briefing on reducing concentration risk, preparing for tax exposure, and building passive income through multifamily",
+    "linkedin_webinar_lead_magnet": "https://invest.talbottinvestments.com/capital-allocation-masterclass",
+    "webinar_marketing_cover": "https://files.leadconnectorhq.com/file/6afcd6b877a01e462260cad3/talbott-webinar-cover-the-operator-test.png",
+    "webinar_name": "The Operator Test- An Operator Analysis Framework",
+    "20_webinar_name_subheader": "How a $2B Operator Gives Engineering Leaders Access to a 200-Unit Property",
+    "webinar_date": "Wednesday December 2nd, 2026",
+    "webinar_time": "4PM PST / 7PM EST",
+    "webinar_guest_name": "Stephen J. Predmore",
+    "2_evergreen_webinar_video_url": "https://assets.cdn.filesafe.space/wcZcbuIFekpLyE3fmvmO/media/69e65f3f2c135a8c83a7a427.mp4",
+    "6_evergreen_webinarlearn_1": "The hidden risks of RSU concentration and the tax shock that comes at vesting",
+    "7_evergreen_webinar_learn_2": "Why multifamily moves independently of the stock market and creates consistent passive income",
+    "8_evergreen_webinar_learn3": "The common issues passive investors face, and how a transparent sponsor avoids them",
+    "9_evergreen_webinarlearn4": "A real use case: how a value add property is performing for investors today",
+    "0_about_this_event": "",
+    "9_what_you_will_learn_1": "Why evaluating the property is only part of the diligence required in a passive real estate investment",
+    "10_what_you_will_learn_2": "What to examine when assessing an operator’s track record, alignment, and decision-making process",
+    "11_what_you_will_learn_3": "How reporting, asset-management infrastructure, and downside discipline can reveal how an operator actually works",
+    "12_what_youll_learn_4": "Which questions can help you distinguish a strong operating system from a strong sales presentation",
+    "webinar_event_calendar_link": "https://www.addevent.com/event/2bddryq08pyp",
+    "7_evergreen_thank_youschedule_a_call": "https://assets.cdn.filesafe.space/wcZcbuIFekpLyE3fmvmO/media/69d405474cde4bbc2a0d5ba7.mp4",
+    "10_thank_you_video_thumbnail": ""
+  }
+}

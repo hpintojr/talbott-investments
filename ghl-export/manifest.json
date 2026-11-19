@@ -18,7 +18,7 @@
   "path": "/",
   "title": "Talbott Investments | Passive Multifamily Investing",
   "description": "Passive multifamily investments built on disciplined underwriting, transparent reporting, and consistent distributions.",
-  "bytes": 22839
+  "bytes": 23034
  },
  {
   "name": "investment-disclaimers",
@@ -123,7 +123,7 @@
   "path": "/webinars/executive-investment-brief",
   "title": "The Executive Investment Brief | Talbott Investments",
   "description": "",
-  "bytes": 6041
+  "bytes": 6423
  },
  {
   "name": "webinars-executive-investment-brief-watch",
@@ -135,23 +135,23 @@
  {
   "name": "webinars",
   "path": "/webinars",
-  "title": "Webinars | Talbott Investments",
+  "title": "Investor Briefings | Talbott Investments",
   "description": "",
-  "bytes": 10545
+  "bytes": 10601
  },
  {
   "name": "webinars-register",
   "path": "/webinars/register",
-  "title": "Live Webinar Registration | Talbott Investments",
+  "title": "Live Investor Briefing Registration | Talbott Investments",
   "description": "",
-  "bytes": 6190
+  "bytes": 6763
  },
  {
   "name": "webinars-register-thank-you",
   "path": "/webinars/register/thank-you",
   "title": "You\u2019re Registered | Talbott Investments",
   "description": "",
-  "bytes": 4982
+  "bytes": 5225
  },
  {
   "name": "webinars-replay-1031-exchanges",

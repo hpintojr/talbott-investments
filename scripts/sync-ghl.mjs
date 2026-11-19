@@ -2,6 +2,7 @@
 // Runs before every build. Needs GHL_API_TOKEN (Private Integration token with
 // locations/customValues.readonly) and GHL_LOCATION_ID. Without them it leaves the file as is.
 import { readFile, writeFile } from 'node:fs/promises';
+import { fetchGhlValues } from '../lib/ghl-values.mjs';
 
 const token = process.env.GHL_API_TOKEN;
 const location = process.env.GHL_LOCATION_ID;
@@ -24,6 +25,17 @@ const map = [
   [/(marketing )?cover|flyer/, 'flyer'],
   [/thank ?you video/, 'thankYouVideo'],
 ];
+
+// Webinar page custom values snapshot (content/ghl-values.json), the build-time fallback for /api/custom-values.
+try {
+  const file = new URL('../content/ghl-values.json', import.meta.url);
+  const data = JSON.parse(await readFile(file, 'utf8'));
+  data.values = { ...data.values, ...(await fetchGhlValues(token, location)) };
+  await writeFile(file, JSON.stringify(data, null, 2) + '\n');
+  console.log(`sync-ghl: refreshed ${Object.keys(data.values).length} webinar custom values`);
+} catch (err) {
+  console.warn('sync-ghl: could not refresh content/ghl-values.json:', err.message);
+}
 
 try {
   const res = await fetch(`https://services.leadconnectorhq.com/locations/${location}/customValues`, {

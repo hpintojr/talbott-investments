@@ -1,0 +1,270 @@
+/* Talbott Executive Brief hero form (GHL form dNjByee01o9mOCAX4cmZ). Transparent on the dark hero, matches the Learn hero form (erHRiRf7v9ZzyzqRok19) */
+html,
+body,
+#app,
+.form-builder--wrap,
+#_builder-form,
+.form-side,
+.fields-container {
+  background: transparent !important;
+}
+
+#_branding-wrap {
+  display: none !important;
+}
+
+.form-builder--wrap,
+.form-builder--wrap * {
+  font-family: Arial, Helvetica, sans-serif !important;
+}
+
+.ghl-form-wrap,
+.form-builder--wrap,
+#_builder-form,
+.form-side {
+  padding: 0 !important;
+  margin: 0 !important;
+  box-shadow: none !important;
+  border: 0 !important;
+  max-width: none !important;
+  width: 100% !important;
+}
+
+#_builder-form .form-side,
+#_builder-form > .flex {
+  min-height: 0 !important;
+  height: auto !important;
+  align-items: flex-start !important;
+}
+
+#_builder-form .fields-container {
+  margin: 0 !important;
+  padding: 0 !important;
+  width: 100% !important;
+  max-width: none !important;
+}
+
+#_builder-form .form-field-wrapper {
+  padding: 0 !important;
+  margin: 0 0 12px !important;
+  width: 100% !important;
+  max-width: none !important;
+  flex: none !important;
+}
+
+#_builder-form .form-field-container,
+#_builder-form .field-container,
+#_builder-form .form-builder--item {
+  padding: 0 !important;
+  margin: 0 !important;
+  max-width: none !important;
+}
+
+/* The page already has the heading; hide the form's own header and the empty HTML block */
+#_builder-form [id$="_header_0"],
+#_builder-form [id*="_html_"] {
+  display: none !important;
+}
+
+#_builder-form#_builder-form label.label-alignment,
+#_builder-form#_builder-form .field-label {
+  font-size: 11px !important;
+  font-weight: 700 !important;
+  letter-spacing: 0.1em !important;
+  text-transform: uppercase !important;
+  color: #b9cbe4 !important;
+  margin: 0 0 6px !important;
+  padding: 0 !important;
+}
+
+#_builder-form label.label-alignment span {
+  color: #b9cbe4 !important;
+}
+
+#_builder-form .email-input-wrapper svg,
+#_builder-form .input-icon {
+  display: none !important;
+}
+
+#_builder-form#_builder-form .form-control {
+  height: 46px !important;
+  min-height: 46px !important;
+  box-sizing: border-box !important;
+  padding: 0 14px !important;
+  margin: 0 !important;
+  background: rgba(255, 255, 255, 0.08) !important;
+  border: 1px solid rgba(255, 255, 255, 0.24) !important;
+  border-radius: 8px !important;
+  color: #fff !important;
+  font-size: 15px !important;
+  box-shadow: none !important;
+  width: 100% !important;
+}
+
+#_builder-form#_builder-form .form-control::placeholder,
+#_builder-form#_builder-form input::placeholder {
+  color: rgba(255, 255, 255, 0.55) !important;
+}
+
+#_builder-form#_builder-form .form-control:focus {
+  border-color: rgba(255, 255, 255, 0.6) !important;
+  outline: none !important;
+}
+
+/* Email: GHL forces padding-left on the input for its icon. Draw the box on the wrapper and slide the input left */
+#_builder-form .email-input,
+#_builder-form .email-input-wrapper {
+  width: 100% !important;
+  flex: 1 1 100% !important;
+}
+
+#_builder-form .email-input-wrapper {
+  position: relative !important;
+  overflow: hidden !important;
+  box-sizing: border-box !important;
+  height: 46px !important;
+  border: 1px solid rgba(255, 255, 255, 0.24) !important;
+  border-radius: 8px !important;
+  background: rgba(255, 255, 255, 0.08) !important;
+}
+
+#_builder-form#_builder-form #email {
+  margin-left: -30px !important;
+  width: calc(100% + 30px) !important;
+  max-width: none !important;
+  height: 44px !important;
+  min-height: 44px !important;
+  border: 0 !important;
+  border-radius: 0 !important;
+  background: transparent !important;
+}
+
+/* Dropdowns */
+#_builder-form#_builder-form .multiselect,
+#_builder-form#_builder-form .multi_select_form {
+  min-height: 46px !important;
+  background: transparent !important;
+  color: #fff !important;
+}
+
+#_builder-form#_builder-form .multiselect__tags {
+  min-height: 46px !important;
+  box-sizing: border-box !important;
+  padding: 12px 40px 0 14px !important;
+  background: rgba(255, 255, 255, 0.08) !important;
+  border: 1px solid rgba(255, 255, 255, 0.24) !important;
+  border-radius: 8px !important;
+  box-shadow: none !important;
+}
+
+#_builder-form#_builder-form .multiselect__single,
+#_builder-form#_builder-form .multiselect__placeholder,
+#_builder-form#_builder-form .multiselect__input {
+  background: transparent !important;
+  color: #fff !important;
+  font-size: 15px !important;
+}
+
+#_builder-form#_builder-form .multiselect__placeholder {
+  color: rgba(255, 255, 255, 0.55) !important;
+}
+
+#_builder-form#_builder-form .multiselect__select {
+  height: 44px !important;
+  background: transparent !important;
+}
+
+#_builder-form#_builder-form .multiselect__select::before {
+  border-color: #fff transparent transparent !important;
+}
+
+.multiselect__content-wrapper,
+#_builder-form .multiselect__content-wrapper {
+  background: #0b2747 !important;
+  border: 1px solid rgba(255, 255, 255, 0.24) !important;
+  border-radius: 0 0 8px 8px !important;
+}
+
+.multiselect__option,
+#_builder-form .multiselect__option {
+  color: #fff !important;
+  background: transparent !important;
+  font-size: 14px !important;
+}
+
+.multiselect__option--highlight,
+.multiselect__option--selected,
+#_builder-form .multiselect__option--highlight,
+#_builder-form .multiselect__option--selected {
+  background: rgba(255, 255, 255, 0.14) !important;
+  color: #fff !important;
+}
+
+/* Consent */
+#_builder-form .terms-and-conditions,
+#_builder-form .terms-and-conditions label,
+#_builder-form .terms-and-conditions p,
+#_builder-form .terms-and-conditions span {
+  color: #c9d6ea !important;
+  font-size: 12.5px !important;
+  line-height: 1.45 !important;
+}
+
+#_builder-form .terms-and-conditions .checkbox-container {
+  display: flex !important;
+  align-items: flex-start !important;
+}
+
+#_builder-form .terms-and-conditions input[type=checkbox] {
+  accent-color: #fff;
+  width: 16px !important;
+  height: 16px !important;
+  margin-top: 1px !important;
+  flex: none !important;
+}
+
+/* Button */
+#_builder-form .form-builder--btn-submit {
+  margin-top: 4px !important;
+}
+
+#_builder-form#_builder-form .button-element {
+  height: 46px !important;
+  min-height: 46px !important;
+  width: 100% !important;
+  margin: 0 !important;
+  padding: 0 22px !important;
+  background: #fff !important;
+  color: #083965 !important;
+  border: 0 !important;
+  border-radius: 8px !important;
+  font-size: 15px !important;
+  font-weight: 700 !important;
+  box-shadow: none !important;
+}
+
+#_builder-form#_builder-form .button-element * {
+  color: #083965 !important;
+  font-weight: 700 !important;
+  font-size: 15px !important;
+}
+
+/* Wider than a phone: fields side by side, two per row */
+@media (min-width: 560px) {
+  #_builder-form .fields-container {
+    display: grid !important;
+    grid-template-columns: 1fr 1fr;
+    column-gap: 12px;
+    align-items: end;
+  }
+  #_builder-form [id*="_Pqdz7a0EHDC73ohKFHOV_"],
+  #_builder-form [id*="_terms_and_conditions_"],
+  #_builder-form [id*="_button_"] {
+    grid-column: 1 / -1;
+  }
+  #_builder-form#_builder-form .button-element {
+    width: auto !important;
+    min-width: 240px;
+    white-space: nowrap;
+  }
+}

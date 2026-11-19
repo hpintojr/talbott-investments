@@ -312,7 +312,7 @@ pages['webinars'] = ['Investor Briefings', subpage('Live and On Demand', 'Invest
 
 pages['webinars/executive-investment-brief'] = ['The Executive Investment Brief', subpage('On Demand', cv('1_evergreen_webinar_name'), cv('2_evergreen_webinar_sub_header'),
   section('What You Will Learn', cvBullets(['6_evergreen_webinarlearn_1', '7_evergreen_webinar_learn_2', '8_evergreen_webinar_learn3', '9_evergreen_webinarlearn4'])),
-  A.pageImage, `<div class="hero-form-card" id="access"><p class="eyebrow">Access the Briefing</p><h2>Get Instant Access</h2>${ghl('evergreen')}</div>`).replace('class="subpage-hero has-hero-extra"', 'class="subpage-hero has-hero-extra has-hero-form"')];
+  A.pageImage, `<div class="hero-form-card" id="access"><h2>Get Instant Access</h2>${ghl('evergreen').replace('<iframe ', '<iframe allowtransparency="true" ')}</div>`).replace('class="subpage-hero has-hero-extra"', 'class="subpage-hero has-hero-extra has-hero-form"')];
 
 // Evergreen watch page (on Vercel for now; GHL form redirects here)
 pages['webinars/executive-investment-brief/watch'] = ['Watch the Executive Investment Brief', subpage('On Demand', 'The Executive Investment Brief', 'Thank you for registering. Watch the full briefing below.',

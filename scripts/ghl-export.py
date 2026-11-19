@@ -53,7 +53,13 @@ li_nav=grab(r'<a class="linkedin-link".*?</a>'); li_foot=grab(r'<div class="foot
 inject=("(function(){var N="+json.dumps(li_nav)+",F="+json.dumps(li_foot)+";"
   "document.querySelectorAll('.ghl-site a.button.portal').forEach(function(a){if(N&&!a.parentNode.querySelector('.linkedin-link'))a.insertAdjacentHTML('beforebegin',N)});"
   "document.querySelectorAll('.ghl-site a.footer-portal').forEach(function(a){if(F&&!a.parentNode.querySelector('.footer-socials'))a.insertAdjacentHTML('beforebegin',F)});})();")
-open(f'{O}/_footer.html','w').write(f'<script>{inject}{fix(js)}</script>')
+# GHL injects this code after its own render and may re-render the page HTML, so the
+# header state is re-derived from whatever .ghl-site root is live (matches site.js on Vercel).
+navfix=("(function(){function y(){var e=document.scrollingElement||document.documentElement;return Math.max(window.pageYOffset||0,e.scrollTop||0,document.body.scrollTop||0)}"
+  "function t(){var r=document.querySelector('.ghl-site > div'),h=document.querySelector('.ghl-site .hero');if(!r||!h)return;"
+  "r.classList.toggle('has-scrolled',y()>24);r.classList.toggle('past-hero',h.getBoundingClientRect().bottom<80)}"
+  "document.addEventListener('scroll',t,{passive:true,capture:true});addEventListener('resize',t);addEventListener('load',t);setInterval(t,300);t()})();")
+open(f'{O}/_footer.html','w').write(f'<script>{inject}{navfix}{fix(js)}</script>')
 json.dump(manifest,open(f'{O}/manifest.json','w'),indent=1)
 for m in manifest: print(m['path'],m['bytes'],m['title'])
 print('css',len(css),'js',len(js))

@@ -1253,3 +1253,13 @@
 .hero-form-card .lead-submit{background:#fff!important;color:#083965!important;min-height:44px;border-radius:8px;margin:0;justify-self:start;padding-inline:22px}
 .subpage-hero .hero-form-card .lead-note{color:#b9cbe4!important;font-size:.8rem!important;line-height:1.4;margin:0;max-width:none;display:flex;gap:6px;align-items:center}
 @media (max-width:640px){.hero-form-card .lead-fields{grid-template-columns:1fr}.hero-form-card .lead-submit{justify-self:stretch}}
+
+/* Compact hero for long event titles (Live Investor Briefing registration) */
+.hero-compact h1{font-size:clamp(2rem,3.4vw,3.2rem)!important;line-height:1.08;max-width:24ch}
+.hero-compact .subpage-wrap>p:not(.eyebrow){max-width:60ch}
+.hero-event{display:flex;flex-wrap:wrap;align-items:center;gap:12px 28px;margin-top:clamp(18px,2.4vw,28px);padding-top:clamp(16px,2vw,22px);border-top:1px solid #ffffff2e;max-width:760px}
+.subpage-hero .hero-event p{margin:0;color:#fff;font-size:1rem;font-weight:600;max-width:none}
+.hero-event-k{display:block;color:#9fbde0;font-size:.68rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;margin-bottom:4px}
+.hero-event .hero-event-cta{background:#fff!important;color:#083965!important;margin:0}
+.hero-event-cta-row{flex-basis:100%}
+#reserve{scroll-margin-top:90px}

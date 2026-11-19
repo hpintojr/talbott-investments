@@ -18,7 +18,7 @@
   "path": "/",
   "title": "Talbott Investments | Passive Multifamily Investing",
   "description": "Passive multifamily investments built on disciplined underwriting, transparent reporting, and consistent distributions.",
-  "bytes": 20654
+  "bytes": 22839
  },
  {
   "name": "investment-disclaimers",
@@ -53,21 +53,35 @@
   "path": "/portfolio",
   "title": "Portfolio | Talbott Investments",
   "description": "",
-  "bytes": 10480
+  "bytes": 12813
  },
  {
-  "name": "portfolio-richwood-ave",
-  "path": "/portfolio/richwood-ave",
-  "title": "Richwood Ave. | Talbott Investments",
+  "name": "portfolio-rise-avalon",
+  "path": "/portfolio/rise-avalon",
+  "title": "Rise Avalon | Talbott Investments",
   "description": "",
-  "bytes": 5414
+  "bytes": 7085
+ },
+ {
+  "name": "portfolio-rise-bluestone",
+  "path": "/portfolio/rise-bluestone",
+  "title": "Rise Bluestone | Talbott Investments",
+  "description": "",
+  "bytes": 7088
  },
  {
   "name": "portfolio-rise-sunridge",
   "path": "/portfolio/rise-sunridge",
   "title": "Rise Sunridge | Talbott Investments",
   "description": "",
-  "bytes": 7029
+  "bytes": 7095
+ },
+ {
+  "name": "portfolio-rise-valley-heights",
+  "path": "/portfolio/rise-valley-heights",
+  "title": "Rise Valley Heights | Talbott Investments",
+  "description": "",
+  "bytes": 7089
  },
  {
   "name": "privacy-policy",

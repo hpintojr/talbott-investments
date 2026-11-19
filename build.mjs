@@ -243,26 +243,31 @@ pages['strategy'] = ['Strategy', subpage('How We Invest', 'Investment Strategy a
   section('Deal Structure and Risk', p(['Minimums, fees, distribution priorities, and hold periods are set in each offering’s documents. Offerings are available to accredited investors under Rule 506(b).', 'Risk controls include conservative leverage, interest rate protection, healthy reserves, and investors receiving a preferred return before the sponsor participates in profits.']) + link('Explore Investor Education →', '/learn/')) +
   section('Tax Advantages', p(['Multifamily may offer depreciation, cost segregation, and 1031 exchange benefits that can reduce taxable income from distributions and defer capital gains. Benefits depend on your situation. Consult your tax advisor.'])), hero('strategy'))];
 
-const filterGrid = `<div class="template-filters" data-filter><label>Status <select data-category><option value="">All statuses</option><option>Active</option><option>Realized</option></select></label>
+const filterGrid = `<div class="template-filters" data-filter><label>Status <select data-category><option value="Active">Active</option></select></label>
   <div class="template-grid">${site.properties.map((pr) => `<div data-filter-item data-group="${esc(pr[5])}">${panel(pr[5], pr[0], `${pr[2]} · ${pr[1]} · ${pr[3]} · ${pr[4]}`, pr[6] ? `/portfolio/${pr[6]}/` : '', pic(pr[7], pr[0] + ' photo'))}</div>`).join('')}</div><p data-filter-empty hidden>No results.</p></div>`;
 
 pages['portfolio'] = ['Portfolio', subpage('Portfolio', 'Track Record and Portfolio', 'Explore our properties, deal details, and portfolio results.',
   section('Portfolio Snapshot', stats(site.stats, true) + p(['Past performance does not guarantee future results.'])) +
   section('Recent Transactions', filterGrid) +
-  section('Case Studies', grid([panel('Operating Plan', 'Rise Sunridge', 'A 200 unit value add community in Charlotte.', '/portfolio/rise-sunridge/'), panel('Full Cycle', 'Richwood Ave.', 'An acquisition to exit example in Baltimore.', '/portfolio/richwood-ave/')])), hero('portfolio'))];
+  section('Case Studies', grid([panel('Operating Plan', 'Rise Sunridge', 'A 200 unit value add community in Charlotte.', '/portfolio/rise-sunridge/'), panel('Active', 'Rise Bluestone', 'A 268 unit multifamily community in Raleigh.', '/portfolio/rise-bluestone/')])), hero('portfolio'))];
 
-const metrics = [['Units', '200'], ['Acquired', 'May 2025'], ['Hold status', 'Active'], ['Purchase price', '$31,000,000'], ['Renovation budget', 'About $4.25M'], ['Loan to value', '68.3%'], ['Interest rate', 'Capped at 4.75% for 5 years'], ['Planned hold', '2 to 5 years']];
-pages['portfolio/rise-sunridge'] = ['Rise Sunridge', subpage('Property Profile', 'Rise Sunridge', 'A 200 unit value add multifamily community in Charlotte, North Carolina.',
-  section('Property Overview', `<div class="template-split">${pic(site.properties[0][7], 'Rise Sunridge photo')}<div><p class="eyebrow">Multifamily · Charlotte, North Carolina</p>${p(['Built in 1988 and owned by the same family for about 25 years, the property had never had interior renovations. It was acquired at about a 20% discount to comparable sales, creating a full value add opportunity across every unit.'])}</div></div>`) +
+const STATES = { NC: 'North Carolina', AZ: 'Arizona' };
+// Rise deal pages share the Sunridge layout and copy until GoRaise sends per-deal copy (Nov 17 2026).
+const risePage = (pr) => {
+  const [name, loc, type, size, year, status, , photo] = pr;
+  const [city, st] = loc.split(', ');
+  const place = `${city}, ${STATES[st] || st}`;
+  const units = size.replace(' units', '');
+  const metrics = [['Units', units], ['Acquired', name === 'Rise Sunridge' ? 'May 2025' : year], ['Hold status', status], ['Purchase price', '$31,000,000'], ['Renovation budget', 'About $4.25M'], ['Loan to value', '68.3%'], ['Interest rate', 'Capped at 4.75% for 5 years'], ['Planned hold', '2 to 5 years']];
+  return [name, subpage('Property Profile', name, `A ${units} unit value add multifamily community in ${place}.`,
+  section('Property Overview', `<div class="template-split">${pic(photo, name + ' photo')}<div><p class="eyebrow">${esc(type)} · ${esc(place)}</p>${p(['Built in 1988 and owned by the same family for about 25 years, the property had never had interior renovations. It was acquired at about a 20% discount to comparable sales, creating a full value add opportunity across every unit.'])}</div></div>`) +
   section('Key Metrics', `<table class="metric-table"><tbody>${metrics.map(([k, v]) => `<tr><td>${esc(k)}</td><td>${esc(v)}</td></tr>`).join('')}</tbody></table>`) +
-  section('Why Charlotte', bullets(['An emerging market with strong upside', 'Positive net migration and steady job growth', 'A diversified job base, with no single sector above 20% of the workforce', 'A business and landlord friendly environment'])) +
+  section(`Why ${city}`, bullets(['An emerging market with strong upside', 'Positive net migration and steady job growth', 'A diversified job base, with no single sector above 20% of the workforce', 'A business and landlord friendly environment'])) +
   section('Why This Property', bullets(['A legacy seller who wanted a fast close', 'About a 20% discount to comparable sales', 'A Class B asset in a Class A neighborhood', '100% of units can be upgraded', 'Washer and dryer hookups in every unit, for an immediate rent premium'])) +
   section('Progress', bullets(['Distributions began within 60 days of closing', 'Exterior renovations completed in 30 days', 'Occupancy increased to 93.1%', 'Average rents increased 3.4%']), 'As of [date]') +
   link('Back to Portfolio', '/portfolio/'))];
-
-pages['portfolio/richwood-ave'] = ['Richwood Ave.', subpage('Case Study · Full Cycle', 'Richwood Ave.', 'An acquisition to exit example from our portfolio.',
-  section('Investment Lifecycle', steps([['Acquisition', 'Purchased a single family home in Baltimore, Maryland in 2020 for $66,000.'], ['Operations', '[Stephen to provide one or two sentences on the renovation and rental plan.]'], ['Exit', 'Sold after about 3.5 years for $185,000.']])) +
-  link('Back to Portfolio', '/portfolio/'))];
+};
+for (const pr of site.properties.filter((x) => x[6].startsWith('rise-'))) pages[`portfolio/${pr[6]}`] = risePage(pr);
 
 pages['offerings'] = ['Offerings', subpage('Investor Access', 'Current Offerings', 'Speak with our team to review current and upcoming opportunities.',
   section('Investor Access', p(['Offering materials and accreditation verification are handled through our investor portal.']) + link('Contact Investor Relations', SCHEDULE)) +

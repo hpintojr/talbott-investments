@@ -325,10 +325,10 @@ pages['webinars/register'] = ['Live Investor Briefing Registration', subpage('Li
   `<div class="hero-event"><p><span class="hero-event-k">When</span>${cvText('webinar_date')} · ${cvText('webinar_time')}</p><p><span class="hero-event-k">Speaker</span>${cvText('webinar_guest_name')}</p><div class="hero-event-cta-row"><a class="button hero-event-cta" href="#reserve">Reserve Your Seat</a></div></div>`).replace('class="subpage-hero has-hero-extra"', 'class="subpage-hero has-hero-extra hero-compact"')];
 
 const introCta = section('Ready to Talk?', p(['Schedule a short introduction call with Stephen to talk through your goals and see whether our approach is the right fit.']) + link('Schedule an Introduction Call', site.introCallUrl), 'Next Step');
-pages['webinars/register/thank-you'] = ['You’re Registered', subpage('You’re Registered', 'Thank You for Registering for the Live Investor Briefing', 'Check your email for your confirmation and the link to join.',
+pages['webinars/register/thank-you'] = ['You’re Registered', subpage('You’re Registered', raw(`Thank You for Registering for ${cvText('webinar_name')}`), 'Check your email for your confirmation and the link to join.',
   `<p class="briefing-meta">${cvText('webinar_name')} | ${cvText('webinar_date')} | ${cvText('webinar_time')}</p><p>${cvLink('Add to Your Calendar', 'webinar_event_calendar_link')}</p>` +
   section('A Message from Stephen', cvVideo('7_evergreen_thank_youschedule_a_call', '10_thank_you_video_thumbnail', 'Thank you message from Stephen')) +
-  introCta, hero('webinars')), { withNewsletter: false }];
+  introCta, hero('webinars')).replace('class="subpage-hero"', 'class="subpage-hero hero-compact"'), { withNewsletter: false }];
 
 pages['newsletter/thank-you'] = ['Thank You for Subscribing', subpage(site.newsletterName, 'Thank You for Subscribing to Our Newsletter', 'A confirmation email and your first article are on the way to your inbox. If you do not see them shortly, please check your promotions or spam folder.',
   section('What to Expect', p([`${site.newsletterName} arrives in your inbox [twice a month], with practical articles on passive real estate investing, market insights, and first access to new opportunities.`])) +

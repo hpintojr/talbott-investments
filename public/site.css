@@ -1238,16 +1238,18 @@
 @media(max-width:560px){.replay-play{width:64px;height:64px;margin:-32px 0 0 -32px}.replay-play::after{left:26px;top:20px;border-width:12px 0 12px 20px}}
 
 /* Executive Brief: access form inside the hero (Nov 19) */
-.subpage-hero.has-hero-form{padding-bottom:clamp(56px,7vw,96px)}
-.has-hero-form .subpage-wrap{display:grid;grid-template-columns:minmax(0,1fr) minmax(340px,440px);column-gap:clamp(32px,5vw,80px);align-items:center}
-.has-hero-form .subpage-wrap>*:not(.hero-form-card){grid-column:1}
-.has-hero-form .hero-form-card{grid-column:2;grid-row:1/span 4;align-self:center}
-.has-hero-form h1{font-size:clamp(2.2rem,3.8vw,3.7rem);max-width:18ch;line-height:1.05}
-.has-hero-form .subpage-wrap>p:not(.eyebrow){font-size:clamp(1.05rem,1.4vw,1.25rem);max-width:46ch}
-.hero-form-card{background:#fff;color:#232e4d;border-radius:14px;padding:clamp(22px,2.4vw,32px);box-shadow:0 24px 60px #020a1a66;border:1px solid #ffffff2e}
-.hero-form-card .eyebrow{color:#5d86b8!important;margin:0 0 6px}
-.hero-form-card h2{color:#232e4d;font-size:clamp(1.35rem,1.8vw,1.7rem)!important;line-height:1.2;margin:0 0 6px;letter-spacing:-.01em}
-.hero-form-card .ghl-embed{display:block;width:100%;min-height:480px;border:0;margin:0}
-.hero-form-card .lead-form{margin:0}
-@media (max-width:960px){.has-hero-form .subpage-wrap{grid-template-columns:1fr}.has-hero-form .hero-form-card{grid-column:1;grid-row:auto;margin-top:28px}}
-.hero-form-card .lead-note,.subpage-hero .hero-form-card p:last-child{font-size:.82rem;line-height:1.45;max-width:none}
+.subpage-hero.has-hero-form{padding-bottom:clamp(48px,6vw,84px)}
+.has-hero-form h1{font-size:clamp(2rem,3.3vw,3.1rem)!important;line-height:1.08;max-width:26ch}
+.has-hero-form .subpage-wrap>p:not(.eyebrow){max-width:60ch}
+.hero-form-card{margin-top:clamp(20px,2.6vw,30px);max-width:640px;background:none;padding:0;border:0;box-shadow:none}
+.hero-form-card h2{font-size:clamp(1.05rem,1.5vw,1.3rem)!important;line-height:1.25;letter-spacing:-.01em;color:#fff;margin:0 0 10px;font-weight:600}
+.hero-form-card .ghl-embed{display:block;width:100%;min-height:300px;border:0;margin:0;background:transparent}
+.hero-form-card .lead-form{display:grid;grid-template-columns:1fr;gap:12px;margin:0}
+.hero-form-card .lead-fields{display:grid;grid-template-columns:1fr 1fr;gap:10px 12px}
+.hero-form-card .lead-form label span{color:#b9cbe4;font-size:.68rem;letter-spacing:.1em;text-transform:uppercase}
+.hero-form-card .lead-form input{background:#ffffff14!important;border:1px solid #ffffff3d!important;color:#fff!important;min-height:42px;padding:9px 12px;border-radius:8px}
+.hero-form-card .lead-form input::placeholder{color:#c3cfe2b3}
+.hero-form-card .lead-form input:focus{outline:0;border-color:#9fbde0!important;box-shadow:0 0 0 4px #9fbde033}
+.hero-form-card .lead-submit{background:#fff!important;color:#083965!important;min-height:44px;border-radius:8px;margin:0;justify-self:start;padding-inline:22px}
+.subpage-hero .hero-form-card .lead-note{color:#b9cbe4!important;font-size:.8rem!important;line-height:1.4;margin:0;max-width:none;display:flex;gap:6px;align-items:center}
+@media (max-width:640px){.hero-form-card .lead-fields{grid-template-columns:1fr}.hero-form-card .lead-submit{justify-self:stretch}}

@@ -298,7 +298,7 @@ pages['learn'] = ['Learn', subpage('Investor Education', 'Insights and Resources
 
 const replayCard = (r) => `<article class="template-panel replay-row"><div><p class="eyebrow">${esc(r.month)}</p><h3>${link(r.title, `/webinars/replay/${r.slug}/`, 'nav-link')}</h3><p>${esc(r.subtitle)}</p>${link('Watch Replay', `/webinars/replay/${r.slug}/`)}</div>${pic(r.cover || r.flyer, r.title + ' cover')}</article>`;
 const briefCard = `<article class="template-panel briefing-card">${cvImg('3_evergreen_webinar_social_media_cover', 'Executive Investment Brief cover')}
-  <p class="eyebrow">On Demand</p>${cvText('1_evergreen_webinar_name', 'h3')}${cvText('2_evergreen_webinar_sub_header', 'p')}${cvLink('Watch the Brief', 'linkedin_webinar_lead_magnet')}</article>`;
+  <p class="eyebrow">On Demand</p>${cvText('1_evergreen_webinar_name', 'h3')}${cvText('2_evergreen_webinar_sub_header', 'p')}${link('Watch the Brief', BRIEF)}</article>`;
 const liveCard = `<article class="template-panel briefing-card">${cvImg('webinar_marketing_cover', 'Live Investor Briefing cover')}
   <p class="eyebrow">Live Investor Briefing</p>${cvText('webinar_name', 'h3')}${cvText('20_webinar_name_subheader', 'p')}
   <p class="briefing-meta">${esc(briefingDetail(false))}</p><p class="briefing-meta">Featured Speaker: ${cvText('webinar_guest_name')}</p>${link('Reserve Your Seat', '/webinars/register/')}</article>`;
@@ -312,7 +312,7 @@ pages['webinars'] = ['Investor Briefings', subpage('Live and On Demand', 'Invest
 
 pages['webinars/executive-investment-brief'] = ['The Executive Investment Brief', subpage('On Demand', cv('1_evergreen_webinar_name'), cv('2_evergreen_webinar_sub_header'),
   section('What You Will Learn', cvBullets(['6_evergreen_webinarlearn_1', '7_evergreen_webinar_learn_2', '8_evergreen_webinar_learn3', '9_evergreen_webinarlearn4'])),
-  A.pageImage, `<div class="hero-form-card" id="access"><p class="eyebrow">Access the Briefing</p><h2>Get Instant Access</h2>${ghl('evergreen')}</div>`).replace('class="subpage-hero has-hero-extra"', 'class="subpage-hero has-hero-extra has-hero-form"')];
+  A.pageImage, `<div class="hero-form-card" id="access"><h2>Get Instant Access</h2>${ghl('evergreen').replace('<iframe ', '<iframe allowtransparency="true" ')}</div>`).replace('class="subpage-hero has-hero-extra"', 'class="subpage-hero has-hero-extra has-hero-form"')];
 
 // Evergreen watch page (on Vercel for now; GHL form redirects here)
 pages['webinars/executive-investment-brief/watch'] = ['Watch the Executive Investment Brief', subpage('On Demand', 'The Executive Investment Brief', 'Thank you for registering. Watch the full briefing below.',

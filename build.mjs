@@ -5,9 +5,13 @@ import { site } from './content/site.mjs';
 
 const webinars = JSON.parse(await readFile(new URL('./content/webinars.json', import.meta.url), 'utf8'));
 const live = webinars.live;
+// GHL custom values (content/ghl-values.json snapshot; site.js refreshes them live from /api/custom-values).
+const CV = JSON.parse(await readFile(new URL('./content/ghl-values.json', import.meta.url), 'utf8')).values;
 const A = site.assets;
 
-const esc = (v) => String(v ?? '').replace(/[&<>"']/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' })[c]);
+// raw(html) passes pre-built markup through esc() untouched (used for custom-value spans in titles).
+const raw = (html) => ({ __raw: html, toString: () => html });
+const esc = (v) => v && v.__raw !== undefined ? v.__raw : String(v ?? '').replace(/[&<>"']/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' })[c]);
 const link = (label, href, cls = 'button') => `<a class="${cls}" href="${esc(href)}">${esc(label)}</a>`;
 const img = (url, alt = '') => `<img src="${esc(url)}" alt="${esc(alt)}" loading="lazy" decoding="async">`;
 const ph = (label) => `<div class="placeholder-photo" role="img" aria-label="${esc(label)}">${esc(label)}</div>`;
@@ -25,6 +29,15 @@ const panel = (label, title, summary, href = '', art = '', cta = 'Explore') => `
 const media = (url, label, poster = '') => url
   ? `<video class="template-video" controls playsinline preload="metadata" src="${esc(url)}"${poster ? ` poster="${esc(poster)}"` : ''} aria-label="${esc(label)}"></video>`
   : videoPh(label);
+// Custom-value bindings: render the snapshot now, site.js swaps in the live GHL value.
+const cvText = (key, tag = 'span', cls = '') => `<${tag}${cls ? ` class="${cls}"` : ''} data-cv="${key}">${esc(CV[key])}</${tag}>`;
+const cv = (key) => raw(cvText(key));
+const cvImg = (key, alt) => `<img src="${esc(CV[key])}" data-cv-src="${key}" alt="${esc(alt)}" loading="lazy" decoding="async">`;
+const cvLink = (label, key, cls = 'button') => `<a class="${cls}" href="${esc(CV[key])}" data-cv-href="${key}">${esc(label)}</a>`;
+const cvVideo = (srcKey, posterKey, label) => `<video class="template-video" controls playsinline preload="metadata" src="${esc(CV[srcKey])}" data-cv-src="${srcKey}"${CV[posterKey] ? ` poster="${esc(CV[posterKey])}"` : ''} data-cv-poster="${posterKey}" aria-label="${esc(label)}"></video>`;
+const cvBullets = (keys) => `<ul class="check-list">${keys.map((k) => `<li data-cv="${k}" data-cv-hide-empty>${esc(CV[k])}</li>`).join('')}</ul>`;
+const briefingDetail = (withSpeaker = true) => raw(`${cvText('webinar_date')} | ${cvText('webinar_time')}${withSpeaker ? ` | Featured Speaker: ${cvText('webinar_guest_name')}` : ''}`);
+
 // Replay video block: cover + coded play button; click swaps in the MP4 or Streamable embed and autoplays.
 function replayVideo(r) {
   const v = (r.video || '').trim();
@@ -41,7 +54,7 @@ function replayVideo(r) {
   const art = cover ? `<img src="${esc(cover)}" alt="${esc(r.title)} replay cover" decoding="async">` : '<span class="replay-video-blank"></span>';
   return src
     ? `<div class="replay-video" data-kind="${kind}" data-src="${esc(src)}"><button type="button" class="replay-video-btn" aria-label="Play ${esc(r.title)} replay">${art}<span class="replay-play" aria-hidden="true"></span></button></div>`
-    : `<div class="replay-video is-pending">${art}<span class="replay-play" aria-hidden="true"></span><span class="replay-soon">Replay video coming soon</span></div>`;
+    : `<div class="replay-video is-pending">${art}<span class="replay-play" aria-hidden="true"></span></div>`;
 }
 
 // Video-style placeholder: branded backdrop, Stephen cutout, centered play button. Swapped out once the real video or thumbnail is set.
@@ -99,6 +112,9 @@ function ghl(key) {
     <script src="https://link.msgsndr.com/js/form_embed.js" defer></script>`;
 }
 
+// Always-on GHL form embed (Yohannes Nov 19: register page uses the real GHL form on every host).
+const ghlEmbed = (id, title) => `<iframe class="ghl-embed ghl-embed-form" src="https://api.leadconnectorhq.com/widget/form/${esc(id)}" id="inline-${esc(id)}" data-layout="{'id':'INLINE'}" data-trigger-type="alwaysShow" data-activation-type="alwaysActivated" data-deactivation-type="neverDeactivate" data-form-id="${esc(id)}" scrolling="no" title="${esc(title)}"></iframe>
+    <script src="https://link.msgsndr.com/js/form_embed.js" defer></script>`;
 const SCHEDULE = '/schedule-a-call/';
 const BRIEF = '/webinars/executive-investment-brief/';
 const THANKS_VIDEO = site.thankYouVideo || live.thankYouVideo;
@@ -178,9 +194,6 @@ const help = [
   ['Experienced Operating Partners', 'We invest alongside established operators with the scale and systems to carry out the business plan.'],
   ['Transparent Reporting, Consistent Distributions', 'You always know how your investment is performing and when to expect cash flow.'],
 ];
-const liveSet = !String(live.title).trim().startsWith('[');
-const liveCardArt = live.flyer ? img(live.flyer, live.title + ' flyer') : img(A.pageHeroes.webinars, 'Live investor webinar');
-const liveTitle = liveSet ? live.title : 'Next Live Webinar: Dates Coming Soon';
 
 const home = `<main id="main">
   <section class="hero cover" style="--overlay:#232e4d99;--cover:url('${esc(A.heroImage)}')">
@@ -218,10 +231,10 @@ const home = `<main id="main">
     <div class="actions">${link('Schedule a Call →', SCHEDULE)}</div></section>
   <section class="home-resources"><div class="subpage-wrap"><p class="eyebrow">Investor Resources</p><h2>Explore Talbott Investments</h2>
     ${grid([panel('How We Invest', 'How We Invest', 'Our markets, our criteria, and how every deal is underwritten.', '/strategy/'),
-      (liveSet ? panel(`Live Webinar · ${live.date}`, live.title, `${live.time} with ${live.host}`, '/webinars/register/', liveCardArt, 'Register') : panel('Live Webinar', liveTitle, `Hosted by ${live.host}. Subscribe to the newsletter to hear first.`, '/webinars/', liveCardArt, 'See Webinars')),
+      panel(raw(`Live Investor Briefing · ${cvText('webinar_date')}`), cv('webinar_name'), raw(`${cvText('webinar_time')} · Featured Speaker: ${cvText('webinar_guest_name')}`), '/webinars/register/', cvImg('webinar_marketing_cover', 'Live Investor Briefing cover'), 'Register'),
       panel('Investor Education', 'Investor Education', 'Articles and quick answers for passive investors.', '/learn/')])}
     <p class="eyebrow">Latest Insights</p><h2>Latest Insights</h2>${grid(site.articles.slice(0, 2).map(articleCard))}
-    ${section('How to Get Started', steps([['Learn', 'Watch the Executive Investment Brief or join a live webinar to see how we invest.'], ['Connect', 'Schedule a call to talk through your goals and confirm fit.'], ['Invest', 'Verify accreditation, review the offering, and invest through the investor portal.']]))}
+    ${section('How to Get Started', steps([['Learn', 'Watch the Executive Investment Brief or join a Live Investor Briefing to see how we invest.'], ['Connect', 'Schedule a call to talk through your goals and confirm fit.'], ['Invest', 'Verify accreditation, review the offering, and invest through the investor portal.']]))}
   </div></section></main>`;
 
 // ---------- Subpages ----------
@@ -284,16 +297,22 @@ pages['learn'] = ['Learn', subpage('Investor Education', 'Insights and Resources
   section('', link('Watch the Executive Investment Brief →', BRIEF), 'Investor Brief'), hero('learn'), heroSubscribe), { withNewsletter: false }];
 
 const replayCard = (r) => `<article class="template-panel replay-row"><div><p class="eyebrow">${esc(r.month)}</p><h3>${link(r.title, `/webinars/replay/${r.slug}/`, 'nav-link')}</h3><p>${esc(r.subtitle)}</p>${link('Watch Replay', `/webinars/replay/${r.slug}/`)}</div>${pic(r.cover || r.flyer, r.title + ' cover')}</article>`;
-pages['webinars'] = ['Webinars', subpage('Investor Briefings', 'Webinars and Events', 'Watch the Executive Investment Brief on demand, join Stephen’s next live webinar, or browse past recordings.',
+const briefCard = `<article class="template-panel briefing-card">${cvImg('3_evergreen_webinar_social_media_cover', 'Executive Investment Brief cover')}
+  <p class="eyebrow">On Demand</p>${cvText('1_evergreen_webinar_name', 'h3')}${cvText('2_evergreen_webinar_sub_header', 'p')}${cvLink('Watch the Brief', 'linkedin_webinar_lead_magnet')}</article>`;
+const liveCard = `<article class="template-panel briefing-card">${cvImg('webinar_marketing_cover', 'Live Investor Briefing cover')}
+  <p class="eyebrow">Live Investor Briefing</p>${cvText('webinar_name', 'h3')}${cvText('20_webinar_name_subheader', 'p')}
+  <p class="briefing-meta">${esc(briefingDetail(false))}</p><p class="briefing-meta">Featured Speaker: ${cvText('webinar_guest_name')}</p>${link('Reserve Your Seat', '/webinars/register/')}</article>`;
+pages['webinars'] = ['Investor Briefings', subpage('Live and On Demand', 'Investor Briefings', 'Watch the Executive Investment Brief on demand, join Stephen’s next Live Investor Briefing, or browse past briefings.',
   section('Choose a Briefing', grid([
-    panel('On Demand', 'The Executive Investment Brief', 'Reduce concentration risk, prepare for tax exposure, and build passive income through multifamily.', BRIEF, (A.briefThumbnail ? img(A.briefThumbnail, 'Executive Investment Brief thumbnail') : videoPh('The Executive Investment Brief', 'Watch on demand'))),
-    (liveSet ? panel('Live Webinar', live.title, `${live.date} · ${live.time}`, '/webinars/register/', liveCardArt) : panel('Live Webinar', liveTitle, 'Replays of past sessions are below.', '/webinars/', liveCardArt)),
+    briefCard,
+    liveCard,
     panel('Replay Library', 'Past Recordings', 'Watch past webinars on your own schedule.', '#past-recordings', pic(webinars.replays[0]?.cover || webinars.replays[0]?.flyer, 'Replay library')),
   ], 'webinar-cards')) +
   `<div id="past-recordings">${section('Past Recordings', `<div class="template-grid replay-list">${webinars.replays.map(replayCard).join('')}</div>`)}</div>`, hero('webinars'))];
 
-pages['webinars/executive-investment-brief'] = ['The Executive Investment Brief', subpage('On Demand', 'The Executive Investment Brief', 'An on demand briefing on reducing concentration risk, preparing for tax exposure, and building passive income through multifamily.',
-  section('What You Will Learn', bullets(['The hidden risks of RSU concentration and the tax shock that comes at vesting', 'Why multifamily moves independently of the stock market and creates consistent passive income', 'The common issues passive investors face, and how a transparent sponsor avoids them', 'A real use case: how a value add property is performing for investors today'])) +
+pages['webinars/executive-investment-brief'] = ['The Executive Investment Brief', subpage('On Demand', cv('1_evergreen_webinar_name'), cv('2_evergreen_webinar_sub_header'),
+  section('', cvVideo('2_evergreen_webinar_video_url', '3_evergreen_webinar_social_media_cover', 'Executive Investment Brief')) +
+  section('What You Will Learn', cvBullets(['6_evergreen_webinarlearn_1', '7_evergreen_webinar_learn_2', '8_evergreen_webinar_learn3', '9_evergreen_webinarlearn4'])) +
   section('Access the Briefing', ghl('evergreen')))];
 
 // Evergreen watch page (on Vercel for now; GHL form redirects here)
@@ -301,15 +320,14 @@ pages['webinars/executive-investment-brief/watch'] = ['Watch the Executive Inves
   section('', media(webinars.evergreen.watchVideo, 'Executive Investment Brief', webinars.evergreen.thumbnail)) +
   section('Ready to Talk?', p(['Start with a conversation about your goals, your timeline, and whether our approach is the right fit.']) + link('Schedule Discovery Call', site.discoveryCallUrl)), hero('webinars')), { withNewsletter: false }];
 
-pages['webinars/register'] = ['Live Webinar Registration', subpage('Live Webinar Registration', live.title, `${live.date} · ${live.time} · Hosted by ${live.host}`,
-  (live.subtitle ? `<p class="lead" style="color:#232e4d">${esc(live.subtitle)}</p>` : '') +
-  `<div class="template-split"><div>${section('What You Will Learn', bullets(live.whatYouWillLearn))}${section('About This Webinar', p([live.about]))}</div><div>${pic(live.flyer, 'Live webinar flyer')}</div></div>` +
-  section('Reserve a Place', ghl('liveWebinar')), live.flyer || A.pageImage)];
+pages['webinars/register'] = ['Live Investor Briefing Registration', subpage('Live Investor Briefing', cv('webinar_name'), cv('20_webinar_name_subheader'),
+  `<div class="template-split"><div>${section('What You Will Learn', cvBullets(['9_what_you_will_learn_1', '10_what_you_will_learn_2', '11_what_you_will_learn_3', '12_what_youll_learn_4']))}<section class="page-section" data-cv-section="0_about_this_event"${CV['0_about_this_event'] ? '' : ' hidden'}><h2>About This Briefing</h2>${cvText('0_about_this_event', 'p')}</section></div><div>${cvImg('webinar_marketing_cover', 'Live Investor Briefing cover')}</div></div>` +
+  section('Reserve Your Seat', ghlEmbed('4j48BWsrlUr36REdk9fo', 'Live Investor Briefing registration')), CV.webinar_marketing_cover || A.pageImage, `<p class="briefing-meta">${esc(briefingDetail())}</p>`)];
 
 const introCta = section('Ready to Talk?', p(['Schedule a short introduction call with Stephen to talk through your goals and see whether our approach is the right fit.']) + link('Schedule an Introduction Call', site.introCallUrl), 'Next Step');
-pages['webinars/register/thank-you'] = ['You’re Registered', subpage('You’re Registered', 'Thank You for Registering for the Live Webinar', 'Check your email for your confirmation and the link to join.',
-  `<p>${live.addToCalendarUrl ? link('Add to Your Calendar', live.addToCalendarUrl) : '<span class="ghl-slot">Add to Your Calendar button: paste this month’s calendar link in content/webinars.json</span>'}</p>` +
-  section('A Message from Stephen', media(THANKS_VIDEO, 'Thank you message from Stephen')) +
+pages['webinars/register/thank-you'] = ['You’re Registered', subpage('You’re Registered', 'Thank You for Registering for the Live Investor Briefing', 'Check your email for your confirmation and the link to join.',
+  `<p class="briefing-meta">${cvText('webinar_name')} | ${cvText('webinar_date')} | ${cvText('webinar_time')}</p><p>${cvLink('Add to Your Calendar', 'webinar_event_calendar_link')}</p>` +
+  section('A Message from Stephen', cvVideo('7_evergreen_thank_youschedule_a_call', '10_thank_you_video_thumbnail', 'Thank you message from Stephen')) +
   introCta, hero('webinars')), { withNewsletter: false }];
 
 pages['newsletter/thank-you'] = ['Thank You for Subscribing', subpage(site.newsletterName, 'Thank You for Subscribing to Our Newsletter', 'A confirmation email and your first article are on the way to your inbox. If you do not see them shortly, please check your promotions or spam folder.',
@@ -323,7 +341,7 @@ for (const r of webinars.replays) {
   pages[`webinars/replay/${r.slug}`] = [r.title, subpage(r.label, r.title, r.subtitle,
     (r.callout ? `<p class="callout-bar">${esc(r.callout)}</p>` : '') +
     section('', replayVideo(r)) +
-    `<div class="replay-details">${r.about ? section('About This Webinar', p([r.about])) : ''}${section('Key Takeaways', bullets(r.takeaways))}</div>` +
+    `<div class="replay-details">${r.about ? section('About This Briefing', p([r.about])) : ''}${section('Key Takeaways', bullets(r.takeaways))}</div>` +
     link('Schedule a Call', SCHEDULE), hero('webinars'))];
 }
 

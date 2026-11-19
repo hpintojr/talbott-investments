@@ -1226,3 +1226,13 @@
 .hero-subscribe .ghl-embed,.hero-subscribe .ghl-embed-form{height:80px;width:100%;min-height:80px;border:0;border-radius:0;background:transparent!important;box-shadow:none!important;padding:0!important;display:block;color-scheme:normal}
 @media (max-width:519px){.hero-subscribe .ghl-embed,.hero-subscribe .ghl-embed-form{height:220px;min-height:220px}}
 @media(max-width:640px){.hero-subscribe .lead-form,.hero-subscribe .lead-fields{grid-template-columns:1fr}.hero-subscribe .lead-submit{justify-self:stretch}}
+
+/* Nov 19 (Yohannes "Talbott Investments Webinar Pages") */
+.briefing-meta{font-weight:600;color:#083965;margin:6px 0}
+.subpage-hero .briefing-meta{color:inherit;opacity:.92}
+.briefing-card>img{width:100%;aspect-ratio:16/9;object-fit:cover;border:1px solid var(--line);border-radius:4px;box-shadow:0 5px 14px #0002}
+.briefing-card>.button{margin-top:12px}
+/* Replay play button: off the title text, onto Stephen's chest; solid white, navy triangle, ~92px */
+.replay-play{left:73%;top:80%;width:92px;height:92px;margin:-46px 0 0 -46px;box-shadow:0 10px 28px #0b1a3359,0 2px 6px #0b1a3326}
+.replay-play::after{left:37px;top:29px;border-width:17px 0 17px 28px}
+@media(max-width:560px){.replay-play{width:64px;height:64px;margin:-32px 0 0 -32px}.replay-play::after{left:26px;top:20px;border-width:12px 0 12px 20px}}

@@ -1,0 +1,9 @@
+{
+ "_note": "Per GHL page: real URL (as built for Vercel) -> GHL custom value token. ghl-export.py swaps them so the GHL page reads the live custom value.",
+ "about": {
+  "https://assets.cdn.filesafe.space/wcZcbuIFekpLyE3fmvmO/media/6a3946427b00529580989d24.mp4": "{{custom_values.6_evergreen_about_us}}",
+  "https://files.leadconnectorhq.com/file/6aff4a66898cec9ac76a4b88/talbott-aboutus-video-thumbnail-1920.png": "{{custom_values.11_about_us_cover_image}}",
+  "https://assets.cdn.filesafe.space/wcZcbuIFekpLyE3fmvmO/media/69d405474cde4bbc2a0d5ba7.mp4": "{{custom_values.7_about_me}}",
+  "https://files.leadconnectorhq.com/file/6aff4e8fff777b8c6ec001d7/talbott-aboutme-video-thumbnail-concept.png": "{{custom_values.8_about_me_video_thumbnail}}"
+ }
+}

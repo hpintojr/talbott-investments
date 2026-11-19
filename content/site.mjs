@@ -31,10 +31,14 @@ export const site = {
     favicon: '/images/favicon.png',
     headshot: '/images/stephen-profile.webp',
     headshotCutout: '/images/stephen-predmore.webp',
-    // Swapped Nov 16 per Yohannes (Nov 15 email): Our Firm plays the thank-you/welcome video,
-    // Stephen's bio plays his About Me video.
-    aboutUsVideo: 'https://assets.cdn.filesafe.space/wcZcbuIFekpLyE3fmvmO/media/69d405474cde4bbc2a0d5ba7.mp4',
-    aboutMeVideo: 'https://assets.cdn.filesafe.space/wcZcbuIFekpLyE3fmvmO/media/6a3946427b00529580989d24.mp4',
+    // Nov 19 per Yohannes ("About Page-Talbott Investments"): About page media follow GHL custom values.
+    // Our Firm = {{custom_values.6_evergreen_about_us}} + {{custom_values.11_about_us_cover_image}};
+    // Stephen's Founder's Story = {{custom_values.7_about_me}} + {{custom_values.8_about_me_video_thumbnail}}.
+    // On GHL the About page uses the tokens themselves (scripts/ghl-custom-values.json), so edits there flow through.
+    aboutUsVideo: 'https://assets.cdn.filesafe.space/wcZcbuIFekpLyE3fmvmO/media/6a3946427b00529580989d24.mp4',
+    aboutUsPoster: 'https://files.leadconnectorhq.com/file/6aff4a66898cec9ac76a4b88/talbott-aboutus-video-thumbnail-1920.png',
+    aboutMeVideo: 'https://assets.cdn.filesafe.space/wcZcbuIFekpLyE3fmvmO/media/69d405474cde4bbc2a0d5ba7.mp4',
+    aboutMePoster: 'https://files.leadconnectorhq.com/file/6aff4e8fff777b8c6ec001d7/talbott-aboutme-video-thumbnail-concept.png',
     briefThumbnail: '',
     // Stock placeholders until Talbott property photos arrive
     // Heroes: blue versions of the Hylee-style images Hamilton picked (public/images/hero-*.webp).

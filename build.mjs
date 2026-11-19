@@ -311,7 +311,6 @@ pages['webinars'] = ['Investor Briefings', subpage('Live and On Demand', 'Invest
   `<div id="past-recordings">${section('Past Recordings', `<div class="template-grid replay-list">${webinars.replays.map(replayCard).join('')}</div>`)}</div>`, hero('webinars'))];
 
 pages['webinars/executive-investment-brief'] = ['The Executive Investment Brief', subpage('On Demand', cv('1_evergreen_webinar_name'), cv('2_evergreen_webinar_sub_header'),
-  section('', cvVideo('2_evergreen_webinar_video_url', '3_evergreen_webinar_social_media_cover', 'Executive Investment Brief')) +
   section('What You Will Learn', cvBullets(['6_evergreen_webinarlearn_1', '7_evergreen_webinar_learn_2', '8_evergreen_webinar_learn3', '9_evergreen_webinarlearn4'])) +
   section('Access the Briefing', ghl('evergreen')))];
 

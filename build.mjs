@@ -230,9 +230,9 @@ const home = `<main id="main">
     ${heading('Ready to Explore Multifamily Investing?')}<p style="margin-inline:auto">Start with a conversation about your goals, your timeline, and whether our approach is the right fit.</p>
     <div class="actions">${link('Schedule a Call →', SCHEDULE)}</div></section>
   <section class="home-resources"><div class="subpage-wrap"><p class="eyebrow">Investor Resources</p><h2>Explore Talbott Investments</h2>
-    ${grid([panel('How We Invest', 'How We Invest', 'Our markets, our criteria, and how every deal is underwritten.', '/strategy/'),
+    ${grid([panel('How We Invest', 'How We Invest', 'Our markets, our criteria, and how every deal is underwritten.', '/strategy/', cvImg('how_we_invest_card_image', 'How We Invest')),
       panel(raw(`Live Investor Briefing · ${cvText('webinar_date')}`), cv('webinar_name'), raw(`${cvText('webinar_time')} · Featured Speaker: ${cvText('webinar_guest_name')}`), '/webinars/register/', cvImg('webinar_marketing_cover', 'Live Investor Briefing cover'), 'Register'),
-      panel('Investor Education', 'Investor Education', 'Articles and quick answers for passive investors.', '/learn/')])}
+      panel('Investor Education', 'Investor Education', 'Articles and quick answers for passive investors.', '/learn/', cvImg('investor_education_card_image', 'Investor Education'))])}
     <p class="eyebrow">Latest Insights</p><h2>Latest Insights</h2>${grid(site.articles.slice(0, 2).map(articleCard))}
     ${section('How to Get Started', steps([['Learn', 'Watch the Executive Investment Brief or join a Live Investor Briefing to see how we invest.'], ['Connect', 'Schedule a call to talk through your goals and confirm fit.'], ['Invest', 'Verify accreditation, review the offering, and invest through the investor portal.']]))}
   </div></section></main>`;

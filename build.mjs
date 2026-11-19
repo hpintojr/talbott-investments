@@ -224,7 +224,7 @@ const home = `<main id="main">
     <div class="education-copy">${heading('Is Too Much of Your Wealth Tied to One Company?', 'Start Here')}
       <p>For many tech and engineering leaders, RSUs mean a large share of net worth rides on a single stock, with a tax bill that often arrives larger than expected. The Executive Investment Brief shows how multifamily can help diversify that risk and build passive income outside your employer.</p>
       ${link('Watch the Executive Investment Brief →', BRIEF)}</div>
-    <a class="education-poster" href="${BRIEF}" aria-label="Watch the Executive Investment Brief">${(A.briefThumbnail ? img(A.briefThumbnail, 'Executive Investment Brief thumbnail') : videoPh('The Executive Investment Brief', 'Watch on demand'))}</a>
+    <a class="education-poster" href="${BRIEF}" aria-label="Watch the Executive Investment Brief">${cvImg('3_evergreen_webinar_social_media_cover', 'The Executive Investment Brief, watch on demand')}</a>
   </section>
   <section class="section teal closing" id="contact"><span class="section-art"${cover(A.closingImage)} aria-hidden="true"></span>
     ${heading('Ready to Explore Multifamily Investing?')}<p style="margin-inline:auto">Start with a conversation about your goals, your timeline, and whether our approach is the right fit.</p>

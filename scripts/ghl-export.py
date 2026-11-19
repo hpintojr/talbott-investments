@@ -59,7 +59,12 @@ navfix=("(function(){function y(){var e=document.scrollingElement||document.docu
   "function t(){var r=document.querySelector('.ghl-site > div'),h=document.querySelector('.ghl-site .hero');if(!r||!h)return;"
   "r.classList.toggle('has-scrolled',y()>24);r.classList.toggle('past-hero',h.getBoundingClientRect().bottom<80)}"
   "document.addEventListener('scroll',t,{passive:true,capture:true});addEventListener('resize',t);addEventListener('load',t);setInterval(t,300);t()})();")
-open(f'{O}/_footer.html','w').write(f'<script>{inject}{navfix}{fix(js)}</script>')
+# GHL writes tracking code through a document.write emulator that chokes on HTML-looking
+# strings inside scripts, so ship the code base64-encoded and run it from a plain loader.
+import base64
+code=inject+navfix+fix(js)
+b64=base64.b64encode(code.encode('utf-8')).decode('ascii')
+open(f'{O}/_footer.html','w').write('<script>(new Function(decodeURIComponent(escape(atob("'+b64+'")))))();</script>')
 json.dump(manifest,open(f'{O}/manifest.json','w'),indent=1)
 for m in manifest: print(m['path'],m['bytes'],m['title'])
 print('css',len(css),'js',len(js))

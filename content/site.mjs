@@ -92,23 +92,26 @@ export const site = {
     calendar: { id: 'WQWY7tLU92Q8FSr6tOpG', where: 'Calendars > Stephen Calendar Group > Investor Introduction Call - Stephen (30 min)' },
   },
 
-  stats: [['13', 'Properties'], ['$175M', 'Portfolio Value'], ['910', 'Units'], ['9', 'States']],
+  stats: [['16', 'Properties'], ['$298M', 'Portfolio Value'], ['1,784', 'Units'], ['10', 'States']],
 
-  // name, location, type, size, year, status, detail page slug, photo URL
+  // name, location, type, size, year, status, detail page slug, cover (public/images/properties, GoRaise Nov 17 2026)
   properties: [
-    ['Rise Sunridge', 'Charlotte, NC', 'Multifamily', '200 units', '2025', 'Active', 'rise-sunridge', ''],
-    ['Rise Chapel Hill', 'Chapel Hill, NC', 'Multifamily', '144 units', '2025', 'Active', '', ''],
-    ['Rise Crown View', 'Greensboro, NC', 'Multifamily', '119 units', '2025', 'Active', '', ''],
-    ['Northwood Apts', 'Mt Airy, NC', 'Multifamily', '54 units', '2024', 'Active', '', ''],
-    ['Cherry St. Apts', 'Kernersville, NC', 'Multifamily', '12 units', '2024', 'Active', '', ''],
-    ['Taku Drive Apts', 'Anchorage, AK', 'Multifamily', '30 units', '2023', 'Active', '', ''],
-    ['Self Storage', 'Fort Worth, TX', 'Self storage', '221 units', '2023', 'Active', '', ''],
-    ['Promenade Apts', 'Greenwood, SC', 'Multifamily', '88 units', '2023', 'Active', '', ''],
-    ['Hilton Tapestry', 'Sarasota, FL', 'Hospitality', '120 keys, 35 condos', '2021', 'Active', '', ''],
-    ['Staybridge Suites', 'Fishers, IN', 'Hospitality', '146 keys', '2021', 'Active', '', ''],
-    ['Marriott Courtyard', 'Columbus, OH', 'Hospitality', '145 keys', '2019', 'Active', '', ''],
-    ['Alhambra Ave.', 'Baltimore, MD', 'Single family', '1 home', '2020', 'Active', '', ''],
-    ['Richwood Ave.', 'Baltimore, MD', 'Single family', '1 home', '2020', 'Realized', 'richwood-ave', ''],
+    ['Rise Bluestone', 'Raleigh, NC', 'Multifamily', '268 units', '2026', 'Active', 'rise-bluestone', '/images/properties/rise-bluestone.webp'],
+    ['Rise Valley Heights', 'Phoenix, AZ', 'Multifamily', '194 units', '2026', 'Active', 'rise-valley-heights', '/images/properties/rise-valley-heights.webp'],
+    ['Rise Avalon', 'Charlotte, NC', 'Multifamily', '240 units', '2025', 'Active', 'rise-avalon', '/images/properties/rise-avalon.webp'],
+    ['Rise Sunridge', 'Charlotte, NC', 'Multifamily', '200 units', '2025', 'Active', 'rise-sunridge', '/images/properties/rise-sunridge.webp'],
+    ['Rise Chapel Hill', 'Chapel Hill, NC', 'Multifamily', '144 units', '2025', 'Active', '', '/images/properties/rise-chapel-hill.webp'],
+    ['Rise Crown View', 'Greensboro, NC', 'Multifamily', '119 units', '2025', 'Active', '', '/images/properties/rise-crown-view.webp'],
+    ['S. Samuel Street Apartments', 'Charles Town, WV', 'Multifamily', '23 units', '2024', 'Active', '', '/images/properties/s-samuel-street-apartments.webp'],
+    ['Northwood Apartments', 'Mount Airy, NC', 'Multifamily', '54 units', '2024', 'Active', '', '/images/properties/northwood-apartments.webp'],
+    ['Cherry Street Apartments', 'Kernersville, NC', 'Multifamily', '12 units', '2024', 'Active', '', '/images/properties/cherry-street-apartments.webp'],
+    ['Taku Drive Apartments', 'Anchorage, AK', 'Multifamily', '30 units', '2023', 'Active', '', '/images/properties/taku-drive-apartments.webp'],
+    ['Fort Worth Self Storage', 'Fort Worth, TX', 'Self storage', '221 units', '2023', 'Active', '', '/images/properties/fort-worth-self-storage.webp'],
+    ['Promenade Apartments', 'Greenwood, SC', 'Multifamily', '88 units', '2023', 'Active', '', '/images/properties/promenade-apartments.webp'],
+    ['Hilton Tapestry', 'Sarasota, FL', 'Hospitality', '120 keys, 35 condos', '2021', 'Active', '', '/images/properties/hilton-tapestry.webp'],
+    ['Staybridge Suites', 'Fishers, IN', 'Hospitality', '146 keys', '2021', 'Active', '', '/images/properties/staybridge-suites.webp'],
+    ['Marriott Courtyard', 'Columbus, OH', 'Hospitality', '145 keys', '2019', 'Active', '', '/images/properties/marriott-courtyard.webp'],
+    ['Alhambra Avenue', 'Baltimore, MD', 'Single family', '1 home', '2020', 'Active', '', '/images/properties/alhambra-avenue.webp'],
   ],
 
   // Talbott's GHL Resources blog (blog815585), newest first. Cards link to the live posts.

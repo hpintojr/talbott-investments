@@ -547,7 +547,8 @@ document.querySelectorAll('.replay-video[data-src]').forEach((box) => {
   if (!btn) return;
   btn.addEventListener('click', () => {
     const src = box.dataset.src;
-    if (box.dataset.kind === 'embed') {
+    const kind = box.dataset.kind === 'auto' ? (/streamable\.com|youtube\.com|youtu\.be|vimeo\.com|\/embed\//i.test(src) ? 'embed' : 'mp4') : box.dataset.kind;
+    if (kind === 'embed') {
       const f = document.createElement('iframe');
       f.src = src + (src.includes('?') ? '&' : '?') + 'autoplay=1';
       f.allow = 'autoplay; fullscreen; picture-in-picture';
@@ -567,7 +568,7 @@ document.querySelectorAll('.replay-video[data-src]').forEach((box) => {
 // values from /api/custom-values so edits in GHL show up without a redeploy.
 (function () {
   const root = document.body;
-  if (!root.querySelector('[data-cv],[data-cv-href],[data-cv-src],[data-cv-poster]')) return;
+  if (!root.querySelector('[data-cv],[data-cv-href],[data-cv-src],[data-cv-poster],[data-cv-datasrc]')) return;
   // On GHL the export carries {{custom_values}} tokens that GHL merges server-side; no API there.
   if (document.querySelector('.ghl-site')) return;
   fetch('/api/custom-values', { headers: { Accept: 'application/json' } })
@@ -583,6 +584,7 @@ document.querySelectorAll('.replay-video[data-src]').forEach((box) => {
       });
       root.querySelectorAll('[data-cv-section]').forEach((el) => { const k = el.dataset.cvSection; if (has(k)) el.hidden = !v[k]; });
       root.querySelectorAll('[data-cv-href]').forEach((el) => { const k = el.dataset.cvHref; if (has(k) && v[k]) el.href = v[k]; });
+      root.querySelectorAll('[data-cv-datasrc]').forEach((el) => { const k = el.dataset.cvDatasrc; if (has(k) && v[k]) el.dataset.src = v[k]; });
       root.querySelectorAll('[data-cv-src]').forEach((el) => { const k = el.dataset.cvSrc; if (has(k) && v[k] && el.getAttribute('src') !== v[k]) el.src = v[k]; });
       root.querySelectorAll('[data-cv-poster]').forEach((el) => {
         const k = el.dataset.cvPoster; if (!has(k)) return;

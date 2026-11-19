@@ -34,7 +34,7 @@ const cvText = (key, tag = 'span', cls = '') => `<${tag}${cls ? ` class="${cls}"
 const cv = (key) => raw(cvText(key));
 const cvImg = (key, alt) => `<img src="${esc(CV[key])}" data-cv-src="${key}" alt="${esc(alt)}" loading="lazy" decoding="async">`;
 const cvLink = (label, key, cls = 'button') => `<a class="${cls}" href="${esc(CV[key])}" data-cv-href="${key}">${esc(label)}</a>`;
-const cvVideo = (srcKey, posterKey, label) => `<video class="template-video" controls playsinline preload="metadata" src="${esc(CV[srcKey])}" data-cv-src="${srcKey}"${CV[posterKey] ? ` poster="${esc(CV[posterKey])}"` : ''} data-cv-poster="${posterKey}" aria-label="${esc(label)}"></video>`;
+const cvVideo = (srcKey, posterKey, label) => `<div class="replay-video" data-kind="auto" data-src="${esc(CV[srcKey])}" data-cv-datasrc="${srcKey}"><button type="button" class="replay-video-btn" aria-label="Play ${esc(label)}">${CV[posterKey] ? `<img src="${esc(CV[posterKey])}" data-cv-src="${posterKey}" alt="${esc(label)} cover" decoding="async">` : '<span class="replay-video-blank"></span>'}<span class="replay-play" aria-hidden="true"></span></button></div>`;
 const cvBullets = (keys) => `<ul class="check-list">${keys.map((k) => `<li data-cv="${k}" data-cv-hide-empty>${esc(CV[k])}</li>`).join('')}</ul>`;
 const briefingDetail = (withSpeaker = true) => raw(`${cvText('webinar_date')} | ${cvText('webinar_time')}${withSpeaker ? ` | Featured Speaker: ${cvText('webinar_guest_name')}` : ''}`);
 

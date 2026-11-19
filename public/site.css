@@ -1226,3 +1226,6 @@
 .hero-subscribe .ghl-embed,.hero-subscribe .ghl-embed-form{height:80px;width:100%;min-height:80px;border:0;border-radius:0;background:transparent!important;box-shadow:none!important;padding:0!important;display:block;color-scheme:normal}
 @media (max-width:519px){.hero-subscribe .ghl-embed,.hero-subscribe .ghl-embed-form{height:220px;min-height:220px}}
 @media(max-width:640px){.hero-subscribe .lead-form,.hero-subscribe .lead-fields{grid-template-columns:1fr}.hero-subscribe .lead-submit{justify-self:stretch}}
+
+/* About: Founder's Story sits lower, under its own sub header (Nov 19) */
+.founder-story{margin-top:clamp(48px,6vw,88px)}.founder-story>h3{margin:0 0 14px}.template-video[poster]{object-fit:cover;background:#0b1730}

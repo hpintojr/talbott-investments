@@ -26,6 +26,7 @@ def cv_tokens(t):
     t=re.sub(r'(<[^>]*\sdata-cv="([^"]+)"[^>]*>)[^<]*(<)',lambda m:m.group(1)+T(m.group(2))+m.group(3),t)
     for a in ('src','href'):
         t=re.sub(r'\s'+a+r'="[^"]*"([^>]*?)\sdata-cv-'+a+r'="([^"]+)"',lambda m:' '+a+'="'+T(m.group(2))+'"'+m.group(1),t)
+    t=re.sub(r'\sdata-src="[^"]*"\sdata-cv-datasrc="([^"]+)"',lambda m:' data-src="'+T(m.group(1))+'"',t)
     t=re.sub(r'(?:\sposter="[^"]*")?(\sdata-cv-poster="([^"]+)")',lambda m:' poster="'+T(m.group(2))+'"',t)
     return t
 manifest=[]

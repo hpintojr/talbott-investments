@@ -268,3 +268,35 @@ body,
     white-space: nowrap;
   }
 }
+
+/* Line the fields up with the page heading: drop GHL's outer wrapper padding */
+html,
+body {
+  margin: 0 !important;
+  padding: 0 !important;
+}
+
+#app,
+#app > section,
+.hl_wrapper--inner,
+#hl_form_builder_main,
+.hl-app,
+.hl_form-builder--main,
+.ghl-form-wrap {
+  padding: 0 !important;
+  margin: 0 !important;
+  max-width: none !important;
+  width: 100% !important;
+}
+
+#_builder-form .row {
+  margin-left: 0 !important;
+  margin-right: 0 !important;
+}
+
+/* No field icons */
+#_builder-form .form-builder--item svg:not(.multiselect svg),
+#_builder-form .input-icon,
+#_builder-form .field-icon {
+  display: none !important;
+}

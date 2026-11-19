@@ -541,6 +541,28 @@ for (const svg of document.querySelectorAll('.linework')) {
   addEventListener('resize', fit, { passive: true });
 }
 
+// Replay cover fallback: when the cover custom value is empty or fails to load, show the video's own
+// frame (mp4) or the navy card; if the value is filled later the real cover takes over again.
+document.querySelectorAll('.replay-video[data-src] img.replay-cover').forEach((img) => {
+  const box = img.closest('.replay-video');
+  const ok = () => { const s = img.getAttribute('src') || ''; return s && !/^\{\{|^\s*$/.test(s); };
+  let frame = null;
+  const fallback = () => {
+    img.hidden = true;
+    if (frame) return;
+    const src = box.dataset.src || '';
+    if (src && !/^\{\{/.test(src) && !/streamable\.com|youtube\.com|youtu\.be|vimeo\.com|\/embed\//i.test(src)) {
+      frame = document.createElement('video');
+      frame.className = 'replay-frame'; frame.muted = true; frame.playsInline = true; frame.preload = 'metadata';
+      frame.setAttribute('aria-hidden', 'true'); frame.src = src + '#t=1';
+    } else { frame = document.createElement('span'); frame.className = 'replay-video-blank'; }
+    img.before(frame);
+  };
+  img.addEventListener('error', fallback);
+  img.addEventListener('load', () => { if (!ok()) return; img.hidden = false; if (frame) { frame.remove(); frame = null; } });
+  if (!ok() || (img.complete && !img.naturalWidth)) fallback();
+});
+
 // Replay video block: swap the cover for the video on click and autoplay
 document.querySelectorAll('.replay-video[data-src]').forEach((box) => {
   const btn = box.querySelector('.replay-video-btn');

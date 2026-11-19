@@ -317,7 +317,7 @@ pages['webinars/executive-investment-brief'] = ['The Executive Investment Brief'
 
 // Evergreen watch page (on Vercel for now; GHL form redirects here)
 pages['webinars/executive-investment-brief/watch'] = ['Watch the Executive Investment Brief', subpage('On Demand', 'The Executive Investment Brief', 'Thank you for registering. Watch the full briefing below.',
-  section('', media(webinars.evergreen.watchVideo, 'Executive Investment Brief', webinars.evergreen.thumbnail)) +
+  section('', cvVideo('2_evergreen_webinar_video_url', '3_evergreen_webinar_social_media_cover', 'Executive Investment Brief')) +
   section('Ready to Talk?', p(['Start with a conversation about your goals, your timeline, and whether our approach is the right fit.']) + link('Schedule Discovery Call', site.discoveryCallUrl)), hero('webinars')), { withNewsletter: false }];
 
 pages['webinars/register'] = ['Live Investor Briefing Registration', subpage('Live Investor Briefing', cv('webinar_name'), cv('20_webinar_name_subheader'),

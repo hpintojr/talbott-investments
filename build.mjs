@@ -224,7 +224,7 @@ const home = `<main id="main">
     <div class="education-copy">${heading('Is Too Much of Your Wealth Tied to One Company?', 'Start Here')}
       <p>For many tech and engineering leaders, RSUs mean a large share of net worth rides on a single stock, with a tax bill that often arrives larger than expected. The Executive Investment Brief shows how multifamily can help diversify that risk and build passive income outside your employer.</p>
       ${link('Watch the Executive Investment Brief →', BRIEF)}</div>
-    <a class="education-poster" href="${BRIEF}" aria-label="Watch the Executive Investment Brief">${(A.briefThumbnail ? img(A.briefThumbnail, 'Executive Investment Brief thumbnail') : videoPh('The Executive Investment Brief', 'Watch on demand'))}</a>
+    <a class="education-poster" href="${BRIEF}" aria-label="Watch the Executive Investment Brief">${cvImg('3_evergreen_webinar_social_media_cover', 'The Executive Investment Brief, watch on demand')}</a>
   </section>
   <section class="section teal closing" id="contact"><span class="section-art"${cover(A.closingImage)} aria-hidden="true"></span>
     ${heading('Ready to Explore Multifamily Investing?')}<p style="margin-inline:auto">Start with a conversation about your goals, your timeline, and whether our approach is the right fit.</p>
@@ -317,7 +317,7 @@ pages['webinars/executive-investment-brief'] = ['The Executive Investment Brief'
 
 // Evergreen watch page (on Vercel for now; GHL form redirects here)
 pages['webinars/executive-investment-brief/watch'] = ['Watch the Executive Investment Brief', subpage('On Demand', 'The Executive Investment Brief', 'Thank you for registering. Watch the full briefing below.',
-  section('', media(webinars.evergreen.watchVideo, 'Executive Investment Brief', webinars.evergreen.thumbnail)) +
+  section('', cvVideo('2_evergreen_webinar_video_url', '3_evergreen_webinar_social_media_cover', 'Executive Investment Brief')) +
   section('Ready to Talk?', p(['Start with a conversation about your goals, your timeline, and whether our approach is the right fit.']) + link('Schedule Discovery Call', site.discoveryCallUrl)), hero('webinars')), { withNewsletter: false }];
 
 pages['webinars/register'] = ['Live Investor Briefing Registration', subpage('Live Investor Briefing', cv('webinar_name'), cv('20_webinar_name_subheader'),

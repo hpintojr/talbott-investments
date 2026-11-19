@@ -45,7 +45,7 @@ export const site = {
     // Home hero = the long multifamily building.
     heroImage: '/images/hero-building.webp',
     helpImage: '/images/talbott-waves.webp',
-    closingImage: photo('photo-1460317442991-0ec209397118'),
+    closingImage: '/images/hero-arcs.webp',
     pageImage: '/images/hero-aerial.webp',
     // One unique hero per nav page (all 2880px, recolored blue)
     pageHeroes: {

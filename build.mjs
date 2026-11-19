@@ -261,8 +261,8 @@ const filterGrid = `<div class="template-filters" data-filter><label>Status <sel
 
 pages['portfolio'] = ['Portfolio', subpage('Portfolio', 'Track Record and Portfolio', 'Explore our properties, deal details, and portfolio results.',
   section('Portfolio Snapshot', stats(site.stats, true) + p(['Past performance does not guarantee future results.'])) +
-  section('Recent Transactions', filterGrid) +
-  section('Case Studies', grid([panel('Operating Plan', 'Rise Sunridge', 'A 200 unit value add community in Charlotte.', '/portfolio/rise-sunridge/'), panel('Active', 'Rise Bluestone', 'A 268 unit multifamily community in Raleigh.', '/portfolio/rise-bluestone/')])), hero('portfolio'))];
+  section('Case Studies', grid([panel('Operating Plan', 'Rise Sunridge', 'A 200 unit value add community in Charlotte.', '/portfolio/rise-sunridge/'), panel('Active', 'Rise Bluestone', 'A 268 unit multifamily community in Raleigh.', '/portfolio/rise-bluestone/')])) +
+  section('Recent Transactions', filterGrid), hero('portfolio'))];
 
 const STATES = { NC: 'North Carolina', AZ: 'Arizona' };
 // Rise deal pages share the Sunridge layout and copy until GoRaise sends per-deal copy (Nov 17 2026).

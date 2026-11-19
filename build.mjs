@@ -321,7 +321,8 @@ pages['webinars/executive-investment-brief/watch'] = ['Watch the Executive Inves
 
 pages['webinars/register'] = ['Live Investor Briefing Registration', subpage('Live Investor Briefing', cv('webinar_name'), cv('20_webinar_name_subheader'),
   `<div class="template-split"><div>${section('What You Will Learn', cvBullets(['9_what_you_will_learn_1', '10_what_you_will_learn_2', '11_what_you_will_learn_3', '12_what_youll_learn_4']))}<section class="page-section" data-cv-section="0_about_this_event"${CV['0_about_this_event'] ? '' : ' hidden'}><h2>About This Briefing</h2>${cvText('0_about_this_event', 'p')}</section></div><div>${cvImg('webinar_marketing_cover', 'Live Investor Briefing cover')}</div></div>` +
-  section('Reserve Your Seat', ghlEmbed('4j48BWsrlUr36REdk9fo', 'Live Investor Briefing registration')), CV.webinar_marketing_cover || A.pageImage, `<p class="briefing-meta">${esc(briefingDetail())}</p>`)];
+  `<div id="reserve"></div>` + section('Reserve Your Seat', ghlEmbed('4j48BWsrlUr36REdk9fo', 'Live Investor Briefing registration')), hero('webinars'),
+  `<div class="hero-event"><p><span class="hero-event-k">When</span>${cvText('webinar_date')} · ${cvText('webinar_time')}</p><p><span class="hero-event-k">Speaker</span>${cvText('webinar_guest_name')}</p><div class="hero-event-cta-row"><a class="button hero-event-cta" href="#reserve">Reserve Your Seat</a></div></div>`).replace('class="subpage-hero has-hero-extra"', 'class="subpage-hero has-hero-extra hero-compact"')];
 
 const introCta = section('Ready to Talk?', p(['Schedule a short introduction call with Stephen to talk through your goals and see whether our approach is the right fit.']) + link('Schedule an Introduction Call', site.introCallUrl), 'Next Step');
 pages['webinars/register/thank-you'] = ['You’re Registered', subpage('You’re Registered', 'Thank You for Registering for the Live Investor Briefing', 'Check your email for your confirmation and the link to join.',

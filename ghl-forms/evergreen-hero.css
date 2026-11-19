@@ -300,3 +300,15 @@ body {
 #_builder-form .field-icon {
   display: none !important;
 }
+
+/* GHL centers the form at a max width (.hl-app #_builder-form); let it fill the iframe from the left edge */
+.hl-app #_builder-form#_builder-form {
+  max-width: none !important;
+  width: 100% !important;
+  margin-left: 0 !important;
+  margin-right: 0 !important;
+}
+
+#_builder-form .form-icon-container {
+  display: none !important;
+}

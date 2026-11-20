@@ -9,9 +9,10 @@ header = learn[learn.find('<header'):learn.find('</header>') + 9]
 footer = learn[learn.find('<footer'):learn.find('</footer>') + 9]
 subscribe = re.search(r'<div class="hero-subscribe">.*?</div>', learn, re.S).group(0)
 subscribe = re.sub(r'<script[^>]*></script>', '', subscribe)
+lines = re.search(r'<svg class="linework".*?</svg>', learn, re.S).group(0)
 art = re.search(r"--subpage-art:url\('([^']+)'\)", learn).group(1)
 hero = (f'<main class="investor-page"><section class="subpage-hero has-hero-extra tb-blog-hero" style="--subpage-art:url(\'{art}\')">'
-        '<div class="subpage-wrap"><p class="eyebrow">Insights</p><h1>Insights on Real Estate Investing</h1>'
+        f'{lines}<div class="subpage-wrap"><p class="eyebrow">Insights</p><h1>Insights on Real Estate Investing</h1>'
         '<p>Practical articles on passive real estate investing, tax strategy, and market perspective from Stephen Predmore and the Talbott team.</p>'
         f'{subscribe}</div></section></main>')
 
@@ -24,6 +25,7 @@ blog_css = (
     '.tb-blog-chrome{position:relative;z-index:50}'
     '.tb-blog-chrome .approachable{padding-top:67px}'
     '.tb-blog-foot .approachable{padding-top:0}'
+    '.tb-blog-hero>.linework{top:0!important;height:100%!important}'
     '.tb-blog-hero{min-height:0!important;padding-block:clamp(56px,7vw,96px)!important}'
     # listing
     '.hl-blog-post-home{font-family:Arial,Helvetica,sans-serif!important}'

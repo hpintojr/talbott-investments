@@ -494,6 +494,19 @@ for (const filter of document.querySelectorAll('[data-filter]')) {
 }
 
 
+// Pages pasted into GHL before subpage heroes carried the linework still get it.
+for (const hero of document.querySelectorAll('.subpage-hero')) {
+  if (hero.querySelector(':scope > .linework')) continue;
+  let paths = '';
+  for (let i = 0; i < 26; i++) {
+    const x = 1 + i * 18.7, step = i - 14, st = `style="--line-delay:${(i * .04).toFixed(2)}s"`;
+    if (step < 0) { paths += `<path pathLength="1" d="M${x} 0V653" ${st}/>`; continue; }
+    const inset = 18.7 * step;
+    paths += `<path pathLength="1" d="M${x} 0V${294 - inset}H487" ${st}/><path pathLength="1" d="M${x} 653V${350 + inset}H487" ${st}/>`;
+  }
+  hero.insertAdjacentHTML('afterbegin', `<svg class="linework" viewBox="0 0 472 653" preserveAspectRatio="none" aria-hidden="true" focusable="false">${paths}</svg>`);
+}
+
 // Fit the hero linework to its real pixel size so the line-draw animation
 // works everywhere. WebKit (Safari and every iOS browser) ignores pathLength
 // on non-scaling strokes, which left the lines static on iPhones.

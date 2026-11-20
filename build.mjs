@@ -261,7 +261,7 @@ const filterGrid = `<div class="template-filters" data-filter><label>Status <sel
 
 pages['portfolio'] = ['Portfolio', subpage('Portfolio', 'Track Record and Portfolio', 'Explore our properties, deal details, and portfolio results.',
   section('Portfolio Snapshot', stats(site.stats, true) + p(['Past performance does not guarantee future results.'])) +
-  section('Case Studies', grid([panel('Operating Plan', 'Rise Sunridge', 'A 200 unit value add community in Charlotte.', '/portfolio/rise-sunridge/'), panel('Active', 'Rise Bluestone', 'A 268 unit multifamily community in Raleigh.', '/portfolio/rise-bluestone/')])) +
+  section('Case Studies', grid([panel('Active', 'Rise Sunridge', 'A 200 unit value add community in Charlotte.', '/portfolio/rise-sunridge/', pic('/images/properties/rise-sunridge.webp', 'Rise Sunridge photo')), panel('Active', 'Rise Bluestone', 'A 268 unit multifamily community in Raleigh.', '/portfolio/rise-bluestone/', pic('/images/properties/rise-bluestone.webp', 'Rise Bluestone photo'))])) +
   section('Recent Transactions', filterGrid), hero('portfolio'))];
 
 const STATES = { NC: 'North Carolina', AZ: 'Arizona' };

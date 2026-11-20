@@ -168,7 +168,7 @@ function shell(title, body, { withNewsletter = true, description = '' } = {}) {
 
 function subpage(label, title, intro, body, art = A.pageImage, heroExtra = '') {
   return `<main id="main" class="investor-page"><section class="subpage-hero${heroExtra ? ' has-hero-extra' : ''}" style="--subpage-art:url('${esc(art)}')">
-    <div class="subpage-wrap"><p class="eyebrow">${esc(label)}</p><h1>${esc(title)}</h1>${intro ? `<p>${esc(intro)}</p>` : ''}${heroExtra}</div>
+    ${heroLinework()}<div class="subpage-wrap"><p class="eyebrow">${esc(label)}</p><h1>${esc(title)}</h1>${intro ? `<p>${esc(intro)}</p>` : ''}${heroExtra}</div>
   </section><div class="subpage-wrap page-content">${body}</div></main>`;
 }
 

@@ -1264,3 +1264,8 @@
 .hero-event-cta-row{flex-basis:100%}
 #reserve{scroll-margin-top:90px}
 .replay-video img[hidden]{display:none!important}
+
+/* Subpage heroes share the homepage line-draw motion, layered over each page's own background. */
+.subpage-hero{position:relative;overflow:hidden;isolation:isolate}
+.subpage-hero>.linework{z-index:0}
+.subpage-hero>.subpage-wrap{position:relative;z-index:1}

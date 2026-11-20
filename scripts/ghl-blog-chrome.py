@@ -9,9 +9,10 @@ header = learn[learn.find('<header'):learn.find('</header>') + 9]
 footer = learn[learn.find('<footer'):learn.find('</footer>') + 9]
 subscribe = re.search(r'<div class="hero-subscribe">.*?</div>', learn, re.S).group(0)
 subscribe = re.sub(r'<script[^>]*></script>', '', subscribe)
+lines = re.search(r'<svg class="linework".*?</svg>', learn, re.S).group(0)
 art = re.search(r"--subpage-art:url\('([^']+)'\)", learn).group(1)
 hero = (f'<main class="investor-page"><section class="subpage-hero has-hero-extra tb-blog-hero" style="--subpage-art:url(\'{art}\')">'
-        '<div class="subpage-wrap"><p class="eyebrow">Insights</p><h1>Insights on Real Estate Investing</h1>'
+        f'{lines}<div class="subpage-wrap"><p class="eyebrow">Insights</p><h1>Insights on Real Estate Investing</h1>'
         '<p>Practical articles on passive real estate investing, tax strategy, and market perspective from Stephen Predmore and the Talbott team.</p>'
         f'{subscribe}</div></section></main>')
 
@@ -24,18 +25,21 @@ blog_css = (
     '.tb-blog-chrome{position:relative;z-index:50}'
     '.tb-blog-chrome .approachable{padding-top:67px}'
     '.tb-blog-foot .approachable{padding-top:0}'
+    '.tb-blog-hero>.linework{top:0!important;height:100%!important}'
     '.tb-blog-hero{min-height:0!important;padding-block:clamp(56px,7vw,96px)!important}'
     # listing
     '.hl-blog-post-home{font-family:Arial,Helvetica,sans-serif!important}'
-    '.blog-post-wrapper-compact{display:grid!important;grid-template-columns:repeat(auto-fill,minmax(290px,1fr));gap:28px;width:100%;max-width:1180px;margin:clamp(40px,5vw,72px) auto 0;padding:0 clamp(16px,3vw,24px)}'
-    f'.blog-post-wrapper-compact-list{{margin:0!important;padding:0!important;background:#fff;border:1px solid {LINE};border-radius:14px;overflow:hidden;box-shadow:0 18px 40px -30px #232e4d66;transition:transform .2s ease,box-shadow .2s ease}}'
-    '.blog-post-wrapper-compact-list:hover{transform:translateY(-3px);box-shadow:0 24px 48px -28px #232e4d80}'
-    '.blog-compact-body-wrapper{padding:0!important;margin:0!important;height:100%}'
-    '.blog-compact-content{flex-direction:column-reverse!important;gap:0!important;height:100%;justify-content:flex-end}'
-    '.blog-compact-content>div{width:100%!important;max-width:none!important;flex:none!important;margin:0!important}'
-    '.blog-image-compact-wrapper,.blog-image-compact-wrapper>div{width:100%!important;height:auto!important;margin:0!important}'
-    '.blog-image-compact{width:100%!important;height:auto!important;aspect-ratio:16/9;object-fit:cover!important;border-radius:0!important;display:block}'
-    '.content-width-compact{padding:20px 22px 24px!important}'
+    'body .blog-post-wrapper-compact{display:grid!important;grid-template-columns:repeat(auto-fill,minmax(min(100%,400px),1fr))!important;gap:32px!important;width:100%!important;max-width:1000px!important;margin:clamp(40px,5vw,72px) auto 0!important;padding:0 clamp(16px,3vw,24px)!important;flex-direction:initial!important;flex-wrap:initial!important;align-content:start!important}'
+    f'body .blog-post-wrapper-compact-list{{width:auto!important;max-width:none!important;margin:0!important;padding:0!important;background:#fff;border:1px solid {LINE};border-radius:14px;overflow:hidden;box-shadow:0 18px 40px -30px #232e4d66;transition:transform .2s ease,box-shadow .2s ease}}'
+    'body .blog-post-wrapper-compact-list:hover{transform:translateY(-3px);box-shadow:0 24px 48px -28px #232e4d80}'
+    'body .blog-compact-body-wrapper{padding:0!important;margin:0!important;height:100%!important}'
+    'body .blog-compact-content{display:flex!important;flex-direction:column!important;gap:0!important;height:100%!important;justify-content:flex-start!important;align-items:stretch!important}'
+    'body .blog-compact-content>div:last-child{order:-1!important}'
+    '.hl-blog-post-home .text-xs{flex-wrap:wrap!important;gap:4px 14px!important}.hl-blog-post-home .blog-author,.hl-blog-post-home .blog-publish-date{white-space:nowrap;margin:0!important}'
+    'body .blog-compact-content>div{width:100%!important;max-width:none!important;flex:none!important;margin:0!important}'
+    'body .blog-image-compact-wrapper,body .blog-image-compact-wrapper>div{width:100%!important;max-width:none!important;height:auto!important;margin:0!important}'
+    'body .blog-image-compact{width:100%!important;max-width:100%!important;height:auto!important;aspect-ratio:16/9;object-fit:cover!important;border-radius:0!important;display:block!important}'
+    'body .content-width-compact{width:100%!important;max-width:none!important;padding:20px 22px 24px!important}'
     f'.hl-blog-post-home .blog-title,.hl-blog-post-home .blog-title a{{font-family:Arial,Helvetica,sans-serif!important;text-transform:none!important;color:{INK}!important;font-size:1.14rem!important;line-height:1.3!important;font-weight:700!important;letter-spacing:-.01em;margin:0 0 10px!important;text-decoration:none!important}}'
     f'.hl-blog-post-home .blog-author,.hl-blog-post-home .blog-publish-date{{font-family:Arial,Helvetica,sans-serif!important;color:{MUTED}!important;font-size:.78rem!important}}'
     f'.hl-blog-post-home .blog-description{{font-family:Arial,Helvetica,sans-serif!important;color:{MUTED}!important;font-size:.92rem!important;line-height:1.5!important;margin:10px 0 14px!important}}'

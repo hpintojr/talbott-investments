@@ -1,0 +1,3 @@
+
+/* Talbott: email and dropdown fields draw their box on a wrapper, so outline that in red too. */
+#_builder-form#_builder-form .form-builder--item:has(>.error:not(:empty)) :is(.email-input-wrapper,.multiselect__tags){border-color:#c8322b!important}

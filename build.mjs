@@ -331,8 +331,7 @@ pages['webinars/register/thank-you'] = ['You’re Registered', subpage('You’re
   `<div class="hero-event"><p><span class="hero-event-k">Date</span>${cvText('webinar_date')}</p><p><span class="hero-event-k">Time</span>${cvText('webinar_time')}</p><div class="hero-event-cta-row">${cvLink('Add to Your Calendar', 'webinar_event_calendar_link', 'button hero-event-cta')}</div></div>`).replace('class="subpage-hero has-hero-extra"', 'class="subpage-hero has-hero-extra hero-compact"'), { withNewsletter: false }];
 
 pages['newsletter/thank-you'] = ['Thank You for Subscribing', subpage(site.newsletterName, 'Thank You for Subscribing to Our Newsletter', 'A confirmation email and your first article are on the way to your inbox. If you do not see them shortly, please check your promotions or spam folder.',
-  section('What to Expect', p([`${site.newsletterName} arrives in your inbox [twice a month], with practical articles on passive real estate investing, market insights, and first access to new opportunities.`])) +
-  section('A Message from Stephen', media(THANKS_VIDEO, 'Thank you message from Stephen')) +
+  section('A Message from Stephen', cvVideo('7_evergreen_thank_youschedule_a_call', '10_thank_you_video_thumbnail', 'Thank you message from Stephen')) +
   introCta, hero('learn')), { withNewsletter: false }];
 
 pages['thank-you'] = ['Thank You', subpage('Thank You', 'Thank You. We Received Your Message.', 'A member of our team will follow up shortly.', introCta, hero('contact')), { withNewsletter: false }];

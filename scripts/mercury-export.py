@@ -117,6 +117,10 @@ for p in pages:
 css = scope_css(fix(open(f'{D}/site.css').read()), '.ghl-site')
 css = brand_css(css)
 # Let the HTML block run edge to edge inside Mercury's section/row/column wrappers.
+# Mercury's base sheet sets :where(h1..h6){font-family:var(--app-font-heading)}, which beats
+# inheritance. Talbott headings inherit Arial from the theme root, so restore inheritance
+# (theme rules that name a font are more specific and still win).
+css += '.ghl-site :is(h1,h2,h3,h4,h5,h6){font-family:inherit}'
 css += ('.ghl-site{display:block;width:100%;text-align:left;margin:0;padding:0;background:#fff}'
         '.px-app-container:has(.ghl-site),.el-flow:has(.ghl-site),.flex:has(.ghl-site){padding-left:0!important;padding-right:0!important;margin-left:0!important;margin-right:0!important;max-width:none!important}')
 open(f'{O}/_head.html', 'w').write(f'<style>{css}</style>')

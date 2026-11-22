@@ -67,20 +67,26 @@ def tokens(t):
 
 
 def inline_styles(frag, name):
-    # Mercury's HTML block strips inline style="" attributes, so move each one into a class rule.
+    # Mercury's page renderer strips style="" and data-* attributes, so move each inline
+    # style into a generated class (classes survive) with a matching rule.
     rules = {}
-    def sub(m):
-        decl = html.unescape(m.group(2)).strip().rstrip(';')
-        if decl not in rules:
-            rules[decl] = f'ms-{name}-{len(rules)}'
-        return f' data-ms="{rules[decl]}"'
-    frag = re.sub(r'\sstyle=(["\'])(.*?)\1', sub, frag, flags=re.S)
+    def tag(m):
+        t = m.group(0)
+        sm = re.search(r'\sstyle=(["\'])(.*?)\1', t, re.S)
+        if not sm:
+            return t
+        decl = html.unescape(sm.group(2)).strip().rstrip(';')
+        c = rules.setdefault(decl, f'ms-{name}-{len(rules)}')
+        t = t[:sm.start()] + t[sm.end():]
+        cm = re.search(r'\sclass=(["\'])(.*?)\1', t, re.S)
+        if cm:
+            return t[:cm.start()] + f' class="{cm.group(2)} {c}"' + t[cm.end():]
+        return re.sub(r'^<([a-zA-Z0-9-]+)', lambda x: f'<{x.group(1)} class="{c}"', t)
+    frag = re.sub(r'<[a-zA-Z][^>]*\sstyle=[^>]*>', tag, frag, flags=re.S)
     def imp(d):
-        out = []
-        for part in [x for x in re.split(r';(?![^(]*\))', d) if x.strip()]:
-            out.append(part.strip() if part.strip().startswith('--') or '!important' in part else part.strip() + '!important')
-        return ';'.join(out)
-    css = ''.join(f'.ghl-site [data-ms="{c}"]{{{imp(d)}}}' for d, c in rules.items())
+        parts = [x.strip() for x in re.split(r';(?![^(]*\))', d) if x.strip()]
+        return ';'.join(x if x.startswith('--') or '!important' in x else x + '!important' for x in parts)
+    css = ''.join(f'.ghl-site .{c}{{{imp(d)}}}' for d, c in rules.items())
     return (f'<style>{css}</style>' if css else '') + frag
 
 

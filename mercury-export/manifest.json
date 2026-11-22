@@ -5,7 +5,7 @@
   "slug": "about",
   "title": "About | {{site.name}}",
   "description": "",
-  "bytes": 14525
+  "bytes": 16018
  },
  {
   "name": "contact",
@@ -13,7 +13,7 @@
   "slug": "contact",
   "title": "Contact | {{site.name}}",
   "description": "",
-  "bytes": 9373
+  "bytes": 10736
  },
  {
   "name": "home",
@@ -21,7 +21,7 @@
   "slug": "",
   "title": "{{site.name}} | Passive Multifamily Investing",
   "description": "Passive multifamily investments built on disciplined underwriting, transparent reporting, and consistent distributions.",
-  "bytes": 23214
+  "bytes": 24527
  },
  {
   "name": "investment-disclaimers",
@@ -29,7 +29,7 @@
   "slug": "investment-disclaimers",
   "title": "Investment Disclaimers | {{site.name}}",
   "description": "",
-  "bytes": 8422
+  "bytes": 10775
  },
  {
   "name": "learn",
@@ -37,7 +37,7 @@
   "slug": "learn",
   "title": "Learn | {{site.name}}",
   "description": "",
-  "bytes": 20967
+  "bytes": 22198
  },
  {
   "name": "newsletter-thank-you",
@@ -45,7 +45,7 @@
   "slug": "newsletter/thank-you",
   "title": "Thank You for Subscribing | {{site.name}}",
   "description": "",
-  "bytes": 8214
+  "bytes": 10435
  },
  {
   "name": "offerings",
@@ -53,7 +53,7 @@
   "slug": "offerings",
   "title": "Offerings | {{site.name}}",
   "description": "",
-  "bytes": 8718
+  "bytes": 10213
  },
  {
   "name": "portfolio",
@@ -61,7 +61,7 @@
   "slug": "portfolio",
   "title": "Portfolio | {{site.name}}",
   "description": "",
-  "bytes": 16118
+  "bytes": 17613
  },
  {
   "name": "portfolio-rise-avalon",
@@ -69,7 +69,7 @@
   "slug": "portfolio/rise-avalon",
   "title": "Rise Avalon | {{site.name}}",
   "description": "",
-  "bytes": 10064
+  "bytes": 12351
  },
  {
   "name": "portfolio-rise-bluestone",
@@ -77,7 +77,7 @@
   "slug": "portfolio/rise-bluestone",
   "title": "Rise Bluestone | {{site.name}}",
   "description": "",
-  "bytes": 10067
+  "bytes": 12552
  },
  {
   "name": "portfolio-rise-sunridge",
@@ -85,7 +85,7 @@
   "slug": "portfolio/rise-sunridge",
   "title": "Rise Sunridge | {{site.name}}",
   "description": "",
-  "bytes": 10074
+  "bytes": 12493
  },
  {
   "name": "portfolio-rise-valley-heights",
@@ -93,7 +93,7 @@
   "slug": "portfolio/rise-valley-heights",
   "title": "Rise Valley Heights | {{site.name}}",
   "description": "",
-  "bytes": 10068
+  "bytes": 12883
  },
  {
   "name": "privacy-policy",
@@ -101,7 +101,7 @@
   "slug": "privacy-policy",
   "title": "Privacy Policy | {{site.name}}",
   "description": "",
-  "bytes": 8127
+  "bytes": 9952
  },
  {
   "name": "schedule-a-call",
@@ -109,7 +109,7 @@
   "slug": "schedule-a-call",
   "title": "Schedule a Call | {{site.name}}",
   "description": "",
-  "bytes": 7963
+  "bytes": 9854
  },
  {
   "name": "strategy",
@@ -117,7 +117,7 @@
   "slug": "strategy",
   "title": "Strategy | {{site.name}}",
   "description": "",
-  "bytes": 9983
+  "bytes": 11412
  },
  {
   "name": "terms-of-use",
@@ -125,7 +125,7 @@
   "slug": "terms-of-use",
   "title": "Terms of Use | {{site.name}}",
   "description": "",
-  "bytes": 8137
+  "bytes": 9830
  },
  {
   "name": "thank-you",
@@ -133,7 +133,7 @@
   "slug": "thank-you",
   "title": "Thank You | {{site.name}}",
   "description": "",
-  "bytes": 7517
+  "bytes": 9012
  },
  {
   "name": "webinars-executive-investment-brief",
@@ -141,7 +141,7 @@
   "slug": "webinars/executive-investment-brief",
   "title": "The Executive Investment Brief | {{site.name}}",
   "description": "",
-  "bytes": 9486
+  "bytes": 12697
  },
  {
   "name": "webinars-executive-investment-brief-watch",
@@ -149,7 +149,7 @@
   "slug": "webinars/executive-investment-brief/watch",
   "title": "Watch the Executive Investment Brief | {{site.name}}",
   "description": "",
-  "bytes": 8113
+  "bytes": 11720
  },
  {
   "name": "webinars",
@@ -157,7 +157,7 @@
   "slug": "webinars",
   "title": "Investor Briefings | {{site.name}}",
   "description": "",
-  "bytes": 13953
+  "bytes": 15382
  },
  {
   "name": "webinars-register",
@@ -165,7 +165,7 @@
   "slug": "webinars/register",
   "title": "Live Investor Briefing Registration | {{site.name}}",
   "description": "",
-  "bytes": 10267
+  "bytes": 12290
  },
  {
   "name": "webinars-register-thank-you",
@@ -173,7 +173,7 @@
   "slug": "webinars/register/thank-you",
   "title": "You\u2019re Registered | {{site.name}}",
   "description": "",
-  "bytes": 8641
+  "bytes": 11324
  },
  {
   "name": "webinars-replay-1031-exchanges",
@@ -181,7 +181,7 @@
   "slug": "webinars/replay/1031-exchanges",
   "title": "Escape Capital Gains. Escape Concentration. | {{site.name}}",
   "description": "",
-  "bytes": 9195
+  "bytes": 12076
  },
  {
   "name": "webinars-replay-due-diligence-framework",
@@ -189,7 +189,7 @@
   "slug": "webinars/replay/due-diligence-framework",
   "title": "The Due Diligence Framework | {{site.name}}",
   "description": "",
-  "bytes": 9101
+  "bytes": 12576
  },
  {
   "name": "webinars-replay-from-rsus-to-real-assets",
@@ -197,7 +197,7 @@
   "slug": "webinars/replay/from-rsus-to-real-assets",
   "title": "From RSUs to Real Assets | {{site.name}}",
   "description": "",
-  "bytes": 9092
+  "bytes": 12633
  },
  {
   "name": "webinars-replay-multifamily-vs-build-to-rent-vs-self-storage",
@@ -205,7 +205,7 @@
   "slug": "webinars/replay/multifamily-vs-build-to-rent-vs-self-storage",
   "title": "Multifamily vs. Build to Rent vs. Self Storage | {{site.name}}",
   "description": "",
-  "bytes": 9275
+  "bytes": 14136
  },
  {
   "name": "webinars-replay-rise-sunridge",
@@ -213,7 +213,7 @@
   "slug": "webinars/replay/rise-sunridge",
   "title": "Rise Sunridge | {{site.name}}",
   "description": "",
-  "bytes": 9090
+  "bytes": 11905
  },
  {
   "name": "webinars-replay-rsus-to-real-assets-engineering-leaders",
@@ -221,7 +221,7 @@
   "slug": "webinars/replay/rsus-to-real-assets-engineering-leaders",
   "title": "From RSUs to Real Assets | {{site.name}}",
   "description": "",
-  "bytes": 9128
+  "bytes": 13659
  },
  {
   "name": "webinars-replay-the-second-engine",
@@ -229,6 +229,6 @@
   "slug": "webinars/replay/the-second-engine",
   "title": "The Second Engine | {{site.name}}",
   "description": "",
-  "bytes": 8938
+  "bytes": 12017
  }
 ]

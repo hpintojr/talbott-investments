@@ -66,6 +66,24 @@ def tokens(t):
     return t.replace(FIRM, '{{site.name}}')
 
 
+def inline_styles(frag, name):
+    # Mercury's HTML block strips inline style="" attributes, so move each one into a class rule.
+    rules = {}
+    def sub(m):
+        decl = html.unescape(m.group(2)).strip().rstrip(';')
+        if decl not in rules:
+            rules[decl] = f'ms-{name}-{len(rules)}'
+        return f' data-ms="{rules[decl]}"'
+    frag = re.sub(r'\sstyle=(["\'])(.*?)\1', sub, frag, flags=re.S)
+    def imp(d):
+        out = []
+        for part in [x for x in re.split(r';(?![^(]*\))', d) if x.strip()]:
+            out.append(part.strip() if part.strip().startswith('--') or '!important' in part else part.strip() + '!important')
+        return ';'.join(out)
+    css = ''.join(f'.ghl-site [data-ms="{c}"]{{{imp(d)}}}' for d, c in rules.items())
+    return (f'<style>{css}</style>' if css else '') + frag
+
+
 def brand_css(css):
     for k, v in COLOR_VARS.items():
         css = re.sub(re.escape(k) + r'(?![0-9a-fA-F])', v, css, flags=re.I)
@@ -85,6 +103,7 @@ for p in pages:
     body = re.search(r'<body[^>]*>(.*)</body>', t, re.S).group(1)
     name = 'home' if rel == '.' else rel.replace('/', '-')
     frag = tokens(f'<div class="ghl-site"><div class="{bc}">{fix(body)}</div></div>')
+    frag = inline_styles(frag, name)
     open(f'{O}/{name}.html', 'w').write(frag)
     manifest.append({'name': name, 'path': mpath(rel), 'slug': '' if rel == '.' else rel,
                      'title': tokens(title), 'description': tokens(desc), 'bytes': len(frag)})
@@ -93,8 +112,7 @@ css = scope_css(fix(open(f'{D}/site.css').read()), '.ghl-site')
 css = brand_css(css)
 # Let the HTML block run edge to edge inside Mercury's section/row/column wrappers.
 css += ('.ghl-site{display:block;width:100%;text-align:left;margin:0;padding:0;background:#fff}'
-        '.uk-section:has(.ghl-site),.uk-container:has(.ghl-site),.uk-grid:has(.ghl-site),'
-        '.uk-grid:has(.ghl-site)>*{padding:0!important;margin:0!important;max-width:none!important;width:100%!important}')
+        '.px-app-container:has(.ghl-site),.el-flow:has(.ghl-site),.flex:has(.ghl-site){padding-left:0!important;padding-right:0!important;margin-left:0!important;margin-right:0!important;max-width:none!important}')
 open(f'{O}/_head.html', 'w').write(f'<style>{css}</style>')
 
 js = open(f'{D}/site.js').read().replace("const page = document.body;",

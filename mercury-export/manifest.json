@@ -1,0 +1,234 @@
+[
+ {
+  "name": "about",
+  "path": "/about",
+  "slug": "about",
+  "title": "About | {{site.name}}",
+  "description": "",
+  "bytes": 15551
+ },
+ {
+  "name": "contact",
+  "path": "/contact",
+  "slug": "contact",
+  "title": "Contact | {{site.name}}",
+  "description": "",
+  "bytes": 10353
+ },
+ {
+  "name": "home",
+  "path": "/",
+  "slug": "",
+  "title": "{{site.name}} | Passive Multifamily Investing",
+  "description": "Passive multifamily investments built on disciplined underwriting, transparent reporting, and consistent distributions.",
+  "bytes": 24089
+ },
+ {
+  "name": "investment-disclaimers",
+  "path": "/investment-disclaimers",
+  "slug": "investment-disclaimers",
+  "title": "Investment Disclaimers | {{site.name}}",
+  "description": "",
+  "bytes": 10392
+ },
+ {
+  "name": "learn",
+  "path": "/learn",
+  "slug": "learn",
+  "title": "Learn | {{site.name}}",
+  "description": "",
+  "bytes": 21815
+ },
+ {
+  "name": "newsletter-thank-you",
+  "path": "/newsletter/thank-you",
+  "slug": "newsletter/thank-you",
+  "title": "Thank You for Subscribing | {{site.name}}",
+  "description": "",
+  "bytes": 10052
+ },
+ {
+  "name": "offerings",
+  "path": "/offerings",
+  "slug": "offerings",
+  "title": "Offerings | {{site.name}}",
+  "description": "",
+  "bytes": 9830
+ },
+ {
+  "name": "portfolio",
+  "path": "/portfolio",
+  "slug": "portfolio",
+  "title": "Portfolio | {{site.name}}",
+  "description": "",
+  "bytes": 17230
+ },
+ {
+  "name": "portfolio-rise-avalon",
+  "path": "/portfolio/rise-avalon",
+  "slug": "portfolio/rise-avalon",
+  "title": "Rise Avalon | {{site.name}}",
+  "description": "",
+  "bytes": 11968
+ },
+ {
+  "name": "portfolio-rise-bluestone",
+  "path": "/portfolio/rise-bluestone",
+  "slug": "portfolio/rise-bluestone",
+  "title": "Rise Bluestone | {{site.name}}",
+  "description": "",
+  "bytes": 12169
+ },
+ {
+  "name": "portfolio-rise-sunridge",
+  "path": "/portfolio/rise-sunridge",
+  "slug": "portfolio/rise-sunridge",
+  "title": "Rise Sunridge | {{site.name}}",
+  "description": "",
+  "bytes": 12110
+ },
+ {
+  "name": "portfolio-rise-valley-heights",
+  "path": "/portfolio/rise-valley-heights",
+  "slug": "portfolio/rise-valley-heights",
+  "title": "Rise Valley Heights | {{site.name}}",
+  "description": "",
+  "bytes": 12500
+ },
+ {
+  "name": "privacy-policy",
+  "path": "/privacy-policy",
+  "slug": "privacy-policy",
+  "title": "Privacy Policy | {{site.name}}",
+  "description": "",
+  "bytes": 9569
+ },
+ {
+  "name": "schedule-a-call",
+  "path": "/schedule-a-call",
+  "slug": "schedule-a-call",
+  "title": "Schedule a Call | {{site.name}}",
+  "description": "",
+  "bytes": 9471
+ },
+ {
+  "name": "strategy",
+  "path": "/strategy",
+  "slug": "strategy",
+  "title": "Strategy | {{site.name}}",
+  "description": "",
+  "bytes": 11029
+ },
+ {
+  "name": "terms-of-use",
+  "path": "/terms-of-use",
+  "slug": "terms-of-use",
+  "title": "Terms of Use | {{site.name}}",
+  "description": "",
+  "bytes": 9447
+ },
+ {
+  "name": "thank-you",
+  "path": "/thank-you",
+  "slug": "thank-you",
+  "title": "Thank You | {{site.name}}",
+  "description": "",
+  "bytes": 8629
+ },
+ {
+  "name": "webinars-executive-investment-brief",
+  "path": "/webinars/executive-investment-brief",
+  "slug": "webinars/executive-investment-brief",
+  "title": "The Executive Investment Brief | {{site.name}}",
+  "description": "",
+  "bytes": 12314
+ },
+ {
+  "name": "webinars-executive-investment-brief-watch",
+  "path": "/webinars/executive-investment-brief/watch",
+  "slug": "webinars/executive-investment-brief/watch",
+  "title": "Watch the Executive Investment Brief | {{site.name}}",
+  "description": "",
+  "bytes": 11337
+ },
+ {
+  "name": "webinars",
+  "path": "/webinars",
+  "slug": "webinars",
+  "title": "Investor Briefings | {{site.name}}",
+  "description": "",
+  "bytes": 14999
+ },
+ {
+  "name": "webinars-register",
+  "path": "/webinars/register",
+  "slug": "webinars/register",
+  "title": "Live Investor Briefing Registration | {{site.name}}",
+  "description": "",
+  "bytes": 11907
+ },
+ {
+  "name": "webinars-register-thank-you",
+  "path": "/webinars/register/thank-you",
+  "slug": "webinars/register/thank-you",
+  "title": "You\u2019re Registered | {{site.name}}",
+  "description": "",
+  "bytes": 10941
+ },
+ {
+  "name": "webinars-replay-1031-exchanges",
+  "path": "/webinars/replay/1031-exchanges",
+  "slug": "webinars/replay/1031-exchanges",
+  "title": "Escape Capital Gains. Escape Concentration. | {{site.name}}",
+  "description": "",
+  "bytes": 11693
+ },
+ {
+  "name": "webinars-replay-due-diligence-framework",
+  "path": "/webinars/replay/due-diligence-framework",
+  "slug": "webinars/replay/due-diligence-framework",
+  "title": "The Due Diligence Framework | {{site.name}}",
+  "description": "",
+  "bytes": 12193
+ },
+ {
+  "name": "webinars-replay-from-rsus-to-real-assets",
+  "path": "/webinars/replay/from-rsus-to-real-assets",
+  "slug": "webinars/replay/from-rsus-to-real-assets",
+  "title": "From RSUs to Real Assets | {{site.name}}",
+  "description": "",
+  "bytes": 12250
+ },
+ {
+  "name": "webinars-replay-multifamily-vs-build-to-rent-vs-self-storage",
+  "path": "/webinars/replay/multifamily-vs-build-to-rent-vs-self-storage",
+  "slug": "webinars/replay/multifamily-vs-build-to-rent-vs-self-storage",
+  "title": "Multifamily vs. Build to Rent vs. Self Storage | {{site.name}}",
+  "description": "",
+  "bytes": 13753
+ },
+ {
+  "name": "webinars-replay-rise-sunridge",
+  "path": "/webinars/replay/rise-sunridge",
+  "slug": "webinars/replay/rise-sunridge",
+  "title": "Rise Sunridge | {{site.name}}",
+  "description": "",
+  "bytes": 11522
+ },
+ {
+  "name": "webinars-replay-rsus-to-real-assets-engineering-leaders",
+  "path": "/webinars/replay/rsus-to-real-assets-engineering-leaders",
+  "slug": "webinars/replay/rsus-to-real-assets-engineering-leaders",
+  "title": "From RSUs to Real Assets | {{site.name}}",
+  "description": "",
+  "bytes": 13276
+ },
+ {
+  "name": "webinars-replay-the-second-engine",
+  "path": "/webinars/replay/the-second-engine",
+  "slug": "webinars/replay/the-second-engine",
+  "title": "The Second Engine | {{site.name}}",
+  "description": "",
+  "bytes": 11634
+ }
+]

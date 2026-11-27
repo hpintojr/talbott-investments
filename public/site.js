@@ -637,3 +637,7 @@ for (const credit of document.querySelectorAll('.site-credit')) {
 for (const a of document.querySelectorAll('.footer-legal a')) {
   if (a.textContent.trim() === 'Terms of Use') a.textContent = 'Terms and Conditions';
 }
+
+// Yohannes Nov 27: no Legal and Disclosures / Investment Disclaimers links in the footer.
+// Also removes them from GHL pages pasted before this change.
+for (const a of document.querySelectorAll('footer a[href*="investment-disclaimers"]')) a.remove();

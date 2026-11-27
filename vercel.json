@@ -1,1 +1,1 @@
-{"framework":null,"buildCommand":"npm run build","outputDirectory":"dist","headers":[{"source":"/(.*)","headers":[{"key":"X-Robots-Tag","value":"noindex"}]}]}
+{"framework": null, "buildCommand": "npm run build", "outputDirectory": "dist", "headers": [{"source": "/(.*)", "headers": [{"key": "X-Robots-Tag", "value": "noindex"}]}], "redirects": [{"source": "/investment-disclaimers", "destination": "/", "permanent": false}, {"source": "/investment-disclaimers/", "destination": "/", "permanent": false}]}

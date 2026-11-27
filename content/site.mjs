@@ -47,11 +47,11 @@ export const site = {
     helpImage: '/images/talbott-waves.webp',
     closingImage: '/images/hero-arcs.webp',
     pageImage: '/images/hero-aerial.webp',
-    // Strategy page (Yohannes Nov 25-26): Rise Avalon photo cropped from its cover (no cover text),
-    // the Sun Belt map from his Nov 26 email, and a licensed Unsplash photo for Deal Structure and Risk.
-    strategyFocusImage: '/images/strategy/investment-focus.webp',
-    targetMarketsMap: '/images/strategy/sunbelt-map.webp',
-    strategyDealImage: '/images/strategy/deal-review.webp',
+    // Strategy page (Yohannes Nov 27 "Strategy Page Updates"): Rise Avalon photo, desk review photo,
+    // and Sun Belt map, all from his email attachments.
+    strategyFocusImage: '/images/strategy/rise-avalon-photo.webp',
+    targetMarketsMap: '/images/strategy/sunbelt-map-v2.webp',
+    strategyDealImage: '/images/strategy/investment-review.webp',
     // One unique hero per nav page (all 2880px, recolored blue)
     pageHeroes: {
       about: '/images/hero-ribbons.webp',

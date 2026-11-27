@@ -628,3 +628,12 @@ document.querySelectorAll('.replay-video[data-src]').forEach((box) => {
     })
     .catch(() => {});
 })();
+
+
+// Footer credit and legal link label (Yohannes Nov 25). Also fixes GHL pages pasted before this change.
+for (const credit of document.querySelectorAll('.site-credit')) {
+  credit.innerHTML = 'Website by <a href="https://capitalystadvisors.com/" target="_blank" rel="noopener">Capitalyst Advisors</a>';
+}
+for (const a of document.querySelectorAll('.footer-legal a')) {
+  if (a.textContent.trim() === 'Terms of Use') a.textContent = 'Terms and Conditions';
+}

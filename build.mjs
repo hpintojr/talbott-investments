@@ -143,7 +143,7 @@ function header() {
 const newsletter = `<section class="newsletter-band"><div class="subpage-wrap newsletter-layout"><div><p class="eyebrow">Newsletter</p><h2>${esc(site.newsletterName)}</h2>
   <p>Practical insights on passive real estate investing, market updates, and first access to new opportunities, delivered to your inbox.</p></div>${ghl('newsletter')}</div></section>`;
 
-const legal = [['Privacy Policy', '/privacy-policy/'], ['Terms of Use', '/terms-of-use/'], ['Investment Disclaimers', '/investment-disclaimers/']];
+const legal = [['Privacy Policy', '/privacy-policy/'], ['Terms and Conditions', '/terms-of-use/'], ['Investment Disclaimers', '/investment-disclaimers/']];
 
 function footer() {
   const links = [['About', '/about/'], ['Strategy', '/strategy/'], ['Portfolio', '/portfolio/'], ['Offerings', '/offerings/'], ['Learn', '/learn/'], ['Webinars', '/webinars/'], ['Contact', '/contact/'], ['Legal and Disclosures', '/investment-disclaimers/']];
@@ -154,7 +154,7 @@ function footer() {
       ${link('LP Login', site.portalUrl || '/contact/', 'footer-portal')}</nav></div>
     <div class="footer-legal"><small>© 2026 ${esc(site.firm)}. All rights reserved.</small><nav aria-label="Legal">${legal.map(([l, h]) => link(l, h, 'nav-link')).join('')}</nav></div>
     <p class="disclosure"><strong>NO OFFER OF SECURITIES. DISCLOSURE OF INTERESTS.</strong> ${esc(site.firm)} and its representatives do not provide tax, legal, or accounting advice. This material has been prepared for informational purposes only, and is not intended to provide, and should not be relied on for, tax, legal, or accounting advice. Offerings are made only to accredited investors under Rule 506(b) through the applicable offering documents. You should consult your own tax, legal, and accounting advisors before engaging in any transaction.</p>
-    <p class="site-credit">Website by <a href="https://goraise.ai">GoRaise.ai</a></p></footer>`;
+    <p class="site-credit">Website by <a href="https://capitalystadvisors.com/" target="_blank" rel="noopener">Capitalyst Advisors</a></p></footer>`;
 }
 
 const OG_IMAGE = 'https://talbott-investments.vercel.app/images/og-talbott.jpg';
@@ -248,22 +248,28 @@ pages['about'] = ['About', subpage('Firm and Leadership', 'About Talbott Investm
   section('Our Firm', `<div class="template-split">${videoCard(A.aboutUsVideo, A.aboutUsPoster, 'About Talbott Investments video')}<div>${p(['Talbott Investments acquires and manages value add multifamily communities in growing markets, alongside experienced operating partners. We help busy professionals build passive income through real assets.', 'Our work centers on three things: disciplined acquisitions, institutional quality operating partners, and clear investor communication.'])}</div></div>`) +
   section('Leadership', `<div class="template-split"><img class="about-headshot" src="${esc(A.headshot)}" alt="Stephen Predmore headshot" loading="lazy" decoding="async" style="aspect-ratio:1;object-fit:cover;object-position:50% 20%"><div><p class="eyebrow">Founder and Managing Partner</p><h3>Stephen Predmore</h3>${p(site.stephenBio)}${link('Connect with Stephen on LinkedIn', site.linkedinUrl, 'button linkedin-button')}</div></div><div class="founder-story" style="margin-top:clamp(48px,6vw,88px)"><h2 class="founder-story-title" style="font-size:clamp(1.8rem,3.4vw,3.2rem);margin:0 0 25px">Founder's Story</h2>${videoCard(A.aboutMeVideo, A.aboutMePoster, 'Founder\'s Story video', true)}</div>`) +
   section('Advisors', grid(site.advisors.map(person), 'person-grid')) +
-  section('Strategic Partners', p(['The legal, tax, administration, and operating partners who support every Talbott offering.']) + grid(site.partners.map(partner))) +
+  (site.showPartners ? section('Strategic Partners', p(['The legal, tax, administration, and operating partners who support every Talbott offering.']) + grid(site.partners.map(partner))) : '') +
   section('Values', steps([['Trust Is Earned', 'We do what we say we will do and prepare before we need to.'], ['Transparency', 'Assumptions, risks, and results are easy to find, not buried.'], ['Discipline', 'We pass on far more deals than we pursue.']])), hero('about'))];
 
+// Strategy (Yohannes Nov 25-26): Investment Focus photo right, Sun Belt map under Target Markets,
+// Deal Structure photo left, Tax Advantages removed.
 pages['strategy'] = ['Strategy', subpage('How We Invest', 'Investment Strategy and Approach', 'How we select markets, underwrite deals, and oversee every investment.',
-  section('Investment Focus', p(['We acquire value add multifamily communities: well located Class B properties in strong neighborhoods, where better management and targeted renovations can raise income and value. Hold periods typically run 2 to 5 years.'])) +
-  section('Target Markets', grid([panel('Target Market', 'High Growth Metros', 'Population growth, positive net migration, job growth, and a diverse economy not reliant on one sector.'), panel('Target Market', 'Business-Friendly Environments', 'A favorable tax climate, balanced regulations, and a strong institutional buyer presence for future exits.')])) +
+  section('Investment Focus', `<div class="template-split strategy-split"><div>${p(['We acquire value add multifamily communities: well located Class B properties in strong neighborhoods, where better management and targeted renovations can raise income and value. Hold periods typically run 2 to 5 years.'])}</div>${img(A.strategyFocusImage, 'Rise Avalon, a Talbott Investments multifamily community')}</div>`) +
+  section('Target Markets', grid([panel('Target Market', 'High Growth Metros', 'Population growth, positive net migration, job growth, and a diverse economy not reliant on one sector.'), panel('Target Market', 'Business-Friendly Environments', 'A favorable tax climate, balanced regulations, and a strong institutional buyer presence for future exits.')]) +
+    `<figure class="target-map">${img(A.targetMarketsMap, 'Map of the United States with the Sun Belt states highlighted in navy')}</figure>`) +
   section('Underwriting and Approval', steps([['Source', 'Screen every opportunity against our market and property criteria.'], ['Underwrite', 'Use conservative assumptions, test downside scenarios, and build in reserves.'], ['Approve', 'Move forward only when a deal meets every standard.']])) +
-  section('Deal Structure and Risk', p(['Minimums, fees, distribution priorities, and hold periods are set in each offering’s documents. Offerings are available to accredited investors under Rule 506(b).', 'Risk controls include conservative leverage, interest rate protection, healthy reserves, and investors receiving a preferred return before the sponsor participates in profits.']) + link('Explore Investor Education →', '/learn/')) +
-  section('Tax Advantages', p(['Multifamily may offer depreciation, cost segregation, and 1031 exchange benefits that can reduce taxable income from distributions and defer capital gains. Benefits depend on your situation. Consult your tax advisor.'])), hero('strategy'))];
+  section('Deal Structure and Risk', `<div class="template-split strategy-split strategy-split-reverse">${img(A.strategyDealImage, 'Two people reviewing deal documents at a desk')}<div>${p(['Minimums, fees, distribution priorities, and hold periods are set in each offering’s documents. Offerings are available to accredited investors under Rule 506(b).', 'Risk controls include conservative leverage, interest rate protection, healthy reserves, and investors receiving a preferred return before the sponsor participates in profits.'])}${link('Explore Investor Education →', '/learn/')}</div></div>`), hero('strategy'))];
 
-const filterGrid = `<div class="template-filters" data-filter><label>Status <select data-category><option value="Active">Active</option></select></label>
-  <div class="template-grid">${site.properties.map((pr) => `<div data-filter-item data-group="${esc(pr[5])}">${panel(pr[5], pr[0], `${pr[2]} · ${pr[1]} · ${pr[3]} · ${pr[4]}`, pr[6] ? `/portfolio/${pr[6]}/` : '', pic(pr[7], pr[0] + ' photo'))}</div>`).join('')}</div><p data-filter-empty hidden>No results.</p></div>`;
+const propertySummary = (pr) => `${pr[2]} · ${pr[1]} · ${pr[3]} · Acquired ${pr[4]}${pr[8] ? ` · Sold ${pr[8]}` : ''}`;
+const filterGrid = `<div class="template-filters" data-filter><label>Status <select data-category><option value="">All statuses</option><option>Active</option><option>Realized</option></select></label>
+  <div class="template-grid">${site.properties.map((pr) => `<div data-filter-item data-group="${esc(pr[5])}">${panel(pr[5], pr[0], propertySummary(pr), pr[6] ? `/portfolio/${pr[6]}/` : '', pic(pr[7], pr[0] + ' photo'))}</div>`).join('')}</div><p data-filter-empty hidden>No results.</p></div>`;
 
+// Case Studies (Yohannes Nov 25): every property with a detail page.
+const CASE_ORDER = ['rise-sunridge', 'rise-bluestone', 'rise-valley-heights', 'rise-avalon'];
+const caseSummary = ([, loc, , size, , , slug]) => `A ${size.replace(' units', ' unit')} ${slug === 'rise-sunridge' ? 'value add' : 'multifamily'} community in ${loc.split(', ')[0]}.`;
 pages['portfolio'] = ['Portfolio', subpage('Portfolio', 'Track Record and Portfolio', 'Explore our properties, deal details, and portfolio results.',
   section('Portfolio Snapshot', stats(site.stats, true) + p(['Past performance does not guarantee future results.'])) +
-  section('Case Studies', grid([panel('Active', 'Rise Sunridge', 'A 200 unit value add community in Charlotte.', '/portfolio/rise-sunridge/', pic('/images/properties/rise-sunridge.webp', 'Rise Sunridge photo')), panel('Active', 'Rise Bluestone', 'A 268 unit multifamily community in Raleigh.', '/portfolio/rise-bluestone/', pic('/images/properties/rise-bluestone.webp', 'Rise Bluestone photo'))])) +
+  section('Case Studies', grid(site.properties.filter((pr) => pr[6]).sort((x, y) => CASE_ORDER.indexOf(x[6]) - CASE_ORDER.indexOf(y[6])).map((pr) => panel(pr[5], pr[0], caseSummary(pr), `/portfolio/${pr[6]}/`, pic(pr[7], pr[0] + ' photo'))), 'case-studies')) +
   section('Recent Transactions', filterGrid), hero('portfolio'))];
 
 const STATES = { NC: 'North Carolina', AZ: 'Arizona' };
@@ -273,13 +279,14 @@ const risePage = (pr) => {
   const [city, st] = loc.split(', ');
   const place = `${city}, ${STATES[st] || st}`;
   const units = size.replace(' units', '');
-  const metrics = [['Units', units], ['Acquired', name === 'Rise Sunridge' ? 'May 2025' : year], ['Hold status', status], ['Purchase price', '$31,000,000'], ['Renovation budget', 'About $4.25M'], ['Loan to value', '68.3%'], ['Interest rate', 'Capped at 4.75% for 5 years'], ['Planned hold', '2 to 5 years']];
+  const m = site.riseMetrics[pr[6]] || {};
+  const metrics = [['Units', units], ['Acquired', m.acquired || year], ['Hold status', status], ['Purchase price', '$31,000,000'], ['Renovation budget', m.renovation || 'About $4.25M'], ['Loan to value', m.ltv || '68.3%'], ['Interest rate', 'Capped at 4.75% for 5 years'], ['Planned hold', '2 to 5 years']];
   return [name, subpage('Property Profile', name, `A ${units} unit value add multifamily community in ${place}.`,
   section('Property Overview', `<div class="template-split">${pic(photo, name + ' photo')}<div><p class="eyebrow">${esc(type)} · ${esc(place)}</p>${p(['Built in 1988 and owned by the same family for about 25 years, the property had never had interior renovations. It was acquired at about a 20% discount to comparable sales, creating a full value add opportunity across every unit.'])}</div></div>`) +
   section('Key Metrics', `<table class="metric-table"><tbody>${metrics.map(([k, v]) => `<tr><td>${esc(k)}</td><td>${esc(v)}</td></tr>`).join('')}</tbody></table>`) +
   section(`Why ${city}`, bullets(['An emerging market with strong upside', 'Positive net migration and steady job growth', 'A diversified job base, with no single sector above 20% of the workforce', 'A business and landlord friendly environment'])) +
   section('Why This Property', bullets(['A legacy seller who wanted a fast close', 'About a 20% discount to comparable sales', 'A Class B asset in a Class A neighborhood', '100% of units can be upgraded', 'Washer and dryer hookups in every unit, for an immediate rent premium'])) +
-  section('Progress', bullets(['Distributions began within 60 days of closing', 'Exterior renovations completed in 30 days', 'Occupancy increased to 93.1%', 'Average rents increased 3.4%']), 'As of [date]') +
+  section('Progress', bullets(['Distributions began within 60 days of closing', 'Exterior renovations completed in 30 days', 'Occupancy increased to 93.1%', 'Average rents increased 3.4%'])) +
   link('Back to Portfolio', '/portfolio/'))];
 };
 for (const pr of site.properties.filter((x) => x[6].startsWith('rise-'))) pages[`portfolio/${pr[6]}`] = risePage(pr);
@@ -357,8 +364,10 @@ pages['contact'] = ['Contact', subpage('Investor Relations', 'Get Started', 'Ask
     <p>Prefer to talk it through? Book a 30 minute introduction call with Stephen.</p>${link('Schedule a Call', SCHEDULE)}`)}</div></div>`, hero('contact'))];
 
 const legalNote = (from) => `<p class="ghl-slot">Draft. Final copy is adapted from <a href="${from}">${from}</a> with every Cramlet name, email, phone, and address changed to Talbott’s. Pending legal copy paste.</p>`;
-pages['privacy-policy'] = ['Privacy Policy', subpage('Legal', 'Privacy Policy', '', legalNote('https://cramletcapital.com/privacy-policy/'))];
-pages['terms-of-use'] = ['Terms of Use', subpage('Legal', 'Terms of Use', '', legalNote('https://cramletcapital.com/terms-and-conditions/'))];
+// Final legal copy (Yohannes Nov 25, Drive "Talbott_Privacy_Policy.docx" / "Talbott_Terms_and_Conditions.docx").
+const legalDoc = async (f) => `<div class="legal-copy">${await readFile(new URL(`./content/legal/${f}.html`, import.meta.url), 'utf8')}</div>`;
+pages['privacy-policy'] = ['Privacy Policy', subpage('Legal', 'Privacy Policy', '', await legalDoc('privacy-policy'))];
+pages['terms-of-use'] = ['Terms and Conditions', subpage('Legal', 'Terms and Conditions', '', await legalDoc('terms-and-conditions'))];
 pages['investment-disclaimers'] = ['Investment Disclaimers', subpage('Legal', 'Investment Disclaimers', '', legalNote('https://cramletcapital.com/general-disclosure/') +
   p(['Private investments are illiquid and may result in a loss of principal. Past performance does not guarantee future results. Offerings are available only to accredited investors under Rule 506(b) and only through the applicable offering documents. Consult your tax advisor.']))];
 

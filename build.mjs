@@ -143,10 +143,10 @@ function header() {
 const newsletter = `<section class="newsletter-band"><div class="subpage-wrap newsletter-layout"><div><p class="eyebrow">Newsletter</p><h2>${esc(site.newsletterName)}</h2>
   <p>Practical insights on passive real estate investing, market updates, and first access to new opportunities, delivered to your inbox.</p></div>${ghl('newsletter')}</div></section>`;
 
-const legal = [['Privacy Policy', '/privacy-policy/'], ['Terms and Conditions', '/terms-of-use/'], ['Investment Disclaimers', '/investment-disclaimers/']];
+const legal = [['Privacy Policy', '/privacy-policy/'], ['Terms and Conditions', '/terms-of-use/']];
 
 function footer() {
-  const links = [['About', '/about/'], ['Strategy', '/strategy/'], ['Portfolio', '/portfolio/'], ['Offerings', '/offerings/'], ['Learn', '/learn/'], ['Webinars', '/webinars/'], ['Contact', '/contact/'], ['Legal and Disclosures', '/investment-disclaimers/']];
+  const links = [['About', '/about/'], ['Strategy', '/strategy/'], ['Portfolio', '/portfolio/'], ['Offerings', '/offerings/'], ['Learn', '/learn/'], ['Webinars', '/webinars/'], ['Contact', '/contact/']];
   return `<footer class="section footer approachable-footer">
     <div class="approachable-footer-top"><div><a class="brand-logo footer-wordmark" href="/">${brand(true)}</a><address>${esc(site.location)}</address></div>
     <nav aria-label="Footer">${links.map(([l, h]) => link(l, h, 'nav-link')).join('')}
@@ -363,13 +363,11 @@ pages['contact'] = ['Contact', subpage('Investor Relations', 'Get Started', 'Ask
     <li><svg aria-hidden="true" viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg><a href="mailto:${esc(site.email)}">${esc(site.email)}</a></li></ul>
     <p>Prefer to talk it through? Book a 30 minute introduction call with Stephen.</p>${link('Schedule a Call', SCHEDULE)}`)}</div></div>`, hero('contact'))];
 
-const legalNote = (from) => `<p class="ghl-slot">Draft. Final copy is adapted from <a href="${from}">${from}</a> with every Cramlet name, email, phone, and address changed to Talbott’s. Pending legal copy paste.</p>`;
 // Final legal copy (Yohannes Nov 25, Drive "Talbott_Privacy_Policy.docx" / "Talbott_Terms_and_Conditions.docx").
 const legalDoc = async (f) => `<div class="legal-copy">${await readFile(new URL(`./content/legal/${f}.html`, import.meta.url), 'utf8')}</div>`;
 pages['privacy-policy'] = ['Privacy Policy', subpage('Legal', 'Privacy Policy', '', await legalDoc('privacy-policy'))];
 pages['terms-of-use'] = ['Terms and Conditions', subpage('Legal', 'Terms and Conditions', '', await legalDoc('terms-and-conditions'))];
-pages['investment-disclaimers'] = ['Investment Disclaimers', subpage('Legal', 'Investment Disclaimers', '', legalNote('https://cramletcapital.com/general-disclosure/') +
-  p(['Private investments are illiquid and may result in a loss of principal. Past performance does not guarantee future results. Offerings are available only to accredited investors under Rule 506(b) and only through the applicable offering documents. Consult your tax advisor.']))];
+// Investment Disclaimers page removed (Yohannes Nov 27); /investment-disclaimers redirects home (vercel.json).
 
 // ---------- Write ----------
 const OUT = process.env.OUT || 'dist';

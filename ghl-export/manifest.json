@@ -4,202 +4,202 @@
   "path": "/about",
   "title": "About | Talbott Investments",
   "description": "",
-  "bytes": 14417
+  "bytes": 13823
  },
  {
   "name": "contact",
   "path": "/contact",
   "title": "Contact | Talbott Investments",
   "description": "",
-  "bytes": 9473
+  "bytes": 9534
  },
  {
   "name": "home",
   "path": "/",
   "title": "Talbott Investments | Passive Multifamily Investing",
   "description": "Passive multifamily investments built on disciplined underwriting, transparent reporting, and consistent distributions.",
-  "bytes": 22980
+  "bytes": 23424
  },
  {
   "name": "investment-disclaimers",
   "path": "/investment-disclaimers",
   "title": "Investment Disclaimers | Talbott Investments",
   "description": "",
-  "bytes": 8522
+  "bytes": 8583
  },
  {
   "name": "learn",
   "path": "/learn",
   "title": "Learn | Talbott Investments",
   "description": "",
-  "bytes": 21067
+  "bytes": 21128
  },
  {
   "name": "newsletter-thank-you",
   "path": "/newsletter/thank-you",
   "title": "Thank You for Subscribing | Talbott Investments",
   "description": "",
-  "bytes": 8227
+  "bytes": 8288
  },
  {
   "name": "offerings",
   "path": "/offerings",
   "title": "Offerings | Talbott Investments",
   "description": "",
-  "bytes": 8818
+  "bytes": 8879
  },
  {
   "name": "portfolio",
   "path": "/portfolio",
   "title": "Portfolio | Talbott Investments",
   "description": "",
-  "bytes": 16218
+  "bytes": 17940
  },
  {
   "name": "portfolio-rise-avalon",
   "path": "/portfolio/rise-avalon",
   "title": "Rise Avalon | Talbott Investments",
   "description": "",
-  "bytes": 10164
+  "bytes": 10191
  },
  {
   "name": "portfolio-rise-bluestone",
   "path": "/portfolio/rise-bluestone",
   "title": "Rise Bluestone | Talbott Investments",
   "description": "",
-  "bytes": 10167
+  "bytes": 10194
  },
  {
   "name": "portfolio-rise-sunridge",
   "path": "/portfolio/rise-sunridge",
   "title": "Rise Sunridge | Talbott Investments",
   "description": "",
-  "bytes": 10174
+  "bytes": 10203
  },
  {
   "name": "portfolio-rise-valley-heights",
   "path": "/portfolio/rise-valley-heights",
   "title": "Rise Valley Heights | Talbott Investments",
   "description": "",
-  "bytes": 10168
+  "bytes": 10195
  },
  {
   "name": "privacy-policy",
   "path": "/privacy-policy",
   "title": "Privacy Policy | Talbott Investments",
   "description": "",
-  "bytes": 8227
+  "bytes": 30819
  },
  {
   "name": "schedule-a-call",
   "path": "/schedule-a-call",
   "title": "Schedule a Call | Talbott Investments",
   "description": "",
-  "bytes": 8063
+  "bytes": 8124
  },
  {
   "name": "strategy",
   "path": "/strategy",
   "title": "Strategy | Talbott Investments",
   "description": "",
-  "bytes": 10083
+  "bytes": 10656
  },
  {
   "name": "terms-of-use",
   "path": "/terms-of-use",
-  "title": "Terms of Use | Talbott Investments",
+  "title": "Terms and Conditions | Talbott Investments",
   "description": "",
-  "bytes": 8237
+  "bytes": 20276
  },
  {
   "name": "thank-you",
   "path": "/thank-you",
   "title": "Thank You | Talbott Investments",
   "description": "",
-  "bytes": 7617
+  "bytes": 7678
  },
  {
   "name": "webinars-executive-investment-brief",
   "path": "/webinars/executive-investment-brief",
   "title": "The Executive Investment Brief | Talbott Investments",
   "description": "",
-  "bytes": 9283
+  "bytes": 9344
  },
  {
   "name": "webinars-executive-investment-brief-watch",
   "path": "/webinars/executive-investment-brief/watch",
   "title": "Watch the Executive Investment Brief | Talbott Investments",
   "description": "",
-  "bytes": 8013
+  "bytes": 8074
  },
  {
   "name": "webinars",
   "path": "/webinars",
   "title": "Investor Briefings | Talbott Investments",
   "description": "",
-  "bytes": 13670
+  "bytes": 13731
  },
  {
   "name": "webinars-register",
   "path": "/webinars/register",
   "title": "Live Investor Briefing Registration | Talbott Investments",
   "description": "",
-  "bytes": 10034
+  "bytes": 10095
  },
  {
   "name": "webinars-register-thank-you",
   "path": "/webinars/register/thank-you",
   "title": "You\u2019re Registered | Talbott Investments",
   "description": "",
-  "bytes": 8609
+  "bytes": 8670
  },
  {
   "name": "webinars-replay-1031-exchanges",
   "path": "/webinars/replay/1031-exchanges",
   "title": "Escape Capital Gains. Escape Concentration. | Talbott Investments",
   "description": "",
-  "bytes": 9295
+  "bytes": 9356
  },
  {
   "name": "webinars-replay-due-diligence-framework",
   "path": "/webinars/replay/due-diligence-framework",
   "title": "The Due Diligence Framework | Talbott Investments",
   "description": "",
-  "bytes": 9201
+  "bytes": 9262
  },
  {
   "name": "webinars-replay-from-rsus-to-real-assets",
   "path": "/webinars/replay/from-rsus-to-real-assets",
   "title": "From RSUs to Real Assets | Talbott Investments",
   "description": "",
-  "bytes": 9192
+  "bytes": 9253
  },
  {
   "name": "webinars-replay-multifamily-vs-build-to-rent-vs-self-storage",
   "path": "/webinars/replay/multifamily-vs-build-to-rent-vs-self-storage",
   "title": "Multifamily vs. Build to Rent vs. Self Storage | Talbott Investments",
   "description": "",
-  "bytes": 9375
+  "bytes": 9436
  },
  {
   "name": "webinars-replay-rise-sunridge",
   "path": "/webinars/replay/rise-sunridge",
   "title": "Rise Sunridge | Talbott Investments",
   "description": "",
-  "bytes": 9190
+  "bytes": 9251
  },
  {
   "name": "webinars-replay-rsus-to-real-assets-engineering-leaders",
   "path": "/webinars/replay/rsus-to-real-assets-engineering-leaders",
   "title": "From RSUs to Real Assets | Talbott Investments",
   "description": "",
-  "bytes": 9228
+  "bytes": 9289
  },
  {
   "name": "webinars-replay-the-second-engine",
   "path": "/webinars/replay/the-second-engine",
   "title": "The Second Engine | Talbott Investments",
   "description": "",
-  "bytes": 9038
+  "bytes": 9099
  }
 ]

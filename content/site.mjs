@@ -50,7 +50,7 @@ export const site = {
     // Strategy page (Yohannes Nov 27 "Strategy Page Updates"): Rise Avalon photo, desk review photo,
     // and Sun Belt map, all from his email attachments.
     strategyFocusImage: '/images/strategy/rise-avalon-photo.webp',
-    targetMarketsMap: '/images/strategy/sunbelt-map-v2.webp',
+    targetMarketsMap: '/images/strategy/sunbelt-map.svg',
     strategyDealImage: '/images/strategy/investment-review.webp',
     // One unique hero per nav page (all 2880px, recolored blue)
     pageHeroes: {

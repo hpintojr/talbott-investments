@@ -47,6 +47,11 @@ export const site = {
     helpImage: '/images/talbott-waves.webp',
     closingImage: '/images/hero-arcs.webp',
     pageImage: '/images/hero-aerial.webp',
+    // Strategy page (Yohannes Nov 25-26): Rise Avalon photo cropped from its cover (no cover text),
+    // the Sun Belt map from his Nov 26 email, and a licensed Unsplash photo for Deal Structure and Risk.
+    strategyFocusImage: '/images/strategy/investment-focus.webp',
+    targetMarketsMap: '/images/strategy/sunbelt-map.webp',
+    strategyDealImage: '/images/strategy/deal-review.webp',
     // One unique hero per nav page (all 2880px, recolored blue)
     pageHeroes: {
       about: '/images/hero-ribbons.webp',
@@ -75,7 +80,9 @@ export const site = {
     { name: 'John Casmon', role: 'Advisor · Casmon Capital Group', photo: '/images/john-casmon.webp', linkedin: 'https://www.linkedin.com/in/multifamily-apartments-john-casmon/',
       bio: 'John launched Casmon Capital Group to help busy professionals invest in multifamily real estate, helping families invest in nearly $90 million of apartments. He hosts the Target Market Insights podcast, co-founded the Midwest Real Estate Networking Summit, and previously led marketing for General Motors, PepsiCo, and MillerCoors.' },
   ],
-  // Vendors, legal counsel and other strategic partners (requested from Stephen)
+  // Vendors, legal counsel and other strategic partners (requested from Stephen).
+  // Hidden on the About page per Yohannes (Nov 25); set showPartners: true to bring the section back.
+  showPartners: false,
   partners: [
     { name: '[Legal counsel]', role: 'Securities and fund counsel', url: '' },
     { name: '[Fund administrator]', role: 'Investor portal and reporting', url: '' },
@@ -96,9 +103,11 @@ export const site = {
     calendar: { id: 'WQWY7tLU92Q8FSr6tOpG', where: 'Calendars > Stephen Calendar Group > Investor Introduction Call - Stephen (30 min)' },
   },
 
-  stats: [['16', 'Properties'], ['$298M', 'Portfolio Value'], ['1,784', 'Units'], ['10', 'States']],
+  stats: [['17', 'Properties'], ['$297M', 'Portfolio Value'], ['2,041', 'Units'], ['10', 'States']],
 
-  // name, location, type, size, year, status, detail page slug, cover (public/images/properties, GoRaise Nov 17 2026)
+  // name, location, type, size, year acquired, status, detail page slug, cover, sold date (realized only).
+  // Covers: GoRaise Nov 25 2026 (Drive "Talbott_Property_Cover_*.png"), public/images/properties.
+  // Order (Yohannes Nov 25): active newest to oldest, then realized, most recently sold first.
   properties: [
     ['Rise Bluestone', 'Raleigh, NC', 'Multifamily', '268 units', '2026', 'Active', 'rise-bluestone', '/images/properties/rise-bluestone.webp'],
     ['Rise Valley Heights', 'Phoenix, AZ', 'Multifamily', '194 units', '2026', 'Active', 'rise-valley-heights', '/images/properties/rise-valley-heights.webp'],
@@ -109,14 +118,23 @@ export const site = {
     ['S. Samuel Street Apartments', 'Charles Town, WV', 'Multifamily', '23 units', '2024', 'Active', '', '/images/properties/s-samuel-street-apartments.webp'],
     ['Northwood Apartments', 'Mount Airy, NC', 'Multifamily', '54 units', '2024', 'Active', '', '/images/properties/northwood-apartments.webp'],
     ['Cherry Street Apartments', 'Kernersville, NC', 'Multifamily', '12 units', '2024', 'Active', '', '/images/properties/cherry-street-apartments.webp'],
-    ['Taku Drive Apartments', 'Anchorage, AK', 'Multifamily', '30 units', '2023', 'Active', '', '/images/properties/taku-drive-apartments.webp'],
-    ['Fort Worth Self Storage', 'Fort Worth, TX', 'Self storage', '221 units', '2023', 'Active', '', '/images/properties/fort-worth-self-storage.webp'],
     ['Promenade Apartments', 'Greenwood, SC', 'Multifamily', '88 units', '2023', 'Active', '', '/images/properties/promenade-apartments.webp'],
-    ['Hilton Tapestry', 'Sarasota, FL', 'Hospitality', '120 keys, 35 condos', '2021', 'Active', '', '/images/properties/hilton-tapestry.webp'],
-    ['Staybridge Suites', 'Fishers, IN', 'Hospitality', '146 keys', '2021', 'Active', '', '/images/properties/staybridge-suites.webp'],
-    ['Marriott Courtyard', 'Columbus, OH', 'Hospitality', '145 keys', '2019', 'Active', '', '/images/properties/marriott-courtyard.webp'],
     ['Alhambra Avenue', 'Baltimore, MD', 'Single family', '1 home', '2020', 'Active', '', '/images/properties/alhambra-avenue.webp'],
+    ['Hilton Tapestry', 'Sarasota, FL', 'Hospitality', '155 units', '2021', 'Realized', '', '/images/properties/hilton-tapestry.webp', 'Oct 2025'],
+    ['Taku Drive Apartments', 'Anchorage, AK', 'Multifamily', '30 units', '2023', 'Realized', '', '/images/properties/taku-drive-apartments.webp', 'Aug 2025'],
+    ['Staybridge Suites', 'Fishers, IN', 'Hospitality', '146 keys', '2021', 'Realized', '', '/images/properties/staybridge-suites.webp', 'Jul 2025'],
+    ['Marriott Courtyard', 'Columbus, OH', 'Hospitality', '145 keys', '2019', 'Realized', '', '/images/properties/marriott-courtyard.webp', 'Jun 2025'],
+    ['Fort Worth Self Storage', 'Fort Worth, TX', 'Self storage', '221 units', '2023', 'Realized', '', '/images/properties/fort-worth-self-storage.webp', 'Jan 2025'],
+    ['Richwood Avenue', 'Baltimore, MD', 'Single family', '1 home', '2020', 'Realized', '', '/images/properties/richwood-avenue.webp', 'Oct 2023'],
   ],
+
+  // Rise detail pages (Yohannes Nov 25): per-deal Key Metrics. Other rows stay on the Sunridge copy.
+  riseMetrics: {
+    'rise-sunridge': { acquired: 'May 2025', renovation: 'About $4.25M', ltv: '68.3%' },
+    'rise-bluestone': { acquired: 'May 2026', renovation: '$3.46M', ltv: '68.2%' },
+    'rise-valley-heights': { acquired: 'Mar 2026', renovation: '$4.59M', ltv: '70.0%' },
+    'rise-avalon': { acquired: 'Dec 2025', renovation: '$4.90M', ltv: '70.0%' },
+  },
 
   // Talbott's GHL Resources blog (blog815585), newest first. Cards link to the live posts.
   articleCategories: ['Tax Benefits', 'Investor Returns', 'Due Diligence', 'Finance', 'Terms', 'Benefits', 'Market Insights'],

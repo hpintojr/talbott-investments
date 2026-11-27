@@ -1269,3 +1269,21 @@
 .subpage-hero{position:relative;overflow:hidden;isolation:isolate}
 .subpage-hero>.linework{z-index:0}
 .subpage-hero>.subpage-wrap{position:relative;z-index:1}
+
+/* Nov 26 2026 (Yohannes): Case Studies 2x2, Strategy photos and Sun Belt map, final legal copy */
+.case-studies { grid-template-columns:repeat(2,minmax(0,1fr)); }
+.strategy-split { align-items:center; }
+.strategy-split > img { width:100%; aspect-ratio:4/3; object-fit:cover; border-radius:var(--radius,6px); }
+.target-map { margin:clamp(28px,4vw,48px) 0 0; padding:clamp(18px,3vw,40px); background:#f5f5f6; border-radius:var(--radius,6px); }
+.target-map img { background:transparent; object-fit:contain; display:block; width:100%; max-width:980px; height:auto; margin:0 auto; }
+.legal-copy { max-width:820px; }
+.legal-copy h2 { font-size:clamp(1.4rem,2.2vw,1.9rem); margin:2.2em 0 .6em; }
+.legal-copy h3 { font-size:clamp(1.1rem,1.6vw,1.35rem); margin:1.6em 0 .5em; }
+.legal-copy h4 { font-size:1.05rem; margin:1.4em 0 .4em; }
+.legal-copy :is(h2,h3,h4) { color:#232e4d; }
+.legal-copy p, .legal-copy li { line-height:1.7; }
+.legal-copy ul { padding-left:1.3em; margin:.6em 0 1.2em; }
+.legal-copy li { margin:.35em 0; }
+.legal-copy a { color:#0b4a82; text-decoration:underline; overflow-wrap:anywhere; }
+.legal-copy .legal-updated { color:#5b6478; font-size:.95rem; }
+@media (max-width:760px) { .case-studies { grid-template-columns:minmax(0,1fr); } .strategy-split-reverse > img { order:2; } }
